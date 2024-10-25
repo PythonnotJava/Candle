@@ -1,0 +1,36 @@
+// 关键字大全
+alias
+as
+assert 
+break
+catch
+class
+const
+delay
+dll
+else
+export
+false
+final
+for
+if
+inherit
+iter
+load
+null
+parallel
+private
+public
+true
+try
+when
+
+// 目标：该语言是面向对象的静态编程语言，主要用于大数据计算
+
+// 关键字作用说明
+1. alias: 给类型/标识另起别名
+alias Sunday = '星期日';        // 把星期日赋值给Sunday，这是最基本的用法，即变量声明
+alias Int32 = int;     // 把int另起Int32的别名
+alias IntOrFloat = int | float;     // 把可能为int或者float类型另起IntOrFloat的别名
+
+2. 

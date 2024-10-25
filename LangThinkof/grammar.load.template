@@ -1,0 +1,2 @@
+// load是静态调用包的关键字
+load package.module;
