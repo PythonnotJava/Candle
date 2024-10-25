@@ -1,6 +1,5 @@
 // 关键字大全
 alias
-as
 assert 
 break
 catch
@@ -10,7 +9,9 @@ delay
 dll
 else
 export
+ellipsis
 false
+factory
 final
 for
 if
@@ -21,16 +22,232 @@ null
 parallel
 private
 public
+reflect
+return
+signal
+singleton
+this
+throw
 true
 try
 when
 
 // 目标：该语言是面向对象的静态编程语言，主要用于大数据计算
+设计原则: 
+- 面向对象时没有那么多隐私，非必要时全是public
+- 自带设计模式
 
 // 关键字作用说明
-1. alias: 给类型/标识另起别名
-alias Sunday = '星期日';        // 把星期日赋值给Sunday，这是最基本的用法，即变量声明
+1. alias: 给类型/标识另起别名/库别名
+alias Sunday = '星期日';        // 把星期日赋值给Sunday，这是最基本的用法，即变量声明，同时也会推断类型
 alias Int32 = int;     // 把int另起Int32的别名
-alias IntOrFloat = int | float;     // 把可能为int或者float类型另起IntOrFloat的别名
+alias IntOrFloat = int | double;     // 把可能为int或者float类型另起IntOrFloat的别名
+alias Callable = double Function(int, int);     // 对函数类型别名
+load package.name alias mylib;     // 加载静态库并给库起别名
+dll package.name alias mylib2;     // 动态加载库并给库起别名
 
-2. 
+2. assert: 断言/辅助类型声明
+assert (a == 1);     // 断言的基本功能
+alias Sunday = '星期日' assert(string);     // 辅助类型声明 
+
+3. break: 跳出循环
+for iter(i, 5) {
+    if (i == 3) {
+        break;
+    }
+    print(i);
+}
+
+4. catch: 捕获异常
+try {
+    throw Exception('error');
+} catch (Exception e) {
+    print(e.message);
+}
+
+5. class: 声明类
+- 类中不声明修饰符的方法默认public
+- 被final修饰的类不能被继承
+- 使用inherit实现继承
+- 不支持多继承
+- 被final声明的方法在继承的时候不能被重写
+- singleton声明单例类（见Random设计）或者静态方法
+- factory实现工厂模式
+
+class PersonConfig{
+    string name;
+    string age;
+}
+
+final class Person inherit PersonConfig {
+    Person(this.name, this.age);
+    void sayHello() {
+        print(f'Hello, my name is {name}, I am {age} years old.');
+    }
+    private void privateMethod() {
+        print('This is a private method.');
+    }
+    singleton void staticMethod() {
+        print('This is a static method.');
+    }
+    factory Person PersonAgeOn15(String name) {
+        return Person(name, 15);
+    }
+    singleton Person getInstance() {
+        return Person('Tom', 20);
+    }
+}
+
+- 单例类下面必须是静态方法
+singleton class Random {
+    singleton ellipsis int randint();
+}
+
+6. const: 声明常量，不能被修改
+const PI = 3.1415926;
+
+7. delay: 在并行模式中，延迟执行signal标记的某块代码，在阶梯型并行中使用
+// 下面模拟两个耗时的并行任务，每个任务必须用块括起来，否则会报错；
+// 在第一个任务中，使用signal标记了执行块，该执行块完成后，因该块延迟的任务二会和任务一并行执行
+int sum = 0;
+parallel {
+    {
+        time.sleep(1000);
+        signal(label) {        // label是随便取的标签名字
+            sum = 100;
+        }
+        time.sleep(10000);
+    }
+    delay(label) {
+        time.sleep(2000);
+    }
+}
+
+8. dll: 动态载入库
+dll package.name;
+dll package.name alias mylib;
+
+9. else: 条件语句
+if (a > 0) {
+    print('a is positive');
+} else if (a == 0){
+    print('Unsure!');
+} else {
+    print("a is not positive");
+}
+
+
+10. export: 导出库中的想暴露的内容，块中用*表示所有内容，空块表示没有，使用/其后面使用内容都隐藏
+// 实现原理是两个集合的差集，即暴露的减去隐藏的
+export {Random, Person, Sunday};     // 导出Random类和Person类和Sunday常量
+export {*};     // 导出所有内容
+export {*, /};     // 导出所有内容
+export {*, Sunday};    // 导出所有内容
+export {Random, Person, /, *};     // 隐藏所有
+export {*, /, Random};      // 隐藏Random，其他都暴露
+
+11. ellipsis: 省略内容/占位内容
+int add(int a){
+    ellipsis;  // 先占位，以后可能优化
+    return 1 + a;
+}
+
+ellipsis int mult(int a);       // 声明这是一个可以暂时实现的函数，但是调用的时候要实现，否则抛出OmittedError
+
+12. false: 布尔值，表示假
+// 规定除了0和false，其他均为true
+
+13. final: 声明类或者方法不能被继承或者重写，见class实例
+
+14. for: 循环
+- for循环配合迭代关键字iter使用
+for iter(i, 5) {}
+
+15. if: 条件语句
+if (a > 0) {
+    print('a is positive');
+}           
+
+16. inherit: 继承，见class实例  
+
+17. iter: 迭代类型
+- 第一个参数是赋值变量，后面是迭代器或者必须是整数
+- 如果第二个参数是整数，此时也允许传入第三个以及第四个参数，也必须是整数，表示范围以及步长，左开右闭范围
+iter(i, 5) {}     // i从0到4
+iter(i, [1, 2, 3]) {}     // i从1到3
+iter(i, 'abc') {}     // i从'a'到'c'
+iter(i, 'abc'.length) {}     // i从0到2
+iter(i, iter(j, 5)) {}     // i从0到4，j从0到41
+iter(i, 5, 2) {}     // i从5到2, i = 5, 4, 3
+iter(i, 15, 10, 2) {}     // i从15到10，步长为2, i = 15, 13, 11
+
+18. load: 加载静态库
+load package.name;
+load package.name alias mylib;
+
+19. null: 空值
+int? number = null;     // number可以是int类型或者null类型
+
+20. parallel: 并行模式，块中用{}括起来，每个块是并行执行的，块中可以嵌套块
+// 并行块求和，0 + 1 + …… + 30000
+list sums = [0, 0, 0];
+parallel {
+    {
+        for iter(i, 10000) 
+            sums[0] += i;
+    },
+    {
+        for iter(i, 10000, 20000) 
+            sums[1] += i;
+    },
+    {
+        for iter(i, 20000, 30000) 
+            sums[2] += i;   
+    }
+}             
+print(sum(sums))
+
+21. private: 声明私有方法，只能在类内部调用
+
+22. public: 声明公有方法，可以在类外部调用，public和private使用见class案例
+
+23. reflect: 用于动态的实现set和get方法，可以是实例，也可以是类上面；反射也可以实现final类的拓展
+
+Person person1 = Person('Tom', 20); 
+reflect person1 {
+    int height = 170;
+    int getHeight() {
+        return height;
+    }
+}
+print(person1.getHeight());     // 170
+person1.Height = 180;
+print(person1.Height);     // 180   
+
+reflect Random {
+    void printInfo(){
+        print('This is a random class.');
+    }
+} 
+Random().printInfo();
+
+24. return: 返回值  
+
+25. signal: 并行模式中，标记某块代码，配合delay使用
+
+26. singleton: 声明单例类或者静态方法
+
+27. this: 类实例本身
+
+28. throw: 抛出错误
+
+29. true: 真
+
+30. try: 捕捉错误
+
+31. when: 条件循环
+int i = 0;
+when (i <= 3){
+    i++;
+    ellipsis;
+}
