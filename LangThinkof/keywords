@@ -26,6 +26,7 @@ reflect
 return
 signal
 singleton
+super
 this
 throw
 true
@@ -73,6 +74,7 @@ try {
 - 被final声明的方法在继承的时候不能被重写
 - singleton声明单例类（见Random设计）或者静态方法
 - factory实现工厂模式
+- super指向父类
 
 class PersonConfig{
     string name;
@@ -80,7 +82,7 @@ class PersonConfig{
 }
 
 final class Person inherit PersonConfig {
-    Person(this.name, this.age);
+    Person(super.name, super.age);
     void sayHello() {
         print(f'Hello, my name is {name}, I am {age} years old.');
     }
@@ -94,6 +96,7 @@ final class Person inherit PersonConfig {
         return Person(name, 15);
     }
     singleton Person getInstance() {
+        this.privateMethod();
         return Person('Tom', 20);
     }
 }
@@ -251,3 +254,13 @@ when (i <= 3){
     i++;
     ellipsis;
 }
+
+32. super: 父类实例
+super.method();     // 调用父类方法
+
+// 特殊语法
+- r 表示转义
+- f 表示格式化字符串
+- ! 声明不为空
+- ? 声明可以为空
+- T 泛型类
