@@ -39,13 +39,17 @@ when
 - 自带设计模式
 
 // 关键字作用说明
-1. alias: 给类型/标识另起别名/库别名
+1. alias: 给类型/标识另起别名/库别名，alias设置变量的时候，会自动判断类型且锁定类型
 alias Sunday = '星期日';        // 把星期日赋值给Sunday，这是最基本的用法，即变量声明，同时也会推断类型
 alias Int32 = int;     // 把int另起Int32的别名
 alias IntOrFloat = int | double;     // 把可能为int或者float类型另起IntOrFloat的别名
 alias Callable = double Function(int, int);     // 对函数类型别名
 load package.name alias mylib;     // 加载静态库并给库起别名
 dll package.name alias mylib2;     // 动态加载库并给库起别名
+// -----------------------
+alias Pos = Pos(1, 2);
+Pos = (1, 2); // 错误，因为Pos已经被定义了类型，不能更改类型
+Pos = Pos(0, 0); // 正确，因为Pos的类型是Pos，Pos(0, 0)是Pos类型
 
 2. assert: 断言/辅助类型声明
 assert (a == 1);     // 断言的基本功能
@@ -96,7 +100,7 @@ final class Person inherit PersonConfig {
         return Person(name, 15);
     }
     singleton Person getInstance() {
-        this.privateMethod();
+        Person.privateMethod();
         return Person('Tom', 20);
     }
 }
@@ -149,13 +153,28 @@ export {*, Sunday};    // 导出所有内容
 export {Random, Person, /, *};     // 隐藏所有
 export {*, /, Random};      // 隐藏Random，其他都暴露
 
-11. ellipsis: 省略内容/占位内容
+11. ellipsis: 省略内容/占位内容/接口
 int add(int a){
     ellipsis;  // 先占位，以后可能优化
     return 1 + a;
 }
 
-ellipsis int mult(int a);       // 声明这是一个可以暂时实现的函数，但是调用的时候要实现，否则抛出OmittedError
+ellipsis int mult(int a);       // 声明这是一个可以暂时实现的函数，但是调用的时候要实现，否则抛出UnimplementedError.
+
+// 接口
+class AbsClass {
+    ellipsis int add(int a, int b);
+    ellipsis String getName();
+}
+
+class Person inherit AbsClass {
+    int add(int a, int b) {
+        return a + b;
+    }
+    String getName() {
+        return 'Name';
+    }
+}
 
 12. false: 布尔值，表示假
 // 规定除了0和false，其他均为true
@@ -180,7 +199,7 @@ iter(i, 5) {}     // i从0到4
 iter(i, [1, 2, 3]) {}     // i从1到3
 iter(i, 'abc') {}     // i从'a'到'c'
 iter(i, 'abc'.length) {}     // i从0到2
-iter(i, iter(j, 5)) {}     // i从0到4，j从0到41
+iter(i, iter(j, 5)) {}     // i从0到4，j从0到4
 iter(i, 5, 2) {}     // i从5到2, i = 5, 4, 3
 iter(i, 15, 10, 2) {}     // i从15到10，步长为2, i = 15, 13, 11
 
@@ -222,10 +241,18 @@ reflect person1 {
     int getHeight() {
         return height;
     }
+    private void _setHeight(int h) {
+        height = h;
+    }
+    void setHeight(int h) {
+        _setHeight(h);
+    }
 }
 print(person1.getHeight());     // 170
 person1.Height = 180;
 print(person1.Height);     // 180   
+person1.setHeight(190);
+print(person1.getHeight());     // 190
 
 reflect Random {
     void printInfo(){
@@ -236,7 +263,7 @@ Random().printInfo();
 
 24. return: 返回值  
 
-25. signal: 并行模式中，标记某块代码，配合delay使用
+25. signal: 并行模式中，标记某块代码，配合delay使用，这其实是一个发布-订阅模式
 
 26. singleton: 声明单例类或者静态方法
 
@@ -261,6 +288,7 @@ super.method();     // 调用父类方法
 // 特殊语法
 - r 表示转义
 - f 表示格式化字符串
-- ! 声明不为空
+- ! 声明不为空或者取反
 - ? 声明可以为空
 - T 泛型类
+- @ 可玩性很高的操作符，通过重载@来实现
