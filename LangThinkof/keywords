@@ -24,6 +24,7 @@ private
 public
 reflect
 return
+section
 signal
 singleton
 super
@@ -210,7 +211,7 @@ load package.name alias mylib;
 19. null: 空值
 int? number = null;     // number可以是int类型或者null类型
 
-20. parallel: 并行模式，块中用{}括起来，每个块是并行执行的，块中可以嵌套块
+20. parallel: 并行模式，块中用{}括起来，每个块是并行执行的，块中可以嵌套块，每个块即为一个section
 // 并行块求和，0 + 1 + …… + 30000
 list sums = [0, 0, 0];
 parallel {
