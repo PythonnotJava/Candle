@@ -163,9 +163,9 @@ int add(int a){
 ellipsis int mult(int a);       // 声明这是一个可以暂时实现的函数，但是调用的时候要实现，否则抛出UnimplementedError.
 
 // 接口
-class AbsClass {
-    ellipsis int add(int a, int b);
-    ellipsis String getName();
+ellipsis class AbsClass {
+    int add(int a, int b);
+    String getName();
 }
 
 class Person inherit AbsClass {
