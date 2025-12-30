@@ -200,7 +200,7 @@ iter(i, 5) {}     // i从0到4
 iter(i, [1, 2, 3]) {}     // i从1到3
 iter(i, 'abc') {}     // i从'a'到'c'
 iter(i, 'abc'.length) {}     // i从0到2
-iter(i, iter(j, 5)) {}     // i从0到4，j从0到4
+iter(i, 5, iter(j, 5)) {}     // i从0到4，j从0到4
 iter(i, 5, 2) {}     // i从5到2, i = 5, 4, 3
 iter(i, 15, 10, 2) {}     // i从15到10，步长为2, i = 15, 13, 11
 
@@ -211,7 +211,7 @@ load package.name alias mylib;
 19. null: 空值
 int? number = null;     // number可以是int类型或者null类型
 
-20. parallel: 并行模式，块中用{}括起来，每个块是并行执行的，块中可以嵌套块，每个块即为一个section
+20. parallel: 并行模式，块中用{}括起来，每个块是并行执行的，块中可以嵌套块，每个块即为一个section，也可以用于for循环为自动并行化
 // 并行块求和，0 + 1 + …… + 30000
 list sums = [0, 0, 0];
 parallel {
@@ -227,7 +227,13 @@ parallel {
         for iter(i, 20000, 30000) 
             sums[2] += i;   
     }
-}             
+}       
+
+alias sums1 = 0; 
+parallel for (iter(i, 3)) {
+     sums1 += func(i * 10000, 10000 + i * 10000);
+}
+
 print(sum(sums))
 
 21. private: 声明私有方法，只能在类内部调用
