@@ -1,0 +1,35 @@
+/// static: 静态方法/字段（属于类而非实例），或修饰 class 表示单例
+
+class Counter {
+    static int total;          // 类级字段：所有实例共享
+    int value;
+
+    Counter(int value);
+
+    static Counter zero() {    // 静态方法：通过 ClassName.method 调用
+        return Counter(0);
+    }
+
+    static int describe() {
+        return total;
+    }
+}
+
+// static class：单例类，不能 new，仅通过类名访问其内部
+static class Config {
+    string env;
+    int port;
+
+    static string getEnv() {
+        return 'prod';
+    }
+}
+
+int main() {
+    Counter c = Counter.zero();
+    print(c.value);
+
+    print(Counter.describe());
+    print(Config.getEnv());
+    return 0;
+}

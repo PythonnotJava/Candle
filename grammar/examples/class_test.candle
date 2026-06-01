@@ -1,0 +1,56 @@
+// class_test.candle - 类与对象测试
+
+class Point {
+    int x;
+    int y;
+    Point(int x, int y);
+
+    int sumXY() {
+        return x + y;
+    }
+
+    int distSq(Point other) {
+        int dx = x - other.x;
+        int dy = y - other.y;
+        return dx * dx + dy * dy;
+    }
+}
+
+alias p = Point(3, 4);
+print(p.x);
+print(p.y);
+print(p.sumXY());
+
+alias q = Point(0, 0);
+print(p.distSq(q));
+
+// 字段写入
+p.x = 100;
+print(p.x);
+print(p.sumXY());
+
+// 复合赋值
+p.y += 10;
+print(p.y);
+
+// 类作为头等值
+class Counter {
+    int count;
+    Counter(int count);
+    int incr() {
+        count = count + 1;
+        return count;
+    }
+}
+
+alias c = Counter(0);
+print(c.incr());
+print(c.incr());
+print(c.incr());
+print(c.count);
+
+// static 方法
+class MathUtil {
+    static int square(int x) { return x * x; }
+}
+print(MathUtil.square(7));

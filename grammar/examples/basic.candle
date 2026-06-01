@@ -1,0 +1,120 @@
+// basic.candle - 变量、常量、表达式测试
+
+// 常量声明
+const PI = 3.1415926;
+const MAX_SIZE = 1024;
+const HEX_VAL = 0xFF;
+
+// alias 变量声明
+alias name = 'Candle';
+alias count = 42;
+alias ratio = 3.14;
+alias flag = true;
+alias nothing = null;
+
+// alias 带类型断言
+alias greeting = 'hello' assert(string);
+
+// alias 类型别名
+alias Int32 = int;
+alias IntOrFloat = int | double;
+alias Callback = void Function(int, int);
+
+// 带类型的变量声明
+int x = 10;
+double y = 3.14;
+string msg = 'hello world';
+bool active = true;
+int? maybe = null;
+
+// 算术表达式
+alias result = (x + 10) * 2 - y / 3.0;
+alias mod_val = 100 % 7;
+
+// 逻辑表达式
+alias check = (x > 5) && (y < 10.0) || !flag;
+
+// 位运算
+alias bits = 0xFF & 0x0F;
+alias shifted = bits | 0xF0;
+
+// 赋值运算
+x = x + 1;
+x += 10;
+x -= 5;
+x *= 2;
+x /= 3;
+
+// 列表
+list numbers = [1, 2, 3, 4, 5];
+alias first = numbers[0];
+
+// map
+map config = {'host': 'localhost', 'port': 8080};
+
+// 字符串
+alias raw = r'\n is not a newline';
+alias fmt = f'x = {x}, y = {y}';
+alias normal = "hello\nworld";
+
+// 函数声明
+int add(int a, int b) {
+    return a + b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+// ellipsis 占位函数
+int placeholder(int n) {
+    ellipsis;
+    return n;
+}
+
+// ellipsis 未实现函数
+ellipsis int compute(int a, int b);
+
+// assert
+assert(x > 0);
+assert(name != null);
+
+// 匿名函数（lambda）
+alias doubler = (int x) => x * 2;
+alias adder = (int a, int b) => a + b;
+alias greet = (string name) => f'Hello, {name}!';
+
+// 单参数简写（无类型标注时）
+alias inc = x => x + 1;
+
+// 多行 lambda（带箭头）
+alias compute = (int a, int b) => {
+    alias sum = a + b;
+    alias product = a * b;
+    return sum + product;
+};
+
+// 多行 lambda（省略箭头，直接跟块）
+alias addMixin = (int a, int b) {
+    int c = 10;
+    return a + b + c;
+};
+
+// lambda 作为参数传递
+alias doubled = numbers.mapList((int x) => x * 2);
+alias evens = numbers.filter((int x) => x % 2 == 0);
+alias total = numbers.reduce((int acc, int x) => acc + x);
+
+// 无箭头形式作为回调
+numbers.forEach((int x) {
+    print(f'item: {x}');
+});
+
+// lambda 赋值给带类型的变量
+alias Transformer = int Function(int);
+Transformer square = (int x) => x * x;
+
+// main 入口
+int main() {
+    return 0;
+}

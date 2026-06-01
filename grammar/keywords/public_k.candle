@@ -1,0 +1,25 @@
+/// public: 公有访问（默认），显式标注以与 private 对照
+
+class Point {
+    public int x;
+    public int y;
+    private string secret;
+
+    Point(int x, int y);
+
+    public double length() {
+        return x * x + y * y;
+    }
+
+    private void debug() {
+        print(f'internal: {secret}');
+    }
+}
+
+int main() {
+    Point p = Point(3, 4);
+    print(p.x);             // public 字段可外部访问
+    print(p.y);
+    print(p.length());      // public 方法可外部调用
+    return 0;
+}

@@ -1,0 +1,16 @@
+/// catch: 捕获异常，异常可以是多种
+
+int main(){
+    try {
+      throw Exception('error');
+    } catch (ValueError e) {
+      print(String(e));
+    } catch (TypeError e) {
+      print(String(e));
+    } catch (e) {  // 表示其他的异常
+      print(String(e));
+    } final {
+      print("总会执行");
+    }
+    return 0;
+}

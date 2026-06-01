@@ -1,0 +1,25 @@
+// vendor.candle - 验证 vendor 第三方库集成
+
+load std.io;
+load data.json;
+load data.sqlite;
+
+// JSON 解析
+alias text = '{"name": "Candle", "version": 1, "active": true}';
+alias doc = json.parse(text);
+print(json.get_string(doc, 'name'));
+print(json.get_int(doc, 'version'));
+
+// SQLite 内存库
+alias db = sqlite.open(':memory:');
+sqlite.exec(db, 'CREATE TABLE users(id INTEGER, name TEXT)');
+sqlite.exec(db, "INSERT INTO users VALUES(1, 'Alice'), (2, 'Bob')");
+
+alias stmt = sqlite.prepare(db, 'SELECT id, name FROM users ORDER BY id');
+for iter(_, 2) {
+    sqlite.step(stmt);
+    print(sqlite.col_int(stmt, 0));
+    print(sqlite.col_text(stmt, 1));
+}
+sqlite.finalize(stmt);
+sqlite.close_db(db);

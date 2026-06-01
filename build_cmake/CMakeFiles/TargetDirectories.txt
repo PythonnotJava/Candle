@@ -1,0 +1,4 @@
+C:/Users/25654/Desktop/Candle/build_cmake/CMakeFiles/candlec.dir
+C:/Users/25654/Desktop/Candle/build_cmake/CMakeFiles/candle_runtime.dir
+C:/Users/25654/Desktop/Candle/build_cmake/CMakeFiles/edit_cache.dir
+C:/Users/25654/Desktop/Candle/build_cmake/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,29 @@
+/// bool: 布尔类型，仅 true / false 两个值
+
+int main() {
+    bool t = true;
+    bool f = false;
+
+    // 逻辑运算
+    print(t && f);          // false
+    print(t || f);          // true
+    print(!t);              // false
+
+    // 由比较产生
+    int x = 5;
+    bool isPositive = x > 0;
+    bool isEven = x % 2 == 0;
+    print(isPositive);
+    print(isEven);
+
+    // 在条件中使用
+    if (isPositive && !isEven) {
+        print('positive odd');
+    }
+
+    // 可空
+    bool? maybe = null;
+    maybe = true;
+    print(maybe!);
+    return 0;
+}

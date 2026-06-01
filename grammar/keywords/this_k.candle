@@ -1,0 +1,29 @@
+/// this: 当前实例引用，用于消歧字段名或显式访问
+
+class Box {
+    int width;
+    int height;
+
+    Box(int width, this.height) {
+        // 参数与字段同名时用 this 消歧
+        this.width = width;
+    }
+
+    int area() {
+        return this.width * this.height;
+    }
+
+    Box scale(int k) {
+        // 返回一个新 Box，使用 this 的字段
+        return Box(this.width * k, this.height * k);
+    }
+}
+
+int main() {
+    Box b = Box(3, 4);
+    print(b.area());
+
+    Box big = b.scale(10);
+    print(big.area());
+    return 0;
+}

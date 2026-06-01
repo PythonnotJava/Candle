@@ -1,0 +1,68 @@
+/// math — Candle 标准数学模块接口声明（std.math）
+///
+/// 接口契约 + 文档：实现由运行时内置提供（C 层），通过 `load std.math` 引入。
+/// 引入后默认绑定到名字 `math`，例如 math.sqrt(2.0)、math.PI。
+/// 运行时不依赖本文件，它仅作为 API 文档存在。
+///
+/// 用法：
+///   load std.math;
+///   double r = math.sqrt(2.0);
+///   int n = math.random(100);        // [0, 100) 的随机整数
+///   double x = math.random();        // [0, 1) 的随机浮点
+
+class Math {
+    // ── 幂 / 指数 ──
+    double sqrt(double x);              // 平方根
+    double cbrt(double x);              // 立方根
+    double pow(double x, double y);     // x 的 y 次幂
+    double exp(double x);               // e 的 x 次幂
+    double hypot(double x, double y);   // sqrt(x²+y²)
+
+    // ── 对数 ──
+    double log(double x);               // 自然对数 ln
+    double log2(double x);              // 以 2 为底
+    double log10(double x);             // 以 10 为底
+
+    // ── 三角 ──
+    double sin(double x);               // 正弦（弧度）
+    double cos(double x);               // 余弦（弧度）
+    double tan(double x);               // 正切（弧度）
+    double asin(double x);              // 反正弦
+    double acos(double x);              // 反余弦
+    double atan(double x);              // 反正切
+    double atan2(double y, double x);   // 二参数反正切
+
+    // ── 双曲 ──
+    double sinh(double x);              // 双曲正弦
+    double cosh(double x);              // 双曲余弦
+    double tanh(double x);              // 双曲正切
+
+    // ── 取整（返回 double）──
+    double floor(double x);             // 向下取整
+    double ceil(double x);              // 向上取整
+    double round(double x);             // 四舍五入
+    double trunc(double x);             // 截断取整
+
+    // ── 数值 ──
+    double abs(double x);               // 绝对值（int 入参返回 int）
+    int sign(double x);                 // 符号：正 1 / 负 -1 / 零 0
+    double min(double a, double b);     // 较小值
+    double max(double a, double b);     // 较大值
+
+    // ── 角度 / 弧度 ──
+    double radians(double deg);         // 度 → 弧度
+    double degrees(double rad);         // 弧度 → 度
+
+    // ── 随机 ──
+    double random();                    // [0, 1) 浮点；random(n) 返回 [0, n) 整数
+    int randomRange(int lo, int hi);    // [lo, hi) 随机整数
+    void seed(int s);                   // 设定随机种子
+
+    // ── 常量 ──
+    double PI;                          // 圆周率 π
+    double E;                           // 自然常数 e
+    double SQRT2;                       // √2
+    double SQRT1_2;                     // √(1/2)
+    double LN2;                         // ln 2
+    double LN10;                        // ln 10
+}

@@ -1,0 +1,19 @@
+/// const: 声明编译期常量，不可重新赋值
+
+const PI = 3.14159;
+const MAX_USERS = 1000;
+const APP_NAME = 'Candle';
+
+int main() {
+    print(PI);
+    print(MAX_USERS);
+    print(APP_NAME);
+
+    // 尝试修改常量将抛出异常
+    try {
+        PI = 3.14;
+    } catch (e) {
+        print('Error: cannot reassign const');
+    }
+    return 0;
+}

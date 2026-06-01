@@ -1,0 +1,63 @@
+// loop_test.candle - for-iter / when / try / throw 测试
+
+// 基本范围
+print('range 0..5:');
+for iter(i, 5) {
+    print(i);
+}
+
+// start..end
+print('range 10..13:');
+for iter(i, 10, 13) {
+    print(i);
+}
+
+// 带步长
+print('step 2:');
+for iter(i, 0, 10, 2) {
+    print(i);
+}
+
+// 倒序
+print('countdown:');
+for iter(i, 5, 0, 0 - 1) {
+    print(i);
+}
+
+// 字符串遍历
+print('letters:');
+for iter(c, 'abc') {
+    print(c);
+}
+
+// 列表遍历
+print('list:');
+list xs = [10, 20, 30];
+for iter(x, xs) {
+    print(x);
+}
+
+// when (单分支)
+int x = 7;
+when (x > 5) {
+    print('x is big');
+}
+when (x < 5) {
+    print('not printed');
+}
+
+// break
+print('break at 3:');
+for iter(i, 10) {
+    when (i == 3) { break; }
+    print(i);
+}
+
+// try / throw
+print('try/throw:');
+try {
+    throw 'oops';
+} catch (Exception e) {
+    print('caught');
+}
+print('after try');

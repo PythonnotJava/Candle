@@ -1,0 +1,21 @@
+/// Double — Candle 内置浮点类型的标准接口声明
+///
+/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
+/// 运行时不依赖本文件。用户扩展请用 reflect。
+
+class Double {
+    double abs();               // 绝对值
+    bool isNegative();          // 是否为负
+    bool isZero();              // 是否为零
+    int sign();                 // 符号：正 1 / 负 -1 / 零 0
+    double clamp(double lo, double hi); // 钳制到 [lo, hi]
+    int floor();                // 向下取整
+    int ceil();                 // 向上取整
+    int round();                // 四舍五入
+    int truncate();             // 截断取整
+    bool isFinite();            // 是否有限
+    bool isNaN();               // 是否 NaN
+    double toDouble();          // 自身
+    int toInt();                // 转整数（截断）
+    string toString();          // 转字符串
+}

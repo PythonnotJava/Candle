@@ -1,0 +1,31 @@
+/// inherit: 类继承，子类可访问父类字段并通过 super 调用父类构造
+
+class Animal {
+    string name;
+    int age;
+
+    Animal(string name, int age);
+
+    void describe() {
+        print(f'I am {name}, age {age}');
+    }
+}
+
+// Dog 继承 Animal
+class Dog inherit Animal {
+    string breed;
+
+    // super.field 在构造参数列表中表示传给父类的字段
+    Dog(super.name, super.age, string breed);
+
+    void bark() {
+        print(f'{name} (a {breed}) says woof!');
+    }
+}
+
+int main() {
+    Dog d = Dog('Rex', 5, 'Husky');
+    d.describe();   // 来自父类
+    d.bark();       // 自己的方法
+    return 0;
+}

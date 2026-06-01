@@ -1,0 +1,26 @@
+/// null: 空值字面量，可空类型用 ? 标记
+
+int main() {
+    // 显式 null
+    int? maybe = null;
+    print(maybe);
+
+    // 与等值比较
+    if (maybe == null) {
+        print('not set');
+    }
+
+    maybe = 42;
+    if (maybe != null) {
+        print('now set');
+    }
+
+    // 非空断言运算符 !
+    int x = maybe!;
+    print(x);
+
+    // 在 map 中表示缺失键
+    map m = {'a': 1};
+    print(m['missing']);    // null
+    return 0;
+}

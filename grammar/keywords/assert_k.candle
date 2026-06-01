@@ -1,0 +1,8 @@
+/// assert: 断言/辅助类型声明
+
+int main() {
+    // 断言的基本功能;
+    try {assert (false);}
+    catch (AssetError e) {print('pass');}
+    alias Sunday = '星期日' assert(String);     // 辅助类型声明
+}

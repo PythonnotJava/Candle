@@ -1,0 +1,62 @@
+// inherit_test.candle - 继承测试
+
+class Shape {
+    string name;
+    Shape(string name);
+
+    string describe() {
+        return name;
+    }
+
+    double area() {
+        return 0.0;
+    }
+}
+
+class Circle inherit Shape {
+    double radius;
+    Circle(super.name, double radius);
+
+    double area() {
+        return 3.14159 * radius * radius;
+    }
+}
+
+class Square inherit Shape {
+    double side;
+    Square(super.name, double side);
+
+    double area() {
+        return side * side;
+    }
+}
+
+alias c = Circle('circle', 5.0);
+print(c.name);            // 父类字段
+print(c.radius);          // 子类字段
+print(c.describe());      // 父类方法读父类字段
+print(c.area());          // 子类重写
+
+alias s = Square('sq', 4.0);
+print(s.name);
+print(s.side);
+print(s.describe());
+print(s.area());
+
+// 多层继承
+class Cylinder inherit Circle {
+    double height;
+    Cylinder(super.name, super.radius, double height);
+
+    double volume() {
+        return area() * height;
+    }
+}
+
+alias cyl = Cylinder('cyl', 2.0, 10.0);
+print(cyl.name);
+print(cyl.radius);
+print(cyl.height);
+print(cyl.area());        // 继承自 Circle
+print(cyl.describe());    // 继承自 Shape
+print(cyl.volume());

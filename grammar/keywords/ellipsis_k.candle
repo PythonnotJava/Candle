@@ -1,0 +1,31 @@
+/// ellipsis: 占位符，三种用法 —— 占位语句、抽象类、抽象/外部函数
+
+// 抽象类：不能实例化，仅供继承
+ellipsis class Shape {
+    double area();      // 无函数体的抽象方法
+}
+
+class Circle inherit Shape {
+    double radius;
+    Circle(double radius);
+
+    // 实现父类的抽象方法
+    double area() {
+        return 3.14 * radius * radius;
+    }
+}
+
+// 抽象/外部函数：用 ellipsis 修饰，表示无函数体
+ellipsis int hostFunction(int x);
+
+int todo() {
+    ellipsis;       // 占位语句：表示"待实现"
+    return 0;
+}
+
+int main() {
+    Circle c = Circle(2.0);
+    print(c.area());
+    todo();
+    return 0;
+}

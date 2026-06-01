@@ -1,0 +1,29 @@
+/// iter: 迭代器表达式，必须出现在 for / parallel for 中
+/// 形态：iter(var, collection)         遍历容器/字符串/上界
+///       iter(var, start, end)          区间 [start, end)
+///       iter(var, start, end, step)    带步长
+///       iter(var, iter(...), ...)      嵌套构造多维迭代
+
+int main() {
+    // 容器遍历
+    list xs = [1, 2, 3];
+    for iter(x, xs) {
+        print(x);
+    }
+
+    // 区间
+    for iter(i, 0, 3) {
+        print(i);
+    }
+
+    // 嵌套：i 来自外层，j 来自内层
+    for iter(i, iter(j, 0, 2), 0, 2) {
+        print(f'{i},{j}');
+    }
+
+    // 配合并行：parallel for + iter
+    parallel for iter(k, 0, 4) {
+        print(k);
+    }
+    return 0;
+}

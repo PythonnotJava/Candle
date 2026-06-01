@@ -1,0 +1,80 @@
+// module.candle - 模块系统测试
+
+// 静态加载库
+load std.io;
+load std.math;
+load std.collections;
+
+// 加载并起别名
+load network.http alias http;
+load data.json alias json;
+
+// 动态加载库
+dll plugins.renderer;
+dll plugins.audio alias audio;
+
+// 导出指定内容
+export {Point, Circle, createPoint};
+
+// 导出所有
+// export {*};
+
+// 导出所有，排除某些
+// export {*, except, InternalHelper, debugFunc};
+
+// 导出部分，排除部分
+// export {Point, Circle, except, *};
+
+// 使用加载的库
+alias response = http.get('https://example.com');
+alias data = json.parse(response.body);
+
+// reflect 扩展实例
+class Widget {
+    string id;
+    int width;
+    int height;
+    Widget(string id, int width, int height);
+
+    string describe() {
+        return f'Widget({id}: {width}x{height})';
+    }
+}
+
+alias w = Widget('btn1', 100, 50);
+
+reflect w {
+    string color;
+
+    void setColor(string c) {
+        color = c;
+    }
+
+    string getColor() {
+        return color;
+    }
+}
+
+w.setColor('red');
+print(w.getColor());
+print(w.describe());
+
+// reflect 扩展类（给类添加静态方法）
+static class StringUtil {
+    static int length(string s) {
+        ellipsis;
+        return 0;
+    }
+}
+
+reflect StringUtil {
+    static string repeat(string s, int n) {
+        alias result = '';
+        for iter(i, n) {
+            result += s;
+        }
+        return result;
+    }
+}
+
+print(StringUtil.repeat('ha', 3));

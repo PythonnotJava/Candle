@@ -1,0 +1,27 @@
+/// Function: 函数类型，用于声明函数指针/lambda 变量
+
+int main() {
+    // 用 Function 类型声明一个变量
+    int Function(int, int) op = (int a, int b) => a + b;
+    print(op(3, 4));
+
+    // 重新指向另一个函数体
+    op = (int a, int b) => a * b;
+    print(op(3, 4));
+
+    // double 返回值
+    double Function(double) square = x => x * x;
+    print(square(5.0));
+
+    // 作为参数传递
+    int apply(int Function(int, int) f, int x, int y) {
+        return f(x, y);
+    }
+    print(apply((int a, int b) => a - b, 10, 3));
+
+    // 配合 alias 起类型别名
+    alias BinOp = int Function(int, int);
+    BinOp mod = (int a, int b) => a % b;
+    print(mod(17, 5));
+    return 0;
+}

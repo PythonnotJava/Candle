@@ -1,0 +1,35 @@
+/// factory: 工厂方法，可在类内提供命名构造器或缓存复用
+
+class Color {
+    int r;
+    int g;
+    int b;
+
+    Color(int r, int g, int b);
+
+    // 命名构造器：从十六进制创建
+    factory Color fromHex(int hex) {
+        int r = (hex / 65536) % 256;
+        int g = (hex / 256) % 256;
+        int b = hex % 256;
+        return Color(r, g, b);
+    }
+
+    // 命名构造器：常用预设
+    factory Color red() {
+        return Color(255, 0, 0);
+    }
+
+    factory Color black() {
+        return Color(0, 0, 0);
+    }
+}
+
+int main() {
+    Color c1 = Color.fromHex(0xFF8800);
+    print(f'{c1.r}, {c1.g}, {c1.b}');
+
+    Color c2 = Color.red();
+    print(f'{c2.r}, {c2.g}, {c2.b}');
+    return 0;
+}

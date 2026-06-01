@@ -1,0 +1,44 @@
+/// try: 异常捕获块，可级联多个 catch 按类型分支处理
+
+int parseInt(string s) {
+    if (s == '') {
+        throw ValueError('empty input');
+    }
+    if (s == 'oops') {
+        throw TypeError('not a number');
+    }
+    return 42;
+}
+
+int main() {
+    // 单 catch
+    try {
+        throw 'something broke';
+    } catch (e) {
+        print(f'caught: {e}');
+    }
+
+    // 多 catch 按类型分发
+    try {
+        parseInt('oops');
+    } catch (ValueError ve) {
+        print(f'value: {ve.message}');
+    } catch (TypeError te) {
+        print(f'type: {te.message}');
+    } catch (e) {
+        print('other');
+    }
+
+    // 嵌套 try
+    try {
+        try {
+            throw 'inner';
+        } catch (e) {
+            print(f'inner caught: {e}');
+            throw 'rethrown';
+        }
+    } catch (e) {
+        print(f'outer caught: {e}');
+    }
+    return 0;
+}

@@ -1,0 +1,33 @@
+/// String — Candle 内置字符串类型的标准接口声明
+///
+/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
+/// 运行时不依赖本文件。用户扩展请用 reflect。
+
+class String {
+    // ── 查询 ──
+    int length();                      // 字符数
+    bool isEmpty();                    // 是否为空
+    bool isNotEmpty();                 // 是否非空
+    bool startsWith(string prefix);    // 是否以 prefix 开头
+    bool endsWith(string suffix);      // 是否以 suffix 结尾
+    bool contains(string sub);         // 是否包含子串
+    int indexOf(string sub);           // 子串首次出现下标，没有则 -1
+
+    // ── 变换（返回新串）──
+    string toUpperCase();              // 转大写
+    string toLowerCase();              // 转小写
+    string trim();                     // 去首尾空白
+    string substring(int start, int end); // 子串 [start, end)
+    list split(string sep);            // 按分隔符拆分为列表
+    string replaceAll(string from, string to); // 全部替换
+    string repeated(int times);        // 重复 times 次
+    string reversed();                 // 反转
+    string padLeft(int width, string pad);  // 左填充到 width
+    string padRight(int width, string pad); // 右填充到 width
+
+    // ── 其它 ──
+    int codeUnitAt(int index);         // 指定位置字符码
+    int count(string sub);             // 子串出现次数
+    bool isPalindrome();               // 是否回文
+    string toString();                 // 自身
+}

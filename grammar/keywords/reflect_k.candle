@@ -1,0 +1,51 @@
+/// reflect: 在已有类型上扩展方法（运行时反射式注入），reflect的方法不允许被子类重写
+
+class Vector {
+    double x;
+    double y;
+    Vector(double x, double y);
+}
+
+// 给 Vector 反射注入新方法
+reflect Vector {
+    double length() {
+        return x * x + y * y;
+    }
+
+    Vector add(Vector other) {
+        return Vector(x + other.x, y + other.y);
+    }
+}
+
+// 也可以为内置类型扩展
+reflect int {
+    bool isEven() {
+        return this % 2 == 0;
+    }
+}
+
+class Vector3D inherit Vector {
+    double z;
+    Vector3D(super.x, super.y, double z) {this.z = z;}
+}
+
+reflect Vector3D {
+    // 不允重新写
+    // double length() {
+    //     return x * x + y * y + z * z;
+    // }
+}
+
+
+
+int main() {
+    Vector v = Vector(3.0, 4.0);
+    print(v.length());
+
+    Vector u = v.add(Vector(1.0, 1.0));
+    print(f'{u.x}, {u.y}');
+
+    print((4).isEven());
+    print((7).isEven());
+    return 0;
+}

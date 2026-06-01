@@ -1,0 +1,49 @@
+/// alias: 给类型/标识另起别名/库别名/匿名函数；alias 设变量时自动推断并锁定类型
+
+load std.math alias mylib;     // 加载 candle 库并起别名
+// dll some.native.lib alias mylib2;  // 加载链接库并起别名（FFI，见 dll_k.candle）
+
+class Pos {
+    int x;
+    int y;
+    Pos(int x, int y) { this.x = x; this.y = y; }
+    string toString() { return "(" + x.toString() + ", " + y.toString() + ")"; }
+}
+
+int main() {
+    print(content(mylib));          // 列出库公开的对象
+
+    alias Sunday = '星期日';         // 最基本用法：变量声明 + 类型推断
+    print(Sunday);
+
+    alias Int64 = int;              // 给 int 起别名 Int64
+    print(Int64.parser("435"));     // 类型句柄静态方法：解析字符串
+    print(Int64.parser(true));      // 宽松转换：true → 1
+
+    alias IntOrFloat = int | double;       // 联合类型别名
+    IntOrFloat aNumber = 4 > 0 ? 45 : 2.4;
+    print(aNumber);
+
+    alias Callable = double Function(int, int);    // 函数类型别名
+    print(type((int a, int b) => a + b) == Callable);   // true
+
+    alias addFunc = (int a, int b) => a + b;       // 表达式体匿名函数别名
+    print(addFunc(34, 3));
+
+    alias addMixinFunc = (int a, int b) {          // block-body 匿名函数别名
+        int c = 10;
+        return a + b + c;
+    }
+    print(addMixinFunc(34, 3));
+
+    // 类型锁定：别名推断类型后不可改类型
+    alias Pos1_2 = Pos(1, 2);
+    try {
+        Pos1_2 = (1, 2);            // 赋元组给锁定为对象的别名 → 抛错
+        print('Ok');
+    } catch (e) {
+        print('Error');             // 执行
+    }
+
+    return 0;
+}

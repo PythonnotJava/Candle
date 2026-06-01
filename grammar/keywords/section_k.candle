@@ -1,0 +1,14 @@
+/// section: parallel 块内显式标记一个并发段
+
+int main() {
+    parallel {
+        // 显式 section
+        section {
+            print('A');
+        }
+        section {
+            print('B');
+        }
+    }
+    return 0;
+}

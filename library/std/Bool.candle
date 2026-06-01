@@ -1,0 +1,12 @@
+/// Bool — Candle 内置布尔类型的标准接口声明
+///
+/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
+/// 运行时不依赖本文件。用户扩展请用 reflect。
+
+class Bool {
+    bool toggle();          // 取反
+    int toInt();            // true→1 / false→0
+    bool and(bool other);   // 逻辑与
+    bool or(bool other);    // 逻辑或
+    string toString();      // "true" / "false"
+}

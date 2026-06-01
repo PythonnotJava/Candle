@@ -1,0 +1,12 @@
+/// break: 跳出循环
+
+int main() {
+    int counter = 0;
+    when (true) {
+        if (counter == 5) {break;}
+        else {
+            print(counter++);
+        }
+    }
+    return 0;
+}

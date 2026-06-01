@@ -1,0 +1,29 @@
+/// signal: 在并行块内发出命名信号，唤醒对应 delay 段
+
+int main() {
+    parallel {
+        section {
+            print('producer: doing work');
+            // 发射信号 ready，body 内是发射前后的逻辑
+            signal(ready) {
+                print('producer: signal sent');
+            }
+            print('producer: continue after signal');
+        }
+        // 等待 ready 信号
+        delay(ready) {
+            print('consumer: triggered by ready');
+        }
+    }
+
+    // 多个 signal / delay 配对
+    parallel {
+        section {
+            signal(s1) { print('phase 1 done'); }
+            signal(s2) { print('phase 2 done'); }
+        }
+        delay(s1) { print('react to phase 1'); }
+        delay(s2) { print('react to phase 2'); }
+    }
+    return 0;
+}

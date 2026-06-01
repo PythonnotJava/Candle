@@ -1,0 +1,17 @@
+/// Int — Candle 内置整数类型的标准接口声明
+///
+/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
+/// 运行时不依赖本文件。用户扩展请用 reflect。
+
+class Int {
+    bool isEven();              // 是否偶数
+    bool isOdd();               // 是否奇数
+    int abs();                  // 绝对值
+    bool isNegative();          // 是否为负
+    bool isZero();              // 是否为零
+    int sign();                 // 符号：正 1 / 负 -1 / 零 0
+    int clamp(int lo, int hi);  // 钳制到 [lo, hi]
+    double toDouble();          // 转浮点
+    int toInt();                // 转整数（自身）
+    string toString();          // 转字符串
+}

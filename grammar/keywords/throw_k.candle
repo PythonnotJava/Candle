@@ -1,0 +1,27 @@
+/// throw: 抛出异常，可抛任意值或调用异常类构造器
+
+void check(int x) {
+    if (x < 0) {
+        throw 'negative not allowed';       // 直接抛字符串
+    }
+    if (x == 0) {
+        throw ValueError('zero rejected');  // 抛异常类
+    }
+}
+
+int main() {
+    try {
+        check(-1);
+    } catch (e) {
+        print(e);
+    }
+
+    try {
+        check(0);
+    } catch (ValueError e) {
+        print(f'caught: {e.message}');
+    }
+
+    print('done');
+    return 0;
+}

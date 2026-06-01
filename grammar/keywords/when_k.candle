@@ -1,0 +1,26 @@
+/// when: 当条件为真时循环（相当于 while）
+
+int main() {
+    // 计数循环
+    int i = 0;
+    when (i < 5) {
+        print(i);
+        i += 1;
+    }
+
+    // 配合 break 提前退出
+    int n = 0;
+    when (true) {
+        if (n >= 3) { break; }
+        print(f'tick {n}');
+        n += 1;
+    }
+
+    // 条件读取直到结束
+    List queue = [10, 20, 30];
+    when (queue.size() > 0) {
+        int head = queue.pop();
+        print(head);
+    }
+    return 0;
+}

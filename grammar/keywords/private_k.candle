@@ -1,0 +1,29 @@
+/// private: 私有访问，限定字段/方法只能在所属类内使用
+
+class Account {
+    private string password;       // 仅 Account 内部可访问
+    string username;
+
+    Account(string username, string password);
+
+    private bool validate(string input) {
+        return input == password;
+    }
+
+    bool login(string input) {
+        return validate(input);    // 私有方法可在类内调用
+    }
+}
+
+int main() {
+    Account a = Account('alice', 'secret');
+    print(a.username);
+
+    print(a.login('secret'));
+    print(a.login('wrong'));
+
+    // 试图直接访问私有字段会失败
+    // print(a.password);          // 编译错误
+    // a.validate('x');             // 编译错误
+    return 0;
+}

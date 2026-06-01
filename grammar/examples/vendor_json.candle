@@ -1,0 +1,12 @@
+// vendor_json.candle - cJSON 集成测试
+
+load std.io;
+load data.json alias json;
+
+alias text = '{"name":"Candle","version":1,"active":true}';
+alias obj = json.parse(text);
+
+print(json.stringify(obj));
+print(json.get_string(obj, 'name'));
+print(json.get_int(obj, 'version'));
+print(json.get_bool(obj, 'active'));

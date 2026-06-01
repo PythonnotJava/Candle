@@ -1,0 +1,382 @@
+# Candle Language PEG Grammar
+# 完整的解析表达式文法定义
+
+# ============================================================
+# 顶层结构
+# ============================================================
+
+Program         <- Spacing TopLevelStmt* EOF
+TopLevelStmt    <- LoadStmt
+                 / DllStmt
+                 / ExportStmt
+                 / ClassDecl
+                 / FunctionDecl
+                 / AliasStmt
+                 / ConstDecl
+                 / ReflectStmt
+                 / ParallelStmt
+                 / Statement
+
+# ============================================================
+# 模块系统
+# ============================================================
+
+LoadStmt        <- LOAD PackagePath (ALIAS Identifier)? SEMI
+DllStmt         <- DLL PackagePath (ALIAS Identifier)? SEMI
+PackagePath     <- Identifier (DOT Identifier)*
+
+ExportStmt      <- EXPORT LBRACE ExportList RBRACE SEMI?
+ExportList      <- ExportItem (COMMA ExportItem)*
+ExportItem      <- STAR / EXCEPT / Identifier
+
+# ============================================================
+# 类型系统
+# ============================================================
+
+Type            <- UnionType
+UnionType       <- NullableType (PIPE NullableType)*
+NullableType    <- PrimaryType QUESTION?
+PrimaryType     <- FunctionType
+                 / GenericType
+                 / BasicType
+                 / Identifier
+
+FunctionType    <- Type FUNCTION LPAREN TypeList? RPAREN
+GenericType     <- Identifier LANGLE TypeList RANGLE
+BasicType       <- INT_T / DOUBLE_T / STRING_T / BOOL_T / LIST_T / MAP_T / VOID_T
+TypeList        <- Type (COMMA Type)*
+
+# ============================================================
+# 声明语句
+# ============================================================
+
+AliasStmt       <- ALIAS Identifier ASSIGN AliasValue (ASSERT LPAREN Type RPAREN)? SEMI
+AliasValue      <- Type                     # 类型别名: alias Int32 = int
+                 / Expression               # 变量绑定: alias x = 42
+
+ConstDecl       <- CONST Identifier ASSIGN Expression SEMI
+
+# 变量声明（带类型）
+VarDecl         <- Type Identifier (ASSIGN Expression)? SEMI
+
+# ============================================================
+# 函数声明
+# ============================================================
+
+FunctionDecl    <- FuncModifier* Type Identifier LPAREN ParamList? RPAREN (Block / SEMI)
+FuncModifier    <- STATIC / PRIVATE / PUBLIC / FINAL / ELLIPSIS
+ParamList       <- Param (COMMA Param)*
+Param           <- Type Identifier
+
+# ============================================================
+# 类声明
+# ============================================================
+
+ClassDecl       <- ClassModifier* CLASS Identifier (INHERIT Identifier)? ClassBody
+ClassModifier   <- FINAL / STATIC / ELLIPSIS
+
+ClassBody       <- LBRACE ClassMember* RBRACE
+ClassMember     <- ConstructorDecl
+                 / FactoryDecl
+                 / MethodDecl
+                 / FieldDecl
+
+ConstructorDecl <- Identifier LPAREN ConstructorParamList? RPAREN SEMI
+ConstructorParamList <- ConstructorParam (COMMA ConstructorParam)*
+ConstructorParam <- SUPER DOT Identifier
+                  / Type Identifier
+
+FactoryDecl     <- FACTORY Type Identifier LPAREN ParamList? RPAREN Block
+
+MethodDecl      <- FuncModifier* Type Identifier LPAREN ParamList? RPAREN (Block / SEMI)
+
+FieldDecl       <- FieldModifier* Type Identifier SEMI
+FieldModifier   <- PRIVATE / PUBLIC / STATIC / FINAL
+
+# ============================================================
+# 反射
+# ============================================================
+
+ReflectStmt     <- REFLECT Identifier Block
+
+# ============================================================
+# 并行
+# ============================================================
+
+ParallelStmt    <- PARALLEL ParallelBody
+ParallelBody    <- FOR ITER LPAREN Identifier (COMMA Expr)* RPAREN Block   # parallel for iter(...) { }
+                 / LBRACE ParallelSection* RBRACE                          # parallel { {section1} {section2} }
+ParallelSection <- DelayStmt
+                 / SECTION? Block                                          # 段间无逗号分隔；'section' 可选
+
+SignalStmt      <- SIGNAL LPAREN Identifier RPAREN Block
+DelayStmt       <- DELAY LPAREN Identifier RPAREN Block
+
+# ============================================================
+# 控制流
+# ============================================================
+
+IfStmt          <- IF LPAREN Expression RPAREN Block
+                   (ELSE IF LPAREN Expression RPAREN Block)*
+                   (ELSE Block)?
+
+WhenStmt        <- WHEN LPAREN Expression RPAREN Block
+
+ForStmt         <- FOR IterExpr Block
+
+IterExpr        <- ITER LPAREN Identifier COMMA IterArgs RPAREN
+IterArgs        <- Expression (COMMA Expression (COMMA Expression)?)?
+                 / IterExpr                                 # 嵌套 iter
+
+BreakStmt       <- BREAK SEMI
+ReturnStmt      <- RETURN Expression? SEMI
+
+TryStmt         <- TRY Block CatchClause+
+CatchClause     <- CATCH LPAREN Type Identifier RPAREN Block
+
+ThrowStmt       <- THROW Expression SEMI
+AssertStmt      <- ASSERT LPAREN Expression RPAREN SEMI
+
+# ============================================================
+# 语句
+# ============================================================
+
+Statement       <- Block
+                 / IfStmt
+                 / WhenStmt
+                 / ForStmt
+                 / ParallelStmt
+                 / TryStmt
+                 / ThrowStmt
+                 / AssertStmt
+                 / SignalStmt
+                 / DelayStmt
+                 / BreakStmt
+                 / ReturnStmt
+                 / AliasStmt
+                 / ConstDecl
+                 / VarDecl
+                 / ExpressionStmt
+
+Block           <- LBRACE Statement* RBRACE
+ExpressionStmt  <- Expression SEMI
+
+# ============================================================
+# 表达式（按优先级从低到高）
+# ============================================================
+
+Expression      <- Lambda / Assignment
+
+Lambda          <- LPAREN LambdaParams? RPAREN ARROW LambdaBody   # (int x) => x + 1
+                 / LPAREN LambdaParams? RPAREN Block             # (int x, int y) { return x + y; }
+                 / Identifier ARROW LambdaBody                   # x => x + 1
+LambdaParams   <- LambdaParam (COMMA LambdaParam)*
+LambdaParam    <- Type Identifier / Identifier
+LambdaBody     <- Block                                    # 多语句块: (int x) => { return x * 2; }
+                 / Expression                              # 单表达式: (int x) => x * 2
+
+Assignment      <- LogicalOr (AssignOp LogicalOr)?
+AssignOp        <- ASSIGN / PLUS_ASSIGN / MINUS_ASSIGN / STAR_ASSIGN / SLASH_ASSIGN / MOD_ASSIGN
+
+LogicalOr       <- LogicalAnd (OR LogicalAnd)*
+LogicalAnd      <- BitwiseOr (AND BitwiseOr)*
+BitwiseOr       <- BitwiseXor (BIT_OR BitwiseXor)*
+BitwiseXor      <- BitwiseAnd (BIT_XOR BitwiseAnd)*
+BitwiseAnd      <- Equality (BIT_AND Equality)*
+
+Equality        <- Comparison (EqualityOp Comparison)*
+EqualityOp      <- EQ / NEQ
+
+Comparison      <- Addition (CompareOp Addition)*
+CompareOp       <- LTE / GTE / LT / GT
+
+Addition        <- Multiplication (AddOp Multiplication)*
+AddOp           <- PLUS / MINUS
+
+Multiplication  <- Unary (MulOp Unary)*
+MulOp           <- STAR / SLASH / MOD
+
+Unary           <- UnaryOp Unary / Postfix
+UnaryOp         <- MINUS / BANG / BIT_NOT
+
+Postfix         <- Primary PostfixOp*
+PostfixOp       <- DOT Identifier                           # 成员访问
+                 / LPAREN ArgList? RPAREN                   # 函数调用
+                 / LBRACKET Expression RBRACKET             # 下标访问
+                 / BANG                                     # 非空断言
+
+ArgList         <- Expression (COMMA Expression)*
+
+Primary         <- LPAREN Expression RPAREN                 # 分组（lambda 在 Expression 层处理）
+                 / ListLiteral
+                 / MapLiteral
+                 / NumberLiteral
+                 / StringLiteral
+                 / TRUE / FALSE / NULL
+                 / THIS / SUPER
+                 / ELLIPSIS                                 # 占位符表达式
+                 / Identifier
+
+# ============================================================
+# 字面量
+# ============================================================
+
+ListLiteral     <- LBRACKET (Expression (COMMA Expression)*)? RBRACKET
+MapLiteral      <- LBRACE (MapEntry (COMMA MapEntry)*)? RBRACE
+MapEntry        <- Expression COLON Expression
+
+NumberLiteral   <- FloatLiteral / IntLiteral
+FloatLiteral    <- [0-9]+ '.' [0-9]+ ([eE] [+-]? [0-9]+)?
+IntLiteral      <- '0x' [0-9a-fA-F]+                       # 十六进制
+                 / '0b' [01]+                               # 二进制
+                 / '0o' [0-7]+                              # 八进制
+                 / [0-9]+                                   # 十进制
+
+StringLiteral   <- FmtString / RawString / NormalString
+FmtString       <- 'f' QUOTE FmtStringContent* QUOTE
+RawString       <- 'r' QUOTE RawStringContent* QUOTE
+NormalString    <- QUOTE StringContent* QUOTE
+
+QUOTE           <- ['\"]
+FmtStringContent <- '{' Expression '}' / StringChar
+RawStringContent <- !QUOTE .
+StringContent   <- EscapeSeq / StringChar
+StringChar      <- !['\"\\\n] .
+EscapeSeq       <- '\\' [nrtbf\\'\"\0]
+                 / '\\u' [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]
+
+# ============================================================
+# 标识符
+# ============================================================
+
+Identifier      <- !Keyword [a-zA-Z_] [a-zA-Z0-9_]* Spacing
+
+# ============================================================
+# 关键字
+# ============================================================
+
+Keyword         <- ( 'alias' / 'assert' / 'break' / 'catch' / 'class'
+                   / 'const' / 'delay' / 'dll' / 'else' / 'ellipsis'
+                   / 'except' / 'export' / 'factory' / 'false' / 'final'
+                   / 'for' / 'if' / 'inherit' / 'iter' / 'load'
+                   / 'null' / 'parallel' / 'private' / 'public'
+                   / 'reflect' / 'return' / 'section' / 'signal'
+                   / 'static' / 'super' / 'this' / 'throw' / 'true'
+                   / 'try' / 'when' / 'int' / 'double' / 'string'
+                   / 'bool' / 'list' / 'map' / 'void' / 'Function'
+                   ) ![a-zA-Z0-9_]
+
+# 关键字 Token
+ALIAS           <- 'alias'    ![a-zA-Z0-9_] Spacing
+ASSERT          <- 'assert'   ![a-zA-Z0-9_] Spacing
+BREAK           <- 'break'    ![a-zA-Z0-9_] Spacing
+CATCH           <- 'catch'    ![a-zA-Z0-9_] Spacing
+CLASS           <- 'class'    ![a-zA-Z0-9_] Spacing
+CONST           <- 'const'    ![a-zA-Z0-9_] Spacing
+DELAY           <- 'delay'    ![a-zA-Z0-9_] Spacing
+DLL             <- 'dll'      ![a-zA-Z0-9_] Spacing
+ELSE            <- 'else'     ![a-zA-Z0-9_] Spacing
+ELLIPSIS        <- 'ellipsis' ![a-zA-Z0-9_] Spacing
+EXCEPT          <- 'except'   ![a-zA-Z0-9_] Spacing
+EXPORT          <- 'export'   ![a-zA-Z0-9_] Spacing
+FACTORY         <- 'factory'  ![a-zA-Z0-9_] Spacing
+FALSE           <- 'false'    ![a-zA-Z0-9_] Spacing
+FINAL           <- 'final'    ![a-zA-Z0-9_] Spacing
+FOR             <- 'for'      ![a-zA-Z0-9_] Spacing
+FUNCTION        <- 'Function' ![a-zA-Z0-9_] Spacing
+IF              <- 'if'       ![a-zA-Z0-9_] Spacing
+INHERIT         <- 'inherit'  ![a-zA-Z0-9_] Spacing
+ITER            <- 'iter'     ![a-zA-Z0-9_] Spacing
+LOAD            <- 'load'     ![a-zA-Z0-9_] Spacing
+NULL            <- 'null'     ![a-zA-Z0-9_] Spacing
+PARALLEL        <- 'parallel' ![a-zA-Z0-9_] Spacing
+PRIVATE         <- 'private'  ![a-zA-Z0-9_] Spacing
+PUBLIC          <- 'public'   ![a-zA-Z0-9_] Spacing
+REFLECT         <- 'reflect'  ![a-zA-Z0-9_] Spacing
+RETURN          <- 'return'   ![a-zA-Z0-9_] Spacing
+SECTION         <- 'section'  ![a-zA-Z0-9_] Spacing
+SIGNAL          <- 'signal'   ![a-zA-Z0-9_] Spacing
+STATIC          <- 'static'   ![a-zA-Z0-9_] Spacing
+SUPER           <- 'super'    ![a-zA-Z0-9_] Spacing
+THIS            <- 'this'     ![a-zA-Z0-9_] Spacing
+THROW           <- 'throw'    ![a-zA-Z0-9_] Spacing
+TRUE            <- 'true'     ![a-zA-Z0-9_] Spacing
+TRY             <- 'try'      ![a-zA-Z0-9_] Spacing
+WHEN            <- 'when'     ![a-zA-Z0-9_] Spacing
+
+# 类型关键字
+INT_T           <- 'int'      ![a-zA-Z0-9_] Spacing
+DOUBLE_T        <- 'double'   ![a-zA-Z0-9_] Spacing
+STRING_T        <- 'string'   ![a-zA-Z0-9_] Spacing
+BOOL_T          <- 'bool'     ![a-zA-Z0-9_] Spacing
+LIST_T          <- 'list'     ![a-zA-Z0-9_] Spacing
+MAP_T           <- 'map'      ![a-zA-Z0-9_] Spacing
+VOID_T          <- 'void'     ![a-zA-Z0-9_] Spacing
+
+# ============================================================
+# 运算符和分隔符
+# ============================================================
+
+# 赋值
+ASSIGN          <- '='  ![=>] Spacing
+ARROW           <- '=>' Spacing
+PLUS_ASSIGN     <- '+=' Spacing
+MINUS_ASSIGN    <- '-=' Spacing
+STAR_ASSIGN     <- '*=' Spacing
+SLASH_ASSIGN    <- '/=' Spacing
+MOD_ASSIGN      <- '%=' Spacing
+
+# 比较
+EQ              <- '==' Spacing
+NEQ             <- '!=' Spacing
+LTE             <- '<=' Spacing
+GTE             <- '>=' Spacing
+LT              <- '<'  !'=' Spacing
+GT              <- '>'  !'=' Spacing
+
+# 逻辑
+AND             <- '&&' Spacing
+OR              <- '||' Spacing
+BANG            <- '!'  !'=' Spacing
+
+# 位运算
+BIT_AND         <- '&'  !'&' Spacing
+BIT_OR          <- '|'  !'|' Spacing
+BIT_XOR         <- '^'  Spacing
+BIT_NOT         <- '~'  Spacing
+
+# 算术
+PLUS            <- '+'  ![+=] Spacing
+MINUS           <- '-'  ![-=] Spacing
+STAR            <- '*'  !'=' Spacing
+SLASH           <- '/'  !'=' Spacing
+MOD             <- '%'  !'=' Spacing
+
+# 分隔符
+LPAREN          <- '(' Spacing
+RPAREN          <- ')' Spacing
+LBRACE          <- '{' Spacing
+RBRACE          <- '}' Spacing
+LBRACKET        <- '[' Spacing
+RBRACKET        <- ']' Spacing
+LANGLE          <- '<' ![=] Spacing
+RANGLE          <- '>' ![=] Spacing
+SEMI            <- ';' Spacing
+COMMA           <- ',' Spacing
+DOT             <- '.' !'.' Spacing
+COLON           <- ':' Spacing
+PIPE            <- '|' !'|' Spacing
+QUESTION        <- '?' Spacing
+AT              <- '@' Spacing
+
+# ============================================================
+# 空白和注释
+# ============================================================
+
+Spacing         <- (WhiteSpace / Comment)*
+WhiteSpace      <- [ \t\r\n]+
+Comment         <- LineComment / BlockComment
+LineComment     <- '//' (![\n] .)* [\n]?
+BlockComment    <- '/*' (!'*/' .)* '*/'
+
+EOF             <- !.

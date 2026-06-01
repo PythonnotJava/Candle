@@ -1,0 +1,25 @@
+/// true: 布尔真值字面量
+
+int main() {
+    bool flag = true;
+    print(flag);
+
+    if (flag) {
+        print('flag is true');
+    }
+
+    // 与逻辑运算
+    bool a = true && false;     // false
+    bool b = true || false;     // true
+    print(a);
+    print(b);
+
+    // 在 when 中作为永真条件
+    int n = 0;
+    when (true) {
+        if (n >= 3) { break; }
+        print(n);
+        n += 1;
+    }
+    return 0;
+}

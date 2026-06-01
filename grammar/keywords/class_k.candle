@@ -1,0 +1,34 @@
+/// class: 声明类，可包含字段、构造函数、方法、工厂方法
+
+class Animal {
+    string name;
+    int age;
+
+    // 构造函数：参数列表自动赋给同名字段
+    Animal(string name, int age);
+
+    // 工厂方法：返回一个 Animal 实例
+    factory Animal newborn(string name) {
+        return Animal(name, 0);
+    }
+
+    void greet() {
+        print(f'Hi, I am {this.name}, age {this.age}');
+    }
+
+    // 静态方法
+    static int defaultAge() {
+        return 1;
+    }
+}
+
+int main() {
+    Animal a = Animal('Tom', 3);
+    a.greet();
+
+    Animal b = Animal.newborn('Kitten');
+    b.greet();
+
+    print(Animal.defaultAge());
+    return 0;
+}

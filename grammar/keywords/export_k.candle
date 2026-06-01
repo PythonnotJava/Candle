@@ -1,0 +1,5 @@
+/// export: 导出库中的想暴露的内容，块中用*表示所有内容，空块表示没有，使用except其后面使用内容都隐藏
+
+export {Random, Person};  // 导出Random, Person
+export *; // 导出所有公开内容
+export * except {Random}; // 导出所有公开内容除了Random

@@ -1,0 +1,33 @@
+/// dll: 加载动态链接库（FFI），把外部 C ABI 函数引入 Candle
+///
+/// dll 是面向用户的逃生舱：伸到语言外部调用 C 库。语言核心与标准库都不依赖它。
+/// 平台库名自动匹配：Windows name.dll / Linux libname.so / macOS libname.dylib。
+///
+/// 本例使用 Candle 自带的演示库 candle_demo（源码见 ffi_demo/candle_demo.c），
+/// 函数签名均为整型/字符串，可被运行时 trampoline 安全调用，端到端真实跑通。
+
+dll candle_demo alias demo;        // 加载 candle_demo.dll/.so/.dylib
+
+// 桩函数声明：ellipsis 修饰符表示函数体由 dll 提供（外部符号）
+ellipsis int demo_add(int a, int b);
+ellipsis int demo_mul(int a, int b);
+ellipsis string demo_greeting();
+ellipsis int demo_strlen(string s);
+
+int main() {
+    print(content(demo));           // 列出 dll 句柄命名空间公开的字段
+
+    print(demo_add(34, 8));         // 42
+    print(demo_mul(6, 7));          // 42
+    print(demo_greeting());         // hello from candle_demo dll
+    print(demo_strlen("candle"));   // 6
+
+    // ── 真实场景示意（需系统装有 sqlite3，签名涉及输出指针，此处仅作文档）──
+    // dll system.sqlite3 alias sql;
+    // ellipsis int  sqlite3_open(string filename, void db);
+    // ellipsis int  sqlite3_exec(void db, string sql, string errmsg);
+    // ellipsis void sqlite3_close(void db);
+    // 注：输出指针参数（sqlite3**）需用户自行提供缓冲区语义，超出本例范围。
+
+    return 0;
+}

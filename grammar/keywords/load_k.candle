@@ -1,0 +1,11 @@
+/// load: 加载candle模块
+
+load std.io;                       // 加载后符号可直接使用
+load std.math alias m;             // 用 m 作为命名空间
+load grammar.examples.basic alias basic;
+
+int main() {
+    print(content(m));             // 列出 m 模块公开内容
+    print(content(basic));
+    return 0;
+}

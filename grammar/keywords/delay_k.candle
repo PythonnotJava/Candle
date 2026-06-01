@@ -1,0 +1,18 @@
+/// delay: 并行块内延迟执行的段，等待对应 signal 后才运行
+
+int main() {
+    parallel {
+        // 普通段：立即执行
+        section {
+            print('preparing data');
+            signal(ready) {
+                print('data ready, fire signal');
+            }
+        }
+        // 延迟段：必须等到 ready 信号到达才执行
+        delay(ready) {
+            print('consumer triggered after signal');
+        }
+    }
+    return 0;
+}

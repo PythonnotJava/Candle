@@ -1,0 +1,28 @@
+/// super: 引用父类，可用于构造参数转发或调用父类方法
+
+class Animal {
+    string name;
+    Animal(string name);
+
+    void describe() {
+        print(f'animal: {name}');
+    }
+}
+
+class Dog inherit Animal {
+    string breed;
+
+    // 在构造参数列表里用 super.field 表示这个参数转发给父类的同名字段
+    Dog(super.name, this.breed);
+
+    void describe() {
+        super.describe();           // 调用父类同名方法
+        print(f'  breed: {breed}');
+    }
+}
+
+int main() {
+    Dog d = Dog('Rex', 'Husky');
+    d.describe();
+    return 0;
+}

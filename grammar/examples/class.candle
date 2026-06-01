@@ -1,0 +1,171 @@
+// class.candle - 面向对象测试
+
+// 基本类
+class Point {
+    int x;
+    int y;
+    Point(int x, int y);
+
+    int getX() {
+        return this.x;
+    }
+
+    int getY() {
+        return this.y;
+    }
+
+    string toString() {
+        return f'({x}, {y})';
+    }
+}
+
+// 继承
+class Shape {
+    string name;
+    Shape(string name);
+
+    double area() {
+        return 0.0;
+    }
+}
+
+class Circle inherit Shape {
+    double radius;
+    Circle(super.name, double radius);
+
+    double area() {
+        return 3.14159 * radius * radius;
+    }
+}
+
+// final 类（不可继承）
+final class Config {
+    string host;
+    int port;
+    Config(string host, int port);
+
+    string getUrl() {
+        return f'{host}:{port}';
+    }
+}
+
+// private / public 方法
+class Account {
+    string owner;
+    private double balance;
+
+    Account(string owner, double balance);
+
+    public double getBalance() {
+        return balance;
+    }
+
+    private void validate(double amount) {
+        assert(amount > 0.0);
+    }
+
+    void deposit(double amount) {
+        validate(amount);
+        balance += amount;
+    }
+}
+
+// static 方法
+class MathUtil {
+    static int max(int a, int b) {
+        if (a > b) {
+            return a;
+        }
+        return b;
+    }
+
+    static double abs(double x) {
+        if (x < 0.0) {
+            return 0.0 - x;
+        }
+        return x;
+    }
+}
+
+// static 单例类
+static class Logger {
+    static void info(string msg) {
+        print(f'[INFO] {msg}');
+    }
+
+    static void error(string msg) {
+        print(f'[ERROR] {msg}');
+    }
+}
+
+// factory 工厂方法
+class Color {
+    int r;
+    int g;
+    int b;
+    Color(int r, int g, int b);
+
+    factory Color red() {
+        return Color(255, 0, 0);
+    }
+
+    factory Color green() {
+        return Color(0, 255, 0);
+    }
+
+    factory Color blue() {
+        return Color(0, 0, 255);
+    }
+}
+
+// ellipsis 接口
+ellipsis class Serializable {
+    string serialize();
+    void deserialize(string data);
+}
+
+ellipsis class Comparable {
+    int compareTo(Serializable other);
+}
+
+// 实现接口
+class Person inherit Serializable {
+    string name;
+    int age;
+    Person(string name, int age);
+
+    string serialize() {
+        return f'{name},{age}';
+    }
+
+    void deserialize(string data) {
+        ellipsis;
+    }
+}
+
+// final 方法（不可重写）
+class Base {
+    final int id() {
+        return 42;
+    }
+
+    string label() {
+        return 'base';
+    }
+}
+
+class Derived inherit Base {
+    string label() {
+        return 'derived';
+    }
+}
+
+// 使用示例
+alias p = Point(3, 4);
+print(p.toString());
+
+alias c = Circle('circle', 5.0);
+print(c.area());
+
+alias red = Color.red();
+Logger.info('Application started');

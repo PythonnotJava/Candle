@@ -1,0 +1,29 @@
+/// if: 条件分支，可与 else / else if 组合
+
+int main() {
+    int x = 7;
+
+    // 单分支
+    if (x > 0) {
+        print('positive');
+    }
+
+    // 双分支
+    if (x % 2 == 0) {
+        print('even');
+    } else {
+        print('odd');
+    }
+
+    // 多分支
+    if (x < 0) {
+        print('negative');
+    } else if (x == 0) {
+        print('zero');
+    } else if (x < 10) {
+        print('single digit');
+    } else {
+        print('big');
+    }
+    return 0;
+}

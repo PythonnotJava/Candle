@@ -1,0 +1,52 @@
+/// parallel: 并行块，多段并发或 parallel for 数据并行
+
+int main() {
+    // 并行块：每个 section 在独立线程中运行
+    parallel {
+        section {
+            print('task A');
+        }
+        section {
+            print('task B');
+        }
+        section {
+            print('task C');
+        }
+    }
+
+    // 数据并行：每个迭代独立分配到不同线程
+    List nums = [1, 2, 3, 4, 5, 6, 7, 8];
+    parallel for iter(n, nums) {
+        print(n * n);
+    }
+
+    // 信号配合 delay
+    parallel {
+        section {
+            print('producer working');
+            signal(done) {
+                print('producer done');
+            }
+        }
+        delay(done) {
+            print('consumer awaken');
+        }
+    }
+
+    // 嵌套
+    parallel {
+        section {
+            parallel for iter(i, nums) {
+                print(i * i);
+            }
+        }
+
+        section {
+            parallel {
+                section {}
+                section {}
+            }
+        }
+    }
+    return 0;
+}

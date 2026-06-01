@@ -1,0 +1,26 @@
+// hello.candle - 解释器最小测试
+print('hello from interp');
+print(1 + 2 * 3);
+print(10 - 4);
+
+alias name = 'Candle';
+print(name);
+
+const PI = 3.1415;
+print(PI);
+
+int x = 10;
+x += 5;
+print(x);
+
+if (x > 10) {
+    print('big');
+} else {
+    print('small');
+}
+
+list nums = [1, 2, 3, 4, 5];
+print(nums);
+
+string s = 'hello' + ' ' + 'world';
+print(s);

@@ -1,0 +1,29 @@
+/// void: 无返回值类型，仅用于函数/方法返回类型
+
+void greet(string name) {
+    print(f'hello, {name}');
+    // 无需 return
+}
+
+void earlyExit(int x) {
+    if (x < 0) {
+        return;             // void 函数允许空 return
+    }
+    print(x);
+}
+
+class Logger {
+    void log(string msg) {
+        print(f'[log] {msg}');
+    }
+}
+
+int main() {
+    greet('Candle');
+    earlyExit(-1);
+    earlyExit(42);
+
+    Logger l = Logger();
+    l.log('ready');
+    return 0;
+}
