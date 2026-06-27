@@ -1,0 +1,23 @@
+Candle compiler & interpreter — v0.1
+
+USAGE
+  candlec [mode] <file.candle>
+  candlec                        (enter REPL)
+
+MODES
+  --tokens     Lexer: print token stream
+  --ast        Parser: print syntax tree (AST)
+  --emit-c     Codegen: transpile to C source (stdout)
+  --run        Interpreter: execute directly (default)
+  --repl       Force REPL mode
+  --help, -h   Show this help
+
+EXAMPLES
+  candlec --run hello.candle
+  candlec --tokens test.candle
+  candlec --emit-c app.candle > app.c && gcc app.c -Isrc -o app
+  candlec
+
+PROJECT
+  Candle — a user-designed, AI-assisted programming language
+  Transpiles to C (GCC backend) · tree-walk interpreter · Boehm GC

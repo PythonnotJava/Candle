@@ -8,10 +8,37 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
-#ifndef GC_INIT
-#define GC_INIT()
-#define GC_MALLOC(n) malloc(n)
-#define GC_MALLOC_ATOMIC(n) malloc(n)
+// ── GC abstraction layer ─────────────────────────────────────────────────────
+// When CANDLE_USE_BOEHM_GC is defined (interpreter builds), all Value-runtime
+// allocations go through Boehm GC.  Transpiled .candle→C programs leave it
+// undefined and keep plain malloc/calloc/strdup/realloc/free.
+
+#ifdef CANDLE_USE_BOEHM_GC
+  #include <gc.h>
+  // GC_INIT is already defined by <gc.h> above
+  #define GC_MALLOC(n)         GC_malloc(n)
+  #define GC_MALLOC_ATOMIC(n)  GC_malloc_atomic(n)
+  #define GC_REALLOC(p, n)     GC_realloc(p, n)
+  #define GC_STRDUP(s)         GC_strdup(s)
+  // GC_FREE is already defined by <gc.h> above
+
+  // Boehm GC has no calloc; wrap GC_malloc + memset.
+  static inline void *gc_calloc(size_t nmemb, size_t size) {
+      size_t total = nmemb * size;
+      void *p = GC_malloc(total);
+      if (p) memset(p, 0, total);
+      return p;
+  }
+  #define GC_CALLOC(n, s)  gc_calloc((n), (s))
+
+#else
+  #define GC_INIT()            ((void)0)
+  #define GC_MALLOC(n)         malloc(n)
+  #define GC_MALLOC_ATOMIC(n)  malloc(n)
+  #define GC_CALLOC(n, s)      calloc((n), (s))
+  #define GC_STRDUP(s)         strdup(s)
+  #define GC_REALLOC(p, n)     realloc((p), (n))
+  #define GC_FREE(p)           free(p)
 #endif
 
 typedef int64_t     candle_int;

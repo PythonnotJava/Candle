@@ -1,0 +1,10 @@
+// noexport_utils.candle — 无 export 声明模块
+// 无 export = 默认导出全部顶层绑定（main 除外）
+
+int doubleIt(int x) {
+    return x * 2;
+}
+
+int tripleIt(int x) {
+    return x * 3;
+}

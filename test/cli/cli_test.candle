@@ -1,0 +1,53 @@
+// Candle CLI 4-mode test — exercises tokens, AST, emit-C, and run
+
+class Greeter {
+    string name;
+    int count = 0;
+
+    void greet(string msg) {
+        print("[Greeter] Hello, " + msg + "!");
+        count = count + 1;
+    }
+}
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    // 1. Variable declarations (alias)
+    alias x = 42;
+    alias name = "Candle";
+
+    // 2. Object instantiation and method calls
+    alias g = Greeter("World");
+    g.greet(name);
+    g.greet("CLI");
+
+    // 3. Arithmetic
+    alias result = add(x, 8);
+    print("Result: " + String(result));
+
+    // 4. Control flow
+    alias items = [1, 2, 3, 4, 5];
+    for iter(i, 0, len(items)) {
+        alias val = items.get(i);
+        if (val > 3) {
+            print("Large: " + String(val));
+        }
+    }
+
+    // 5. String operations
+    alias msg = "hello world";
+    print("Uppercase: " + msg.toUpper());
+    print("Length: " + String(msg.length()));
+
+    // 6. Boolean logic
+    alias t = true;
+    alias f = false;
+    if (t && !f) {
+        print("Boolean logic OK");
+    }
+
+    return 0;
+}

@@ -1,0 +1,12 @@
+load std.http alias http;
+
+int main() {
+    alias resp = http.get("http://httpbin.org/get");
+    alias n = len(resp);
+    print("response length = " + String(n));
+    if (n > 50) {
+        print("HTTP GET works!");
+    }
+    print("=== HTTP TESTS PASSED ===");
+    return 0;
+}

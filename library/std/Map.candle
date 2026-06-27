@@ -1,17 +1,24 @@
-/// Map — Candle 内置映射类型的标准接口声明
+/// Map — Candle 映射类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 map_method。
 ///
-/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
-/// 运行时不依赖本文件。用户扩展请用 reflect。
+/// 使用: load library.std.Map 后即可在任意 map 值上调用
 
-class Map {
-    int length();                  // 键值对数量
-    bool isEmpty();                // 是否为空
-    bool isNotEmpty();             // 是否非空
-    bool containsKey(string key);  // 是否含某键
-    int get(string key);           // 取值
-    Map set(string key, int value);// 设值，返回自身
-    int remove(string key);        // 移除并返回旧值
-    list keys();                   // 所有键
-    list values();                 // 所有值
-    Map clear();                   // 清空
+export { };
+
+reflect map {
+    int size() {
+        return len(self);
+    }
+
+    bool isEmpty() {
+        return len(self) == 0;
+    }
+
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    bool containsKey(string key) {
+        return self[key] != null;
+    }
 }

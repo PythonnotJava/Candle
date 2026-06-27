@@ -1,0 +1,21 @@
+/// Map — Candle 映射类型标准库（reflect 扩展）
+
+export { };
+
+reflect map {
+    int size() {
+        return len(self);
+    }
+
+    bool isEmpty() {
+        return len(self) == 0;
+    }
+
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    bool containsKey(string key) {
+        return self[key] != null;
+    }
+}

@@ -1,50 +1,83 @@
-/// List — Candle 内置列表类型的标准接口声明
+/// List — Candle 列表类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 list_method。
 ///
-/// 这是一份「接口契约 + 文档」：方法实现由运行时内置提供（C 层），
-/// 永远可用，无需 load。本文件仅声明标准 API，供工具与开发者查阅，
-/// 运行时并不依赖它。用户若想为 List 增加自定义方法，请用 reflect。
+/// 使用: load library.std.List 后即可在任意 list 值上调用
+///
+/// 注意: C 内置方法(stack)不会被 reflect 覆盖，reflect 只提供 C 中没有的方法。
 
-class List {
-    // ── 查询 ──
-    int length();                  // 元素个数
-    bool isEmpty();                // 是否为空
-    bool isNotEmpty();             // 是否非空
-    int first();                   // 首元素
-    int last();                    // 末元素
-    int at(int index);             // 按下标取元素（支持负索引）
-    bool contains(int value);      // 是否包含某元素
-    int indexOf(int value);        // 首次出现下标，没有则 -1
+export { };
 
-    // ── 修改 ──
-    List add(int value);           // 追加元素，返回自身
-    List addAll(List other);       // 追加另一个列表的全部元素
-    int removeLast();              // 弹出并返回末元素
-    int removeAt(int index);       // 移除并返回指定下标元素
-    List insert(int index, int value); // 在下标处插入
-    List clear();                  // 清空
+reflect list {
+    int size() {
+        return len(self);
+    }
 
-    // ── 变换（返回新列表）──
-    List reversed();               // 反转
-    List sublist(int start, int end); // 子列表 [start, end)
-    string join(string sep);       // 用分隔符连接成字符串
-    List sorted();                 // 升序排序
-    List distinct();               // 去重（保持首次出现顺序）
-    List take(int n);              // 取前 n 个
-    List skip(int n);              // 跳过前 n 个
-    List zip(List other);          // 与另一列表配对成元组列表
+    int length() {
+        return len(self);
+    }
 
-    // ── 聚合 ──
-    int sum();                     // 求和
-    int product();                 // 求积
-    int maxValue();                // 最大值
-    int minValue();                // 最小值
+    bool isEmpty() {
+        return len(self) == 0;
+    }
 
-    // ── 高阶函数 ──
-    List map(Function f);          // 映射
-    List where(Function pred);     // 过滤
-    int reduce(Function f);        // 归约（无初值）
-    int fold(int init, Function f);// 归约（带初值）
-    List forEach(Function f);      // 遍历
-    bool any(Function pred);       // 存在满足
-    bool every(Function pred);     // 全部满足
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    int first() {
+        if (len(self) == 0) { return 0; }
+        return self[0];
+    }
+
+    int last() {
+        int n = len(self);
+        if (n == 0) { return 0; }
+        return self[n - 1];
+    }
+
+    bool contains(int item) {
+        return self.indexOf(item) != -1;
+    }
+
+    int indexOf(int item) {
+        int n = len(self);
+        for iter(i, 0, n) {
+            if (self[i] == item) { return i; }
+        }
+        return -1;
+    }
+
+    list slice(int start, int end) {
+        list result = [];
+        int n = len(self);
+        if (start < 0) { start = 0; }
+        if (end > n) { end = n; }
+        for iter(i, start, end) {
+            result.add(self[i]);
+        }
+        return result;
+    }
+
+    string join(string sep) {
+        string result = "";
+        int n = len(self);
+        for iter(i, 0, n) {
+            if (i > 0) { result = result + sep; }
+            result = result + String(self[i]);
+        }
+        return result;
+    }
+
+    list concat(list other) {
+        list result = [];
+        int n = len(self);
+        for iter(i, 0, n) {
+            result.add(self[i]);
+        }
+        int m = len(other);
+        for iter(i, 0, m) {
+            result.add(other[i]);
+        }
+        return result;
+    }
 }

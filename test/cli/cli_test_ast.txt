@@ -1,0 +1,82 @@
+Program
+  ClassDecl Greeter
+    FieldDecl name: string
+    FieldDecl count: int
+      IntLit 0
+    MethodDecl greet -> void
+      VarDecl msg: string
+      Block
+        ExprStmt
+        ExprStmt
+  FuncDecl add -> int
+    VarDecl a: int
+    VarDecl b: int
+    Block
+      Return
+        Binary PLUS
+          Ident a
+          Ident b
+  FuncDecl main -> int
+    Block
+      Alias x
+        IntLit 42
+      Alias name
+        StringLit "Candle"
+      Alias g
+        Call
+          Ident Greeter
+          StringLit "World"
+      ExprStmt
+      ExprStmt
+      Alias result
+        Call
+          Ident add
+          Ident x
+          IntLit 8
+      ExprStmt
+      Alias items
+        ListLit
+          IntLit 1
+          IntLit 2
+          IntLit 3
+          IntLit 4
+          IntLit 5
+      For
+        Iter i
+          IntLit 0
+          Call
+            Ident len
+            Ident items
+        Block
+          Alias val
+            Call
+              Member .get
+                Ident items
+              Ident i
+          If
+            Cond:
+              Binary GT
+                Ident val
+                IntLit 3
+            Then:
+              Block
+                ExprStmt
+      Alias msg
+        StringLit "hello world"
+      ExprStmt
+      ExprStmt
+      Alias t
+        BoolLit true
+      Alias f
+        BoolLit false
+      If
+        Cond:
+          Binary AND
+            Ident t
+            Unary BANG
+              Ident f
+        Then:
+          Block
+            ExprStmt
+      Return
+        IntLit 0

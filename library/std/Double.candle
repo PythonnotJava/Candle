@@ -1,21 +1,86 @@
-/// Double — Candle 内置浮点类型的标准接口声明
+/// Double — Candle 浮点类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 num_method。
 ///
-/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
-/// 运行时不依赖本文件。用户扩展请用 reflect。
+/// C 内置回退方法（不需要 reflect）:
+///   floor/ceil/round/truncate/isFinite/isNaN/toInt — 在 num_method 中已实现
+///
+/// 使用: load library.std.Double 后即可在任意 double 值上调�?
 
-class Double {
-    double abs();               // 绝对值
-    bool isNegative();          // 是否为负
-    bool isZero();              // 是否为零
-    int sign();                 // 符号：正 1 / 负 -1 / 零 0
-    double clamp(double lo, double hi); // 钳制到 [lo, hi]
-    int floor();                // 向下取整
-    int ceil();                 // 向上取整
-    int round();                // 四舍五入
-    int truncate();             // 截断取整
-    bool isFinite();            // 是否有限
-    bool isNaN();               // 是否 NaN
-    double toDouble();          // 自身
-    int toInt();                // 转整数（截断）
-    string toString();          // 转字符串
+export { };
+
+reflect double {
+    // ── 符号与状态 ──
+
+    /// 是否为正数（> 0）
+    bool isPositive() {
+        return self > 0;
+    }
+
+    /// 是否为负（< 0）
+    bool isNegative() {
+        return self < 0;
+    }
+
+    /// 是否为�?
+    bool isZero() {
+        return self == 0;
+    }
+
+    /// 是否为整数（小数部分为�?
+    bool isInteger() {
+        return self == self.toInt();
+    }
+
+    // ── 符号 ──
+
+    /// 符号：正 → 1，负 → -1，零 → 0
+    int sign() {
+        if (self > 0) { return 1; }
+        if (self < 0) { return -1; }
+        return 0;
+    }
+
+    // ── 数值 ──
+
+    /// 绝对�?
+    double abs() {
+        if (self < 0) { return -self; }
+        return self;
+    }
+
+    /// 倒数
+    double reciprocal() {
+        return 1.0 / self;
+    }
+
+    /// 平�?
+    double squared() {
+        return self * self;
+    }
+
+    /// 立�?
+    double cubed() {
+        return self * self * self;
+    }
+
+    // ── 钳制 ──
+
+    /// 限制在 [lo, hi] 范围内
+    double clamp(double lo, double hi) {
+        if (self < lo) { return lo; }
+        if (self > hi) { return hi; }
+        return self;
+    }
+
+    // ── 类型转换 ──
+
+    /// 自身
+    double toDouble() {
+        return self;
+    }
+
+    /// 转字符串
+    string toString() {
+        return String(self);
+    }
 }

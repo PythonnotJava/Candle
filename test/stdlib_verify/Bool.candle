@@ -1,0 +1,27 @@
+/// Bool — Candle 布尔类型标准库（reflect 扩展）
+
+export { };
+
+reflect bool {
+    bool toggle() {
+        return !self;
+    }
+
+    int toInt() {
+        if (self) { return 1; }
+        return 0;
+    }
+
+    bool and(bool other) {
+        return self && other;
+    }
+
+    bool or(bool other) {
+        return self || other;
+    }
+
+    string toString() {
+        if (self) { return "true"; }
+        return "false";
+    }
+}

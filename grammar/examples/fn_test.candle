@@ -1,4 +1,4 @@
-// fn_test.candle - 函数与 lambda 测试
+// fn_test.candle - 函数与 lambda 测试（Candle 风格：int main 入口）
 
 int add(int a, int b) {
     return a + b;
@@ -8,40 +8,48 @@ int mul(int a, int b) {
     return a * b;
 }
 
-print(add(3, 4));
-print(mul(5, 6));
-print(add(mul(2, 3), 4));
-
-// 递归
 int fact(int n) {
     if (n <= 1) {
         return 1;
     }
     return n * fact(n - 1);
 }
-print(fact(5));
-print(fact(10));
 
-// lambda
-alias square = (int x) => x * x;
-print(square(7));
-
-// lambda 闭包
 int makeAdder(int n) {
     return (int x) => x + n;
 }
-alias add10 = makeAdder(10);
-print(add10(5));
-print(add10(100));
 
-// 互相调用
 int isEven(int n) {
     if (n == 0) { return 1; }
     return isOdd(n - 1);
 }
+
 int isOdd(int n) {
     if (n == 0) { return 0; }
     return isEven(n - 1);
 }
-print(isEven(8));
-print(isOdd(7));
+
+int main() {
+    print(add(3, 4));
+    print(mul(5, 6));
+    print(add(mul(2, 3), 4));
+
+    // 递归
+    print(fact(5));
+    print(fact(10));
+
+    // lambda
+    alias square = (int x) => x * x;
+    print(square(7));
+
+    // lambda 闭包
+    alias add10 = makeAdder(10);
+    print(add10(5));
+    print(add10(100));
+
+    // 互相调用
+    print(isEven(8));
+    print(isOdd(7));
+
+    return 0;
+}

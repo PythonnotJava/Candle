@@ -1,26 +1,37 @@
-// hello.candle - 解释器最小测试
-print('hello from interp');
-print(1 + 2 * 3);
-print(10 - 4);
+// hello.candle - Hello World（Candle 风格：int main 入口）
 
-alias name = 'Candle';
-print(name);
+int main() {
+    print("hello from interp");
 
-const PI = 3.1415;
-print(PI);
+    // 基本运算
+    alias x = 3 + 4;
+    print(x);
 
-int x = 10;
-x += 5;
-print(x);
+    alias y = 10 - 4;
+    print(y);
 
-if (x > 10) {
-    print('big');
-} else {
-    print('small');
+    alias s = "Candle";
+    print(s);
+
+    alias pi = 3.1415;
+    print(pi);
+
+    alias big = 5 + 10;
+    print(big);
+
+    // if 语句
+    alias score = 85;
+    if (score >= 60) {
+        print("big");
+    }
+
+    // list
+    list nums = [1, 2, 3, 4, 5];
+    print(nums);
+
+    // string concat
+    alias msg = "hello" + " " + "world";
+    print(msg);
+
+    return 0;
 }
-
-list nums = [1, 2, 3, 4, 5];
-print(nums);
-
-string s = 'hello' + ' ' + 'world';
-print(s);

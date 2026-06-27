@@ -1,17 +1,70 @@
-/// Int — Candle 内置整数类型的标准接口声明
+/// Int — Candle 整数类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 num_method。
 ///
-/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
-/// 运行时不依赖本文件。用户扩展请用 reflect。
+/// 使用: load library.std.Int 后即可在任意 int 值上调用
 
-class Int {
-    bool isEven();              // 是否偶数
-    bool isOdd();               // 是否奇数
-    int abs();                  // 绝对值
-    bool isNegative();          // 是否为负
-    bool isZero();              // 是否为零
-    int sign();                 // 符号：正 1 / 负 -1 / 零 0
-    int clamp(int lo, int hi);  // 钳制到 [lo, hi]
-    double toDouble();          // 转浮点
-    int toInt();                // 转整数（自身）
-    string toString();          // 转字符串
+export { };
+
+reflect int {
+    // ── 奇偶 ──
+    bool isEven() {
+        return self % 2 == 0;
+    }
+
+    bool isOdd() {
+        return self % 2 != 0;
+    }
+
+    // ── 符号 ──
+    bool isNegative() {
+        return self < 0;
+    }
+
+    bool isZero() {
+        return self == 0;
+    }
+
+    int sign() {
+        if (self > 0) { return 1; }
+        if (self < 0) { return -1; }
+        return 0;
+    }
+
+    // ── 数值 ──
+    int abs() {
+        if (self < 0) { return -self; }
+        return self;
+    }
+
+    int clamp(int lo, int hi) {
+        if (self < lo) { return lo; }
+        if (self > hi) { return hi; }
+        return self;
+    }
+
+    // ── 类型转换 ──
+    double toDouble() {
+        return self + 0.0;
+    }
+
+    string toString() {
+        return String(self);
+    }
+
+    // ── 范围迭代 ──
+    list range() {
+        list result = [];
+        for iter(i, 0, self) {
+            result.add(i);
+        }
+        return result;
+    }
+
+    list rangeFrom(int start) {
+        list result = [];
+        for iter(i, start, self) {
+            result.add(i);
+        }
+        return result;
+    }
 }

@@ -1,0 +1,59 @@
+#define CANDLE_RUNTIME_MAIN
+#include "candle_runtime.h"
+
+candle_int add(candle_int a, candle_int b);
+int candle_user_main();
+
+/* class Greeter */
+typedef struct Greeter Greeter;
+struct Greeter {
+    candle_string name;
+    candle_int count;
+};
+
+static Greeter *Greeter__new(candle_string name, candle_int count) {
+    Greeter *self = GC_MALLOC(sizeof(Greeter));
+    self->name = name;
+    self->count = count;
+    return self;
+}
+
+void Greeter__greet(Greeter *self, candle_string msg) {
+    print(candle_str_concat(candle_str_concat(candle_str("[Greeter] Hello, "), msg), candle_str("!")));
+    self->count = (self->count + ((candle_int)1));
+}
+
+candle_int add(candle_int a, candle_int b) {
+    return (a + b);
+}
+
+int candle_user_main() {
+    candle_int x = ((candle_int)42);
+    candle_string name = candle_str("Candle");
+    Greeter* g = Greeter__new(candle_str("World"));
+    Greeter__greet(g, name);
+    Greeter__greet(g, candle_str("CLI"));
+    candle_int result = add(x, ((candle_int)8));
+    print((candle_str("Result: ") + String(result)));
+    CandleList* items = candle_list_new(5, (candle_int)(((candle_int)1)), (candle_int)(((candle_int)2)), (candle_int)(((candle_int)3)), (candle_int)(((candle_int)4)), (candle_int)(((candle_int)5)));
+    for (candle_int i = ((candle_int)0); i < len(items); i += 1) {
+        __auto_type val = candle_list_get(items, i);
+        if ((val > ((candle_int)3))) {
+            print((candle_str("Large: ") + String(val)));
+        }
+    }
+    candle_string msg = candle_str("hello world");
+    print((candle_str("Uppercase: ") + msg->toUpper()));
+    print((candle_str("Length: ") + String(msg->length())));
+    candle_bool t = ((candle_bool)1);
+    candle_bool f = ((candle_bool)0);
+    if ((t && !f)) {
+        print(candle_str("Boolean logic OK"));
+    }
+    return ((candle_int)0);
+}
+
+int main(void) {
+    GC_INIT();
+    return candle_user_main();
+}

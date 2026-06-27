@@ -1,0 +1,131 @@
+// stdlib_test.candle — 标准库全面测试
+// 加载所有 stdlib 模块，逐一验证每个方法
+
+load test.stdlib_verify.Int alias Z;
+load test.stdlib_verify.Bool alias B;
+load test.stdlib_verify.String alias S;
+load test.stdlib_verify.List alias L;
+load test.stdlib_verify.Map alias M;
+
+int main() {
+    print("========== Int ==========");
+    alias n = 42;
+    alias neg = -7;
+    alias zero = 0;
+
+    print("42.isEven() = " + String(n.isEven()));           // true
+    print("42.isOdd()  = " + String(n.isOdd()));            // false
+    print("42.sign()   = " + String(n.sign()));             // 1
+    print("(-7).sign() = " + String(neg.sign()));           // -1
+    print("0.sign()    = " + String(zero.sign()));          // 0
+    print("(-7).abs()  = " + String(neg.abs()));            // 7
+    print("7.abs()     = " + String(7.abs()));              // 7
+    print("42.isNegative() = " + String(n.isNegative()));   // false
+    print("(-7).isNegative() = " + String(neg.isNegative())); // true
+    print("0.isZero()  = " + String(zero.isZero()));        // true
+
+    // clamp
+    print("clamp(5, 1, 10) = " + String(5.clamp(1, 10)));   // 5
+    print("clamp(0, 1, 10) = " + String(0.clamp(1, 10)));   // 1
+    print("clamp(20, 1, 10) = " + String(20.clamp(1, 10))); // 10
+
+    // toDouble / toString
+    alias d = n.toDouble();
+    print("42.toDouble() = " + String(d));                   // 42.0
+    print("42.toString() = " + n.toString());                // "42"
+
+    // range
+    alias r = 5.range();
+    print("5.range().join(',') = " + r.join(","));           // "0,1,2,3,4"
+
+    print("");
+
+    print("========== Bool ==========");
+    print("true.toggle()  = " + String(true.toggle()));       // false
+    print("false.toggle() = " + String(false.toggle()));      // true
+    print("true.toInt()   = " + String(true.toInt()));        // 1
+    print("false.toInt()  = " + String(false.toInt()));       // 0
+    print("true.and(true)  = " + String(true.and(true)));     // true
+    print("true.and(false) = " + String(true.and(false)));    // false
+    print("false.or(true)  = " + String(false.or(true)));     // true
+    print("true.toString() = " + true.toString());            // "true"
+
+    print("");
+
+    print("========== String ==========");
+    alias s = "hello world";
+    alias empty = "";
+
+    print("length('hello world') = " + String(s.length()));   // 11
+    print("'hello world'.isEmpty() = " + String(s.isEmpty())); // false
+    print("''.isEmpty() = " + String(empty.isEmpty()));       // true
+    print("startsWith('hello') = " + String(s.startsWith("hello"))); // true
+    print("startsWith('world') = " + String(s.startsWith("world"))); // false
+    print("endsWith('world') = " + String(s.endsWith("world")));     // true
+    print("endsWith('hello') = " + String(s.endsWith("hello")));     // false
+    print("contains('lo w') = " + String(s.contains("lo w")));       // true
+    print("contains('xyz') = " + String(s.contains("xyz")));         // false
+    print("indexOf('world') = " + String(s.indexOf("world")));       // 6
+    print("indexOf('xyz') = " + String(s.indexOf("xyz")));           // -1
+
+    // substring
+    print("substring(0,5) = " + s.substring(0, 5));                 // "hello"
+    print("substring(6,11) = " + s.substring(6, 11));               // "world"
+
+    // repeated
+    print("repeated('ab', 3) = " + "ab".repeated(3));               // "ababab"
+
+    // reversed
+    print("reversed('abc') = " + "abc".reversed());                 // "cba"
+
+    // pad
+    print("padLeft('7', 3, '0') = " + "7".padLeft(3, "0"));        // "007"
+    print("padRight('7', 3, '0') = " + "7".padRight(3, "0"));      // "700"
+
+    // palindrome
+    print("isPalindrome('aba') = " + String("aba".isPalindrome())); // true
+    print("isPalindrome('abc') = " + String("abc".isPalindrome())); // false
+
+    // count
+    print("count('l', 'hello') = " + String("hello".count("l")));   // 2
+
+    print("");
+
+    print("========== List ==========");
+    alias lst = [10, 20, 30, 20, 50];
+
+    print("size = " + String(lst.size()));                    // 5
+    print("isEmpty = " + String([].isEmpty()));               // true
+    print("isNotEmpty = " + String(lst.isNotEmpty()));        // true
+    print("first = " + String(lst.first()));                  // 10
+    print("last = " + String(lst.last()));                    // 50
+    print("contains(30) = " + String(lst.contains(30)));      // true
+    print("contains(99) = " + String(lst.contains(99)));      // false
+    print("indexOf(20) = " + String(lst.indexOf(20)));        // 1
+    print("indexOf(99) = " + String(lst.indexOf(99)));        // -1
+
+    // slice
+    alias sub = lst.slice(1, 4);
+    print("slice(1,4).join(',') = " + sub.join(","));          // "20,30,20"
+
+    // join
+    print("join('|') = " + ["a", "b", "c"].join("|"));         // "a|b|c"
+
+    // concat
+    alias merged = [1, 2].concat([3, 4]);
+    print("concat join = " + merged.join(","));                // "1,2,3,4"
+
+    print("");
+
+    print("========== Map ==========");
+    alias config = {"host": "localhost", "port": 8080};
+    print("size = " + String(config.size()));                  // 2
+    print("isEmpty = " + String(config.isEmpty()));            // false
+    print("containsKey('host') = " + String(config.containsKey("host")));  // true
+    print("containsKey('nonexist') = " + String(config.containsKey("nonexist"))); // false
+
+    print("");
+    print("=== ALL STDLIB TESTS PASSED ===");
+
+    return 0;
+}

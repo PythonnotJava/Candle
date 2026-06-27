@@ -1,63 +1,43 @@
-// loop_test.candle - for-iter / when / try / throw 测试
+// loop_test.candle - 循环测试（Candle 风格：int main 入口）
 
-// 基本范围
-print('range 0..5:');
-for iter(i, 5) {
-    print(i);
-}
+int main() {
+    // for iter
+    for iter(i, 5) {
+        print(i);
+    }
 
-// start..end
-print('range 10..13:');
-for iter(i, 10, 13) {
-    print(i);
-}
+    // for iter 带范围
+    for iter(i, 3, 8) {
+        print(i);
+    }
 
-// 带步长
-print('step 2:');
-for iter(i, 0, 10, 2) {
-    print(i);
-}
+    // for iter 遍历列表
+    list items = ["a", "b", "c"];
+    for iter(x, items) {
+        print(x);
+    }
 
-// 倒序
-print('countdown:');
-for iter(i, 5, 0, 0 - 1) {
-    print(i);
-}
+    // 嵌套循环
+    for iter(i, 3) {
+        for iter(j, 3) {
+            print(f"{i},{j}");
+        }
+    }
 
-// 字符串遍历
-print('letters:');
-for iter(c, 'abc') {
-    print(c);
-}
+    // when 循环
+    alias n = 0;
+    when (n < 5) {
+        print(n);
+        n = n + 1;
+    }
 
-// 列表遍历
-print('list:');
-list xs = [10, 20, 30];
-for iter(x, xs) {
-    print(x);
-}
+    // break
+    for iter(i, 100) {
+        if (i == 10) {
+            break;
+        }
+        print(i);
+    }
 
-// when (单分支)
-int x = 7;
-when (x > 5) {
-    print('x is big');
+    return 0;
 }
-when (x < 5) {
-    print('not printed');
-}
-
-// break
-print('break at 3:');
-for iter(i, 10) {
-    when (i == 3) { break; }
-    print(i);
-}
-
-// try / throw
-print('try/throw:');
-try {
-    throw 'oops';
-} catch (Exception e) {
-    print('caught');
-}
-print('after try');

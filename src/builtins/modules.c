@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include "../vendor/cjson/cJSON.h"
 
 // ── 辅助：取参数为 double / int ───────────────────────────────────────────────
 
@@ -233,6 +234,119 @@ static Value build_io(void) {
     return mod;
 }
 
+// ── std.json ──────────────────────────────────────────────────────────────────
+
+// cJSON → Candle Value 递归转换
+static Value json_to_value(cJSON *item) {
+    if (!item) return v_null();
+    switch (item->type) {
+        case cJSON_False:  return v_bool(0);
+        case cJSON_True:   return v_bool(1);
+        case cJSON_NULL:   return v_null();
+        case cJSON_Number:
+            if (item->valuedouble == (double)(int64_t)item->valuedouble &&
+                item->valuedouble >= INT64_MIN && item->valuedouble <= INT64_MAX)
+                return v_int((int64_t)item->valuedouble);
+            return v_double(item->valuedouble);
+        case cJSON_String: return v_string(item->valuestring ? item->valuestring : "");
+        case cJSON_Array: {
+            Value out = v_list();
+            cJSON *child = item->child;
+            while (child) {
+                v_list_push(out.as.list, json_to_value(child));
+                child = child->next;
+            }
+            return out;
+        }
+        case cJSON_Object: {
+            Value out = v_map();
+            cJSON *child = item->child;
+            while (child) {
+                v_map_set(out.as.map, child->string, json_to_value(child));
+                child = child->next;
+            }
+            return out;
+        }
+        default: return v_null();
+    }
+}
+
+// Candle Value → cJSON 递归转换
+static cJSON *value_to_json(Value v) {
+    switch (v.type) {
+        case V_NULL:   return cJSON_CreateNull();
+        case V_BOOL:   return cJSON_CreateBool(v.as.b);
+        case V_INT:    return cJSON_CreateNumber((double)v.as.i);
+        case V_DOUBLE: return cJSON_CreateNumber(v.as.d);
+        case V_STRING: return cJSON_CreateString(v.as.s ? v.as.s : "");
+        case V_LIST: {
+            cJSON *arr = cJSON_CreateArray();
+            if (v.as.list) {
+                for (int i = 0; i < v.as.list->len; i++)
+                    cJSON_AddItemToArray(arr, value_to_json(v.as.list->items[i]));
+            }
+            return arr;
+        }
+        case V_MAP: {
+            cJSON *obj = cJSON_CreateObject();
+            if (v.as.map) {
+                for (int i = 0; i < v.as.map->len; i++)
+                    cJSON_AddItemToObject(obj, v.as.map->keys[i], value_to_json(v.as.map->vals[i]));
+            }
+            return obj;
+        }
+        default: return cJSON_CreateNull();
+    }
+}
+
+static Value json_parse(int argc, Value *argv) {
+    if (argc < 1 || argv[0].type != V_STRING || !argv[0].as.s)
+        return v_null();
+    cJSON *root = cJSON_Parse(argv[0].as.s);
+    if (!root) {
+        const char *err = cJSON_GetErrorPtr();
+        if (err) fprintf(stderr, "json.parse error: %s\n", err);
+        return v_null();
+    }
+    Value r = json_to_value(root);
+    cJSON_Delete(root);
+    return r;
+}
+
+static Value json_stringify(int argc, Value *argv) {
+    if (argc < 1) return v_string("null");
+    cJSON *root = value_to_json(argv[0]);
+    char *s = cJSON_PrintUnformatted(root);
+    Value r = v_string(s ? s : "null");
+    if (s) free(s);
+    cJSON_Delete(root);
+    return r;
+}
+
+static Value json_pretty(int argc, Value *argv) {
+    if (argc < 1) return v_string("null");
+    cJSON *root = value_to_json(argv[0]);
+    char *s = cJSON_Print(root);
+    Value r = v_string(s ? s : "null");
+    if (s) free(s);
+    cJSON_Delete(root);
+    return r;
+}
+
+static Value build_json(void) {
+    Value mod = v_map();
+    VMap *m = mod.as.map;
+    v_map_set(m, "parse",      v_native(json_parse));
+    v_map_set(m, "stringify",  v_native(json_stringify));
+    v_map_set(m, "pretty",     v_native(json_pretty));
+    return mod;
+}
+
+
+// 声明（实现在 http.c / time.c，独立编译以避免 TokenType 冲突）
+extern Value build_http(void);
+extern Value build_time(void);
+
 // ── 模块注册表 ───────────────────────────────────────────────────────────────
 
 typedef struct {
@@ -243,6 +357,9 @@ typedef struct {
 static const ModuleDef g_modules[] = {
     { "std.math", build_math },
     { "std.io",   build_io   },
+    { "std.http", build_http },
+    { "std.time", build_time },
+    { "std.json", build_json },
     { NULL, NULL }
 };
 

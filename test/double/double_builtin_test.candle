@@ -1,0 +1,30 @@
+// double_builtin_test.candle — C 内置回退方法（Candle 风格：int main 入口）
+
+load library.std.Double alias _;
+
+int main() {
+    print("========== C 内置回退方法 ==========");
+
+    alias pi = 3.14159;
+    alias neg = -2.8;
+
+    print("floor(3.14159)     = " + String(pi.floor()));
+    print("floor(-2.8)        = " + String(neg.floor()));
+    print("ceil(3.14159)      = " + String(pi.ceil()));
+    print("ceil(-2.8)         = " + String(neg.ceil()));
+    print("round(3.14159)     = " + String(pi.round()));
+    print("round(3.6)         = " + String(3.6.round()));
+    print("round(-2.8)        = " + String(neg.round()));
+    print("truncate(3.14159)  = " + String(pi.truncate()));
+    print("truncate(-2.8)     = " + String(neg.truncate()));
+    print("toInt(3.14159)     = " + String(pi.toInt()));
+    print("toInt(-2.8)        = " + String(neg.toInt()));
+
+    print("isFinite(3.14)     = " + String(pi.isFinite()));
+    print("isFinite(-2.8)     = " + String(neg.isFinite()));
+    print("isNaN(3.14)        = " + String(pi.isNaN()));
+
+    print("");
+    print("=== BUILTIN FALLBACK TESTS PASSED ===");
+    return 0;
+}

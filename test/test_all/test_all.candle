@@ -1,0 +1,276 @@
+// test_all.candle — Candle 全关键字回归测试
+// Covers: const ellipsis class inherit super this factory static final private
+//         public reflect alias Function lambda load export export-except
+//         int double string bool list map void null true false
+//         if else when break for iter return throw try catch final
+//         assert parallel section signal delay
+
+const PI = 3.14159;
+const MAX_USERS = 1000;
+
+ellipsis class Shape {
+    double area();
+}
+ellipsis int hostFunction(int x);
+int stub() { ellipsis; return 0; }
+
+class Animal {
+    string name;
+    int age;
+    Animal(string name, int age);
+    void describe() { print('animal: ' + name); }
+}
+
+class Dog inherit Animal {
+    string breed;
+    private string tag;
+    Dog(super.name, super.age, string breed) {
+        this.tag = 'dog-' + breed;
+    }
+    void bark() { print(name + ' says woof!'); }
+    string getTag() { return this.tag; }
+    factory Dog puppy(string name) {
+        return Dog(name, 0, 'mixed');
+    }
+    static int legs() { return 4; }
+}
+
+final class Singleton {
+    final int id;
+    Singleton(int id);
+    final string name() { return 'singleton'; }
+    factory Singleton create() {
+        return Singleton(42);
+    }
+}
+
+class Point {
+    public int x;
+    public int y;
+    private string secret;
+    Point(int x, int y) { this.secret = 'hidden'; }
+    public double length() { return x * x + y * y; }
+}
+
+class Circle inherit Shape {
+    double radius;
+    Circle(double radius);
+    double area() { return 3.14159 * radius * radius; }
+}
+
+reflect int {
+    bool isEven() { return self % 2 == 0; }
+    bool isOdd()  { return self % 2 != 0; }
+}
+
+alias doubler = (int x) => x * 2;
+alias adder   = (int a, int b) => a + b;
+alias inc     = x => x + 1;
+
+int add(int a, int b) { return a + b; }
+double multiply(double a, double b) { return a * b; }
+void greetFn(string name) { print('Hi, ' + name); }
+bool isPositive(int x) { return x > 0; }
+int firstPositive(list xs) {
+    for iter(x, xs) { if (x > 0) { return x; } }
+    return -1;
+}
+
+export { add, Circle };
+
+load library.std.Int alias _;
+load library.std.String alias ___;
+
+int main() {
+    alias total = 0;
+    alias errs = 0;
+
+    if (PI > 3.14) { total = total + 1; } else { errs = errs + 1; }
+    if (MAX_USERS == 1000) { total = total + 1; } else { errs = errs + 1; }
+
+    alias x = 42;
+    if (x == 42) { total = total + 1; } else { errs = errs + 1; }
+    alias name = 'Candle';
+    if (name == 'Candle') { total = total + 1; } else { errs = errs + 1; }
+    alias flag = true;
+    if (flag == true) { total = total + 1; } else { errs = errs + 1; }
+    alias nothing = null;
+    if (nothing == null) { total = total + 1; } else { errs = errs + 1; }
+
+    int i = 10;
+    double d = 3.14;
+    string s = 'hello';
+    bool b = true;
+    if (i == 10) { total = total + 1; }
+    if (d > 3.1) { total = total + 1; }
+    if (s == 'hello') { total = total + 1; }
+    if (b == true) { total = total + 1; }
+
+    int? maybeInt = null;
+    if (maybeInt == null) { total = total + 1; } else { errs = errs + 1; }
+    maybeInt = 99;
+    if (maybeInt == 99) { total = total + 1; } else { errs = errs + 1; }
+
+    alias a = 10 + 5;
+    if (a == 15)  { total = total + 1; }
+    alias s2 = 20 - 8;
+    if (s2 == 12) { total = total + 1; }
+    alias m = 6 * 7;
+    if (m == 42)  { total = total + 1; }
+    alias dv = 100 / 4;
+    if (dv == 25) { total = total + 1; }
+    alias md = 100 % 7;
+    if (md == 2)  { total = total + 1; }
+
+    alias bits = 0xFF;
+    if (bits == 255)    { total = total + 1; }
+    if (0xFF == 255)    { total = total + 1; }
+    if (~0 == -1)  { total = total + 1; }
+
+    alias lt = 3 < 5;
+    alias le = 3 <= 3;
+    alias gt = 5 > 3;
+    alias ge = 5 >= 5;
+    alias eq = 10 == 10;
+    alias ne = 10 != 20;
+    if (lt && le && gt && ge && eq && ne) { total = total + 1; }
+
+    alias t = true;
+    alias f = false;
+    if (t && !f) { total = total + 1; }
+    if (t || f)  { total = total + 1; }
+
+    int n = 5;
+    n = n + 1;
+    if (n == 6) { total = total + 1; }
+    n = n - 1;
+    if (n == 5) { total = total + 1; }
+
+    int v = 10;
+    v = v + 5;  if (v == 15) { total = total + 1; }
+    v = v - 3;  if (v == 12) { total = total + 1; }
+    v = v * 2;  if (v == 24) { total = total + 1; }
+    v = v / 4;  if (v == 6)  { total = total + 1; }
+
+    Animal an = Animal('Tom', 5);
+    if (an.name == 'Tom') { total = total + 1; } else { errs = errs + 1; }
+
+    Dog dg = Dog('Rex', 3, 'Husky');
+    if (dg.name == 'Rex') { total = total + 1; } else { errs = errs + 1; }
+    if (dg.age == 3) { total = total + 1; } else { errs = errs + 1; }
+
+    Point pt = Point(3, 4);
+    if (pt.x == 3) { total = total + 1; } else { errs = errs + 1; }
+
+    Dog pup = Dog.puppy('Spot');
+    if (pup.name == 'Spot') { total = total + 1; } else { errs = errs + 1; }
+
+    Singleton sg = Singleton.create();
+    if (sg.id == 42) { total = total + 1; } else { errs = errs + 1; }
+
+    if (Dog.legs() == 4) { total = total + 1; } else { errs = errs + 1; }
+    if (sg.name() == 'singleton') { total = total + 1; } else { errs = errs + 1; }
+
+    if (dg.getTag() == 'dog-Husky') { total = total + 1; } else { errs = errs + 1; }
+
+    if (4.isEven()) { total = total + 1; } else { errs = errs + 1; }
+    if (3.isOdd())  { total = total + 1; } else { errs = errs + 1; }
+
+    Circle cc = Circle(2.0);
+    alias area = cc.area();
+    if (area > 12.0) { total = total + 1; } else { errs = errs + 1; }
+    stub();
+
+    if (add(3, 4) == 7) { total = total + 1; } else { errs = errs + 1; }
+    if (multiply(6.0, 7.0) > 41.9) { total = total + 1; } else { errs = errs + 1; }
+    if (isPositive(5)) { total = total + 1; }
+    if (firstPositive([-3, -1, 0, 5, 8]) == 5) { total = total + 1; }
+
+    greetFn('World');
+
+    if (doubler(21) == 42) { total = total + 1; } else { errs = errs + 1; }
+    if (adder(40, 2) == 42) { total = total + 1; } else { errs = errs + 1; }
+    if (inc(41) == 42) { total = total + 1; } else { errs = errs + 1; }
+
+    if (true)  { total = total + 1; }
+    if (false) { errs = errs + 1; } else { total = total + 1; }
+    alias score = 85;
+    if (score >= 90) { errs = errs + 1; }
+    else if (score >= 80) { total = total + 1; }
+    else { errs = errs + 1; }
+
+    int c = 0;
+    when (true) { if (c >= 3) { break; } c = c + 1; }
+    if (c == 3) { total = total + 1; } else { errs = errs + 1; }
+
+    int sum = 0;
+    for iter(j, 0, 5) { sum = sum + j; }
+    if (sum == 10) { total = total + 1; } else { errs = errs + 1; }
+    alias items = [10, 20, 30];
+    sum = 0;
+    for iter(val, items) { sum = sum + val; }
+    if (sum == 60) { total = total + 1; } else { errs = errs + 1; }
+
+    assert(1 == 1);
+
+    int caught = 0;
+    try { throw 'test error'; } catch (e) { caught = 1; }
+    if (caught == 1) { total = total + 1; } else { errs = errs + 1; }
+
+    alias typedCaught = 0;
+    try { throw ValueError('bad value'); }
+    catch (ValueError ve) { typedCaught = 1; }
+    catch (e) { typedCaught = 2; }
+    if (typedCaught == 1) { total = total + 1; } else { errs = errs + 1; }
+
+    int finalRan = 0;
+    try { throw 'trigger'; } catch (e) { finalRan = 1; }
+    final { finalRan = finalRan + 10; }
+    if (finalRan == 11) { total = total + 1; } else { errs = errs + 1; }
+
+    if (true && !false) { total = total + 1; }
+    if (null == null)   { total = total + 1; }
+    if (0xFF == 255)    { total = total + 1; }
+    if (0b1010 == 10)   { total = total + 1; }
+    if (0o77 == 63)     { total = total + 1; }
+    alias pi2 = 3.14159;
+    if (pi2 > 3.14)     { total = total + 1; }
+    alias lst = [1, 2, 3, 4, 5];
+    if (len(lst) == 5)  { total = total + 1; }
+
+    if (pt.length() > 24.9) { total = total + 1; } else { errs = errs + 1; }
+    if (lst.get(0) == 1) { total = total + 1; } else { errs = errs + 1; }
+
+    alias s3 = 'hello';
+    if (len(s3) == 5)     { total = total + 1; } else { errs = errs + 1; }
+    if (s3.contains('ell'))   { total = total + 1; } else { errs = errs + 1; }
+
+    parallel {
+        section { print('task-1'); }
+        section { print('task-2'); }
+    }
+    parallel {
+        section { signal(ready) { print('signal ready'); } }
+        delay(ready) { print('delay triggered'); }
+    }
+    parallel for iter(k, [1, 2, 3]) { print('par-item'); }
+
+    load std.math alias math;
+
+    if (len('abc') == 3)  { total = total + 1; }
+    alias si = int('42');
+    if (si == 42)          { total = total + 1; }
+    alias sd = double('3.14');
+    if (sd > 3.1)          { total = total + 1; }
+    alias bb = bool(1);
+    if (bb == true)        { total = total + 1; }
+
+    print('');
+    print('ALL KEYWORD TESTS: ' + String(total) + '/' + String(total+errs));
+    if (errs > 0) {
+        print('FAILED: ' + String(errs));
+        return 1;
+    }
+    print('ALL KEYWORD TESTS PASSED');
+    return 0;
+}

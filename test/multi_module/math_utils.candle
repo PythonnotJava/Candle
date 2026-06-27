@@ -1,0 +1,15 @@
+// 数学工具模块 — 测试 export 末尾无分号
+export { add, multiply, factorial }
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int factorial(int n) {
+    if (n <= 1) { return 1; }
+    return n * factorial(n - 1);
+}

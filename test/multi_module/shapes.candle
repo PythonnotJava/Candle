@@ -1,0 +1,21 @@
+// shapes.candle — 几何形状类模块
+// 测试类定义和继承跨模块导出
+
+export { Circle, describe };
+
+class Circle {
+    Circle(double r) {
+        radius = r;
+    }
+
+    double area() {
+        return 3.14159 * radius * radius;
+    }
+
+    double radius;
+}
+
+// 顶层函数：接受一个 Circle 实例
+string describe(Circle c) {
+    return "Circle(r=" + String(c.radius) + ", area=" + String(c.area()) + ")";
+}

@@ -1,0 +1,14 @@
+/// json — Candle JSON 模块接口文档（std.json）
+///
+/// 使用 cJSON (vendor) 作为底层实现。
+/// 使用: load std.json alias json;
+///
+/// parse(string) → Value   解析 JSON 字符串为 Candle 值
+/// stringify(value) → string  Candle 值 → JSON 字符串（紧凑格式）
+/// pretty(value) → string   Candle 值 → JSON 字符串（格式化）
+
+class Json {
+    auto parse(string src);          // JSON → Candle value
+    string stringify(auto value);     // Candle value → JSON
+    string pretty(auto value);       // Candle value → pretty JSON
+}

@@ -48,11 +48,25 @@ static AstNode *parse_block(Parser *p);
 static int is_type_token(TokenType t);
 static char *parse_type_name(Parser *p);
 
+// ── 整数字面量解析（支持 0x/0b/0o 前缀）──────────────────────────────────────
+// strtoll(str, NULL, 0) 只认识 0x（十六进制），不认识 0b（二进制）/0o（八进制）。
+// 这个包装函数先识别前缀再显式传 base。
+static long long parse_int_literal(const char *str) {
+    int base = 10;
+    const char *p = str;
+    if (p[0] == '0' && p[1]) {
+        if (p[1] == 'x' || p[1] == 'X') base = 16, p += 2;
+        else if (p[1] == 'b' || p[1] == 'B') base = 2, p += 2;
+        else if (p[1] == 'o' || p[1] == 'O') base = 8, p += 2;
+    }
+    return strtoll(p, NULL, base);
+}
+
 static AstNode *parse_primary(Parser *p) {
     if (match(p, TK_INT_LIT)) {
         AstNode *node = ast_new(NODE_INT_LIT, p->previous.line, p->previous.column);
         char *str = token_to_string(p->previous);
-        node->as.int_lit.value = strtoll(str, NULL, 0);
+        node->as.int_lit.value = parse_int_literal(str);
         free(str);
         return node;
     }
@@ -692,6 +706,33 @@ static char *parse_type_name(Parser *p) {
         free(name);
         name = nullable;
     }
+    // Generic type arguments: Identifier<TypeList>
+    if (check(p, TK_LT)) {
+        advance(p);
+        size_t nlen = strlen(name) + 2;
+        char *tmp = malloc(nlen);
+        sprintf(tmp, "%s<", name);
+        free(name);
+        name = tmp;
+
+        if (!check(p, TK_GT)) {
+            do {
+                char *arg = parse_type_name(p);
+                nlen = strlen(name) + strlen(arg) + 2;
+                tmp = malloc(nlen);
+                sprintf(tmp, "%s%s", name, arg);
+                free(name); free(arg);
+                name = tmp;
+            } while (match(p, TK_COMMA));
+        }
+        consume(p, TK_GT, "expected '>' after generic type arguments");
+
+        nlen = strlen(name) + 2;
+        tmp = malloc(nlen);
+        sprintf(tmp, "%s>", name);
+        free(name);
+        name = tmp;
+    }
     // 函数类型后缀：BaseType Function(TypeList)  →  整体作为类型名 "Function"
     if (check(p, TK_FUNCTION)) {
         advance(p);                       // 消耗 'Function'
@@ -705,6 +746,24 @@ static char *parse_type_name(Parser *p) {
         }
         free(name);
         name = strdup("Function");
+    }
+    // 联合类型: T1 | T2 | ...  (TK_BIT_OR = '|')
+    while (check(p, TK_BIT_OR)) {
+        advance(p);  // 消费 '|'
+        if (!is_type_token(p->current.type)) break;
+        char *next = token_to_string(p->current);
+        advance(p);
+        // 可空后缀
+        if (match(p, TK_QUESTION)) {
+            char *nq = malloc(strlen(next) + 2);
+            sprintf(nq, "%s?", next);
+            free(next);
+            next = nq;
+        }
+        char *combined = malloc(strlen(name) + 1 + strlen(next) + 1);
+        sprintf(combined, "%s|%s", name, next);
+        free(name); free(next);
+        name = combined;
     }
     return name;
 }
@@ -739,7 +798,26 @@ static AstNode *parse_alias_decl(Parser *p) {
     node->as.alias.name = token_to_string(p->previous);
 
     consume(p, TK_ASSIGN, "expected '=' after alias name");
-    node->as.alias.value = parse_expression(p);
+    // Type alias vs value alias: try parsing as type name first;
+    // if the full value is consumed (next is ';'), it's a type alias.
+    if (is_type_token(p->current.type)) {
+        Lexer saved_l = p->lexer;
+        Token saved_c = p->current, saved_p = p->previous;
+        char *tn = parse_type_name(p);
+        if (check(p, TK_SEMI) || check(p, TK_ASSERT)) {
+            // Type alias: alias Name = Type
+            AstNode *type_ref = ast_new(NODE_IDENT, saved_c.line, saved_c.column);
+            type_ref->as.ident.name = tn;
+            node->as.alias.value = type_ref;
+        } else {
+            // Not a type, fall back to expression
+            free(tn);
+            p->lexer = saved_l; p->current = saved_c; p->previous = saved_p;
+            node->as.alias.value = parse_expression(p);
+        }
+    } else {
+        node->as.alias.value = parse_expression(p);
+    }
 
     if (match(p, TK_ASSERT)) {
         consume(p, TK_LPAREN, "expected '(' after 'assert'");
@@ -980,7 +1058,17 @@ static AstNode *parse_class_decl(Parser *p) {
             }
             free(type);
             p->lexer = sl; p->current = sc; p->previous = sp;
-        }
+                        // skip generic type brackets
+                if (check(p, TK_LT)) {
+                    advance(p);
+                    int gdepth = 1;
+                    while (gdepth > 0 && !check(p, TK_EOF)) {
+                        if (match(p, TK_LT)) gdepth++;
+                        else if (match(p, TK_GT)) gdepth--;
+                        else advance(p);
+                    }
+                }
+}
 
         // skip unknown
         advance(p);
@@ -1114,7 +1202,7 @@ static AstNode *parse_export_stmt(Parser *p) {
             }
             consume(p, TK_RBRACE, "expected '}' after except list");
         }
-        consume(p, TK_SEMI, "expected ';' after export");
+        match(p, TK_SEMI); /* optional per PEG */
         return node;
     }
 
@@ -1129,51 +1217,84 @@ static AstNode *parse_export_stmt(Parser *p) {
         } while (match(p, TK_COMMA));
     }
     consume(p, TK_RBRACE, "expected '}' after export list");
-    consume(p, TK_SEMI, "expected ';' after export");
+    match(p, TK_SEMI); /* optional per PEG */
     return node;
 }
 
 static AstNode *parse_reflect_stmt(Parser *p) {
     AstNode *node = ast_new(NODE_REFLECT, p->previous.line, p->previous.column);
 
-    // 目标可以是用户类，也可以是内置类型（int / double / string / ...）
-    if (is_type_token(p->current.type)) {
+    // 目标可以是用户类/实例（标识符），也可以是内置类型（int / double / string / ...）
+    if (is_type_token(p->current.type) || check(p, TK_IDENT)) {
         node->as.reflect.target = token_to_string(p->current);
         advance(p);
     } else {
-        error_at(p->filename, p->current.line, p->current.column, "expected reflect target type");
+        error_at(p->filename, p->current.line, p->current.column, "expected reflect target (identifier or type)");
         p->had_error = 1;
         node->as.reflect.target = strdup("");
     }
 
-    // body：方法声明列表，封装进 NODE_BLOCK（stmts 为 NODE_METHOD_DECL）
+    // body：字段声明 + 方法声明列表，封装进 NODE_BLOCK
     AstNode *body = ast_new(NODE_BLOCK, p->current.line, p->current.column);
     node_list_init(&body->as.program.stmts);
 
     consume(p, TK_LBRACE, "expected '{' after reflect target");
     while (!check(p, TK_RBRACE) && !check(p, TK_EOF)) {
-        // 方法声明：Type name(params) { ... }
+        // 修饰符：static / private / public / final
+        int is_static = 0, is_private = 0, is_public = 0, is_final = 0;
+        for (;;) {
+            if (match(p, TK_STATIC)) is_static = 1;
+            else if (match(p, TK_PRIVATE)) is_private = 1;
+            else if (match(p, TK_PUBLIC)) is_public = 1;
+            else if (match(p, TK_FINAL)) is_final = 1;
+            else break;
+        }
+
         if (is_type_token(p->current.type)) {
-            AstNode *method = ast_new(NODE_METHOD_DECL, p->current.line, p->current.column);
-            method->as.func.return_type = parse_type_name(p);
-            consume(p, TK_IDENT, "expected method name in reflect");
-            method->as.func.name = token_to_string(p->previous);
-            consume(p, TK_LPAREN, "expected '(' after method name");
-            node_list_init(&method->as.func.params);
-            if (!check(p, TK_RPAREN)) {
-                do {
-                    AstNode *param = ast_new(NODE_VAR_DECL, p->current.line, p->current.column);
-                    param->as.var.type_name = parse_type_name(p);
-                    consume(p, TK_IDENT, "expected parameter name");
-                    param->as.var.name = token_to_string(p->previous);
-                    param->as.var.init = NULL;
-                    node_list_push(&method->as.func.params, param);
-                } while (match(p, TK_COMMA));
+            int save_line = p->current.line;
+            int save_col = p->current.column;
+            char *type_name = parse_type_name(p);
+            consume(p, TK_IDENT, "expected name in reflect body");
+            char *name = token_to_string(p->previous);
+
+            if (check(p, TK_LPAREN)) {
+                // 方法声明：Type name(params) { ... } 或 Type name(params);
+                AstNode *method = ast_new(NODE_METHOD_DECL, save_line, save_col);
+                method->as.func.return_type = type_name;
+                method->as.func.name = name;
+                method->as.func.is_static = is_static;
+                method->as.func.is_private = is_private;
+                method->as.func.is_public = is_public;
+                method->as.func.is_final = is_final;
+                consume(p, TK_LPAREN, "expected '(' after method name");
+                node_list_init(&method->as.func.params);
+                if (!check(p, TK_RPAREN)) {
+                    do {
+                        AstNode *param = ast_new(NODE_VAR_DECL, p->current.line, p->current.column);
+                        param->as.var.type_name = parse_type_name(p);
+                        consume(p, TK_IDENT, "expected parameter name");
+                        param->as.var.name = token_to_string(p->previous);
+                        param->as.var.init = NULL;
+                        node_list_push(&method->as.func.params, param);
+                    } while (match(p, TK_COMMA));
+                }
+                consume(p, TK_RPAREN, "expected ')' after parameters");
+                if (check(p, TK_SEMI)) { advance(p); method->as.func.body = NULL; }
+                else method->as.func.body = parse_block(p);
+                node_list_push(&body->as.program.stmts, method);
+            } else if (match(p, TK_SEMI)) {
+                // 字段声明：Type name;
+                AstNode *field = ast_new(NODE_FIELD_DECL, save_line, save_col);
+                field->as.var.type_name = type_name;
+                field->as.var.name = name;
+                field->as.var.init = NULL;
+                field->as.var.is_static = is_static;
+                field->as.var.is_private = is_private;
+                node_list_push(&body->as.program.stmts, field);
+            } else {
+                error_at(p->filename, p->current.line, p->current.column, "expected '(' or ';' after '%s'", name);
+                p->had_error = 1;
             }
-            consume(p, TK_RPAREN, "expected ')' after parameters");
-            if (check(p, TK_SEMI)) { advance(p); method->as.func.body = NULL; }
-            else method->as.func.body = parse_block(p);
-            node_list_push(&body->as.program.stmts, method);
         } else {
             // 跳过未识别内容（如注释已在词法层处理，此处兜底）
             advance(p);
@@ -1281,6 +1402,45 @@ static AstNode *parse_statement(Parser *p) {
                     if (match(p, TK_LPAREN)) depth++;
                     else if (match(p, TK_RPAREN)) depth--;
                     else advance(p);
+                }
+            }
+        }
+        // skip generic type brackets for lookahead
+        if (check(p, TK_LT)) {
+            advance(p);
+            int gdep = 1;
+            while (gdep > 0 && !check(p, TK_EOF)) {
+                if (match(p, TK_LT)) gdep++;
+                else if (match(p, TK_GT)) gdep--;
+                else advance(p);
+            }
+        }
+        // union type: consume "| Type" suffixes (int | double | string)
+        while (check(p, TK_BIT_OR)) {
+            advance(p);
+            if (is_type_token(p->current.type)) {
+                advance(p);
+                if (check(p, TK_QUESTION)) advance(p);
+                if (check(p, TK_FUNCTION)) {
+                    advance(p);
+                    if (match(p, TK_LPAREN)) {
+                        int depth = 1;
+                        while (depth > 0 && !check(p, TK_EOF)) {
+                            if (match(p, TK_LPAREN)) depth++;
+                            else if (match(p, TK_RPAREN)) depth--;
+                            else advance(p);
+                        }
+                    }
+                }
+                // skip generic type brackets in union
+                if (check(p, TK_LT)) {
+                    advance(p);
+                    int gdep2 = 1;
+                    while (gdep2 > 0 && !check(p, TK_EOF)) {
+                        if (match(p, TK_LT)) gdep2++;
+                        else if (match(p, TK_GT)) gdep2--;
+                        else advance(p);
+                    }
                 }
             }
         }

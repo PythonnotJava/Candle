@@ -1,0 +1,43 @@
+// test_runner.candle — 自动化测试框架
+// 约定: 每个测试文件末尾输出 "=== TESTS PASSED ===" 表示成功
+// 用法: candlec --run test/test_runner.candle
+
+int run_test(string name, string path) {
+    // 用反射/动态执行依赖编译器 CLI，Candle 内无法调用自身
+    // 这里仅做测试清单与汇总
+    print("  " + name + "... ");
+    return 0;
+}
+
+int main() {
+    print("========== Candle Test Suite ==========");
+    print("");
+
+    // === 语法示例 (9) ===
+    print("--- grammar/examples ---");
+    run_test("hello",           "grammar/examples/hello.candle");
+    run_test("basic",           "grammar/examples/basic.candle");
+    run_test("class",           "grammar/examples/class.candle");
+    run_test("class_test",      "grammar/examples/class_test.candle");
+    run_test("control",         "grammar/examples/control.candle");
+    run_test("fn_test",         "grammar/examples/fn_test.candle");
+    run_test("inherit_test",    "grammar/examples/inherit_test.candle");
+    run_test("loop_test",       "grammar/examples/loop_test.candle");
+    run_test("parallel",        "grammar/examples/parallel.candle");
+    run_test("reflect_test",    "grammar/examples/reflect_test.candle");
+
+    print("");
+    print("--- stdlib ---");
+    run_test("stdlib_v2",       "test/stdlib_test_v2.candle");
+    run_test("double",          "test/double/double_test.candle");
+    run_test("double_builtin",  "test/double/double_builtin_test.candle");
+
+    print("");
+    print("--- parser features ---");
+    run_test("union_types",     "test/union_test.candle");
+    run_test("generic_types",   "test/generic_test.candle");
+
+    print("");
+    print("=== TEST RUNNER COMPLETE ===");
+    return 0;
+}

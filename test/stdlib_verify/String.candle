@@ -1,0 +1,147 @@
+/// String — Candle 字符串类型标准库（reflect 扩展）
+
+export { };
+
+reflect string {
+    // ── 查询 ──
+    int length() {
+        return len(self);
+    }
+
+    bool isEmpty() {
+        return len(self) == 0;
+    }
+
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    bool startsWith(string prefix) {
+        int plen = len(prefix);
+        if (plen > len(self)) { return false; }
+        for iter(i, 0, plen) {
+            if (self[i] != prefix[i]) { return false; }
+        }
+        return true;
+    }
+
+    bool endsWith(string suffix) {
+        int slen = len(suffix);
+        int tlen = len(self);
+        if (slen > tlen) { return false; }
+        for iter(i, 0, slen) {
+            if (self[tlen - slen + i] != suffix[i]) { return false; }
+        }
+        return true;
+    }
+
+    bool contains(string sub) {
+        return self.indexOf(sub) != -1;
+    }
+
+    int indexOf(string sub) {
+        int slen = len(sub);
+        int tlen = len(self);
+        if (slen > tlen) { return -1; }
+        if (slen == 0) { return 0; }
+        int first = sub[0];
+        int max = tlen - slen;
+        for iter(i, 0, max + 1) {
+            if (self[i] == first) {
+                // scan from this position
+                int matched = 0;
+                for iter(k, 0, slen) {
+                    if (self[i + k] != sub[k]) {
+                        matched = 1;
+                    }
+                }
+                if (matched == 0) { return i; }
+            }
+        }
+        return -1;
+    }
+
+    // ── 变换 ──
+    string substring(int start, int end) {
+        string result = "";
+        int tlen = len(self);
+        if (start < 0) { start = 0; }
+        if (end > tlen) { end = tlen; }
+        for iter(i, start, end) {
+            result = result + self[i];
+        }
+        return result;
+    }
+
+    string repeated(int times) {
+        string result = "";
+        for iter(i, 0, times) {
+            result = result + self;
+        }
+        return result;
+    }
+
+    string reversed() {
+        string result = "";
+        int tlen = len(self);
+        int i = tlen - 1;
+        for iter(j, 0, tlen) {
+            result = result + self[i];
+            i = i - 1;
+        }
+        return result;
+    }
+
+    string padLeft(int width, string pad) {
+        string result = self;
+        int diff = width - len(result);
+        for iter(i, 0, diff) {
+            result = pad + result;
+        }
+        return result;
+    }
+
+    string padRight(int width, string pad) {
+        string result = self;
+        int diff = width - len(result);
+        for iter(i, 0, diff) {
+            result = result + pad;
+        }
+        return result;
+    }
+
+    // ── 其它 ──
+    int count(string sub) {
+        int n = 0;
+        int slen = len(sub);
+        int tlen = len(self);
+        if (slen == 0) { return 0; }
+        int first = sub[0];
+        int max = tlen - slen;
+        for iter(i, 0, max + 1) {
+            if (self[i] == first) {
+                int matched = 0;
+                for iter(k, 0, slen) {
+                    if (self[i + k] != sub[k]) {
+                        matched = 1;
+                    }
+                }
+                if (matched == 0) { n = n + 1; }
+            }
+        }
+        return n;
+    }
+
+    bool isPalindrome() {
+        int tlen = len(self);
+        int half = tlen / 2;
+        for iter(i, 0, half) {
+            if (self[i] != self[tlen - 1 - i]) { return false; }
+        }
+        return true;
+    }
+
+    string toString() {
+        return self;
+    }
+}

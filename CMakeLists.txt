@@ -29,10 +29,21 @@ set(CANDLEC_SRC
     src/builtins/builtins.c
     src/builtins/modules.c
     src/builtins/ffi.c
+    src/builtins/http.c
+    src/builtins/time.c
+    src/vendor/cjson/cJSON.c
 )
 
 add_executable(candlec ${CANDLEC_SRC})
 target_include_directories(candlec PRIVATE src)
+
+# ── Boehm GC (interpreter only; transpiled programs use plain malloc) ─────
+set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
+target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
+target_link_libraries(candlec PRIVATE "${GC_ROOT}/build/gc.lib")
+target_compile_definitions(candlec PRIVATE CANDLE_USE_BOEHM_GC GC_NOT_DLL)
+target_link_libraries(candlec PRIVATE ws2_32)
+message(STATUS "Boehm GC: ${GC_ROOT}")
 
 # ────────────────────────────────────────────────────────────────────────────
 # candle_runtime — vendor-backed runtime library, linked to transpiled programs

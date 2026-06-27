@@ -233,13 +233,13 @@ static void emit_expr(Codegen *g, AstNode *node) {
     if (!node) return;
     switch (node->type) {
         case NODE_INT_LIT:
-            emit(g, "%lld", node->as.int_lit.value);
+            emit(g, "((candle_int)%lld)", node->as.int_lit.value);
             break;
         case NODE_FLOAT_LIT:
             emit(g, "%g", node->as.float_lit.value);
             break;
         case NODE_BOOL_LIT:
-            emit(g, "%s", node->as.bool_lit.value ? "1" : "0");
+            emit(g, "%s", node->as.bool_lit.value ? "((candle_bool)1)" : "((candle_bool)0)");
             break;
         case NODE_NULL_LIT:
             emit(g, "NULL");

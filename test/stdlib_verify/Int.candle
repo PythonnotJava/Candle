@@ -1,0 +1,72 @@
+/// Int — Candle 整数类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 num_method。
+
+export { };
+
+reflect int {
+    // ── 奇偶 ──
+    bool isEven() {
+        return self % 2 == 0;
+    }
+
+    bool isOdd() {
+        return self % 2 != 0;
+    }
+
+    // ── 符号 ──
+    bool isNegative() {
+        return self < 0;
+    }
+
+    bool isZero() {
+        return self == 0;
+    }
+
+    // 符号：正 → 1，负 → -1，零 → 0
+    int sign() {
+        if (self > 0) { return 1; }
+        if (self < 0) { return -1; }
+        return 0;
+    }
+
+    // ── 数值 ──
+    int abs() {
+        if (self < 0) { return -self; }
+        return self;
+    }
+
+    // 钳制：限制在 [lo, hi] 范围内
+    int clamp(int lo, int hi) {
+        if (self < lo) { return lo; }
+        if (self > hi) { return hi; }
+        return self;
+    }
+
+    // ── 类型转换 ──
+    double toDouble() {
+        // Candle 自动做 int→double 转换
+        return self + 0.0;
+    }
+
+    string toString() {
+        return String(self);
+    }
+
+    // ── 范围迭代：生成 [0, self) 的列表 ──
+    list range() {
+        list result = [];
+        for iter(i, 0, self) {
+            result.add(i);
+        }
+        return result;
+    }
+
+    // ── 范围迭代：生成 [start, self) ──
+    list rangeFrom(int start) {
+        list result = [];
+        for iter(i, start, self) {
+            result.add(i);
+        }
+        return result;
+    }
+}

@@ -1,86 +1,88 @@
-// control.candle - 控制流测试
-
-// if / else if / else
-int score = 85;
-
-if (score >= 90) {
-    print('A');
-} else if (score >= 80) {
-    print('B');
-} else if (score >= 70) {
-    print('C');
-} else {
-    print('D');
-}
-
-// when 循环（while）
-int i = 0;
-when (i < 10) {
-    print(i);
-    i += 1;
-}
-
-// for + iter 基本用法
-for iter(i, 10) {
-    print(i);
-}
-
-// for + iter 遍历列表
-list items = [10, 20, 30];
-for iter(item, items) {
-    print(item);
-}
-
-// for + iter 遍历字符串
-for iter(ch, 'hello') {
-    print(ch);
-}
-
-// for + iter 带范围
-for iter(i, 5, 10) {
-    print(i);
-}
-
-// for + iter 带步长
-for iter(i, 0, 100, 5) {
-    print(i);
-}
-
-// for + break
-for iter(i, 100) {
-    if (i == 42) {
-        break;
-    }
-    print(i);
-}
-
-// 嵌套 for
-for iter(i, 5) {
-    for iter(j, 5) {
-        print(f'{i},{j}');
-    }
-}
-
-// try / catch / throw
-try {
-    int result = divide(10, 0);
-} catch (DivisionError e) {
-    print(f'Error: {e.message}');
-} catch (Exception e) {
-    print('Unknown error');
-}
+// control.candle - 控制流测试（Candle 风格：int main 入口）
 
 int divide(int a, int b) {
     if (b == 0) {
-        throw DivisionError('division by zero');
+        throw DivisionError("division by zero");
     }
     return a / b;
 }
 
-// 函数中的 return
 int fibonacci(int n) {
     if (n <= 1) {
         return n;
     }
     return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    // if / else if / else
+    int score = 85;
+    if (score >= 90) {
+        print("A");
+    } else if (score >= 80) {
+        print("B");
+    } else if (score >= 70) {
+        print("C");
+    } else {
+        print("D");
+    }
+
+    // when 循环（while）
+    int i = 0;
+    when (i < 10) {
+        print(i);
+        i += 1;
+    }
+
+    // for + iter 基本用法
+    for iter(i, 10) {
+        print(i);
+    }
+
+    // for + iter 遍历列表
+    list items = [10, 20, 30];
+    for iter(item, items) {
+        print(item);
+    }
+
+    // for + iter 遍历字符串
+    for iter(ch, "hello") {
+        print(ch);
+    }
+
+    // for + iter 带范围
+    for iter(i, 5, 10) {
+        print(i);
+    }
+
+    // for + iter 带步长
+    for iter(i, 0, 100, 5) {
+        print(i);
+    }
+
+    // for + break
+    for iter(i, 100) {
+        if (i == 42) {
+            break;
+        }
+        print(i);
+    }
+
+    // 嵌套 for
+    for iter(i, 5) {
+        for iter(j, 5) {
+            print(f"{i},{j}");
+        }
+    }
+
+    // try / catch / throw
+    try {
+        int result = divide(10, 0);
+    } catch (DivisionError e) {
+        print(f"Error: {e.message}");
+    } catch (Exception e) {
+        print("Unknown error");
+    }
+
+    return 0;
 }

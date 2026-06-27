@@ -1,0 +1,59 @@
+// double_test.candle — Double 标准库测试（Candle 风格：int main 入口）
+
+load library.std.Double alias _;
+
+int main() {
+    print("========== Double 基础测试 ==========");
+
+    alias pi = 3.14159;
+    alias neg = -2.5;
+    alias zero = 0.0;
+    alias whole = 7.0;
+    alias half = 7.5;
+
+    print("3.14159.isPositive()  = " + String(pi.isPositive()));
+    print("-2.5.isNegative()     = " + String(neg.isNegative()));
+    print("3.14159.isNegative()  = " + String(pi.isNegative()));
+    print("0.0.isZero()          = " + String(zero.isZero()));
+    print("3.14.isZero()         = " + String(pi.isZero()));
+
+    print("7.0.isInteger()       = " + String(whole.isInteger()));
+    print("7.5.isInteger()       = " + String(half.isInteger()));
+    print("-2.5.isInteger()      = " + String(neg.isInteger()));
+    print("3.14159.isInteger()   = " + String(pi.isInteger()));
+
+    print("3.14.sign()           = " + String(pi.sign()));
+    print("-2.5.sign()           = " + String(neg.sign()));
+    print("0.0.sign()            = " + String(zero.sign()));
+
+    print("3.14.abs()            = " + String(pi.abs()));
+    print("-2.5.abs()            = " + String(neg.abs()));
+    print("0.0.abs()             = " + String(zero.abs()));
+
+    print("reciprocal(4.0)       = " + String(4.0.reciprocal()));
+    print("reciprocal(2.0)       = " + String(2.0.reciprocal()));
+    print("reciprocal(0.5)       = " + String(0.5.reciprocal()));
+
+    print("squared(3.0)           = " + String(3.0.squared()));
+    print("squared(1.5)           = " + String(1.5.squared()));
+    print("squared(-4.0)          = " + String((-4.0).squared()));
+
+    print("cubed(3.0)             = " + String(3.0.cubed()));
+    print("cubed(-2.0)            = " + String((-2.0).cubed()));
+
+    print("clamp(5.0, 0, 10)     = " + String(5.0.clamp(0, 10)));
+    print("clamp(-1.0, 0, 10)    = " + String((-1.0).clamp(0, 10)));
+    print("clamp(15.0, 0, 10)    = " + String(15.0.clamp(0, 10)));
+    print("clamp(3.14, 1, 5)     = " + String(3.14.clamp(1, 5)));
+
+    print("3.14.toDouble()        = " + String(pi.toDouble()));
+    print("3.14.toString()        = " + pi.toString());
+
+    print("(1.5+2.5).isInteger()  = " + String((1.5 + 2.5).isInteger()));
+    print("(1.5*2).isInteger()    = " + String((1.5 * 2.0).isInteger()));
+    print("(3.0-1.0).isInteger()  = " + String((3.0 - 1.0).isInteger()));
+
+    print("");
+    print("=== DOUBLE STDLIB TESTS PASSED ===");
+    return 0;
+}

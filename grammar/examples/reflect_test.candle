@@ -1,0 +1,25 @@
+// reflect_test.candle — reflect 扩展方法测试（Candle 风格：int main 入口）
+
+class Widget {
+    string id;
+    string color;
+    Widget(string id);
+}
+
+// 按类名反射 — 为 Widget 注入新方法
+reflect Widget {
+    void setColor(string c) {
+        color = c;
+    }
+
+    string getColor() {
+        return color;
+    }
+}
+
+int main() {
+    alias w = Widget("btn1");
+    w.setColor("red");
+    print(w.getColor());
+    return 0;
+}

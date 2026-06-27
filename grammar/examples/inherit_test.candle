@@ -1,4 +1,4 @@
-// inherit_test.candle - 继承测试
+// inherit_test.candle - 继承测试（Candle 风格：int main 入口）
 
 class Shape {
     string name;
@@ -31,32 +31,14 @@ class Square inherit Shape {
     }
 }
 
-alias c = Circle('circle', 5.0);
-print(c.name);            // 父类字段
-print(c.radius);          // 子类字段
-print(c.describe());      // 父类方法读父类字段
-print(c.area());          // 子类重写
+int main() {
+    alias c = Circle("circle", 5.0);
+    print(c.describe());
+    print(c.area());
 
-alias s = Square('sq', 4.0);
-print(s.name);
-print(s.side);
-print(s.describe());
-print(s.area());
+    alias s = Square("square", 4.0);
+    print(s.describe());
+    print(s.area());
 
-// 多层继承
-class Cylinder inherit Circle {
-    double height;
-    Cylinder(super.name, super.radius, double height);
-
-    double volume() {
-        return area() * height;
-    }
+    return 0;
 }
-
-alias cyl = Cylinder('cyl', 2.0, 10.0);
-print(cyl.name);
-print(cyl.radius);
-print(cyl.height);
-print(cyl.area());        // 继承自 Circle
-print(cyl.describe());    // 继承自 Shape
-print(cyl.volume());

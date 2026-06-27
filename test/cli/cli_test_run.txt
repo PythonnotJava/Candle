@@ -1,0 +1,8 @@
+[Greeter] Hello, Candle!
+[Greeter] Hello, CLI!
+Result: 50
+Large: 4
+Large: 5
+Uppercase: HELLO WORLD
+Length: 11
+Boolean logic OK

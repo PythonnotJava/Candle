@@ -1,12 +1,30 @@
-/// Bool — Candle 内置布尔类型的标准接口声明
+/// Bool — Candle 布尔类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 bool_method。
 ///
-/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
-/// 运行时不依赖本文件。用户扩展请用 reflect。
+/// 使用: load library.std.Bool 后即可在任意 bool 值上调用
 
-class Bool {
-    bool toggle();          // 取反
-    int toInt();            // true→1 / false→0
-    bool and(bool other);   // 逻辑与
-    bool or(bool other);    // 逻辑或
-    string toString();      // "true" / "false"
+export { };
+
+reflect bool {
+    bool toggle() {
+        return !self;
+    }
+
+    int toInt() {
+        if (self) { return 1; }
+        return 0;
+    }
+
+    bool and(bool other) {
+        return self && other;
+    }
+
+    bool or(bool other) {
+        return self || other;
+    }
+
+    string toString() {
+        if (self) { return "true"; }
+        return "false";
+    }
 }

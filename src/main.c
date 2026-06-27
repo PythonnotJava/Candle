@@ -28,6 +28,32 @@ static void print_tokens(const char *source, const char *filename) {
     }
 }
 
+static void print_help(void) {
+    printf("Candle compiler & interpreter — v0.1\n");
+    printf("\n");
+    printf("USAGE\n");
+    printf("  candlec [mode] <file.candle>\n");
+    printf("  candlec                        (enter REPL)\n");
+    printf("\n");
+    printf("MODES\n");
+    printf("  --tokens     Lexer: print token stream\n");
+    printf("  --ast        Parser: print syntax tree (AST)\n");
+    printf("  --emit-c     Codegen: transpile to C source (stdout)\n");
+    printf("  --run        Interpreter: execute directly (default)\n");
+    printf("  --repl       Force REPL mode\n");
+    printf("  --help, -h   Show this help\n");
+    printf("\n");
+    printf("EXAMPLES\n");
+    printf("  candlec --run hello.candle\n");
+    printf("  candlec --tokens test.candle\n");
+    printf("  candlec --emit-c app.candle > app.c && gcc app.c -Isrc -o app\n");
+    printf("  candlec\n");
+    printf("\n");
+    printf("PROJECT\n");
+    printf("  Candle — a user-designed, AI-assisted programming language\n");
+    printf("  Transpiles to C (GCC backend) · tree-walk interpreter · Boehm GC\n");
+}
+
 int main(int argc, char **argv) {
     if (argc < 2) {
         // No args → REPL
@@ -43,6 +69,10 @@ int main(int argc, char **argv) {
         else if (strcmp(argv[i], "--emit-c") == 0) emit_c_mode = 1;
         else if (strcmp(argv[i], "--run") == 0) run_mode = 1;
         else if (strcmp(argv[i], "--repl") == 0) repl_mode = 1;
+        else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
+            print_help();
+            return 0;
+        }
         else filepath = argv[i];
     }
 

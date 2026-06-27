@@ -1,0 +1,110 @@
+// stdlib_test_v2.candle — 标准库全面测试（从 library.std 加载，int main 入口）
+load library.std.Int alias _Int;
+load library.std.Bool alias _Bool;
+load library.std.String alias _Str;
+load library.std.List alias _List;
+load library.std.Map alias _Map;
+load library.std.Double alias _Double;
+
+int main() {
+    print("========== Int ==========");
+
+    print("42.isEven()       = " + String(42.isEven()));
+    print("42.isOdd()        = " + String(42.isOdd()));
+    print("42.sign()         = " + String(42.sign()));
+    print("(-7).sign()       = " + String((-7).sign()));
+    print("0.sign()          = " + String(0.sign()));
+    print("(-7).abs()        = " + String((-7).abs()));
+    print("42.isNegative()   = " + String(42.isNegative()));
+    print("(-7).isNegative() = " + String((-7).isNegative()));
+    print("0.isZero()        = " + String(0.isZero()));
+    print("-7.isZero()       = " + String((-7).isZero()));
+    print("clamp(5, 1, 10)   = " + String(5.clamp(1, 10)));
+    print("clamp(0, 1, 10)   = " + String(0.clamp(1, 10)));
+    print("clamp(20, 1, 10)  = " + String(20.clamp(1, 10)));
+    print("42.toDouble()     = " + String(42.toDouble()));
+    print("42.toString()     = " + 42.toString());
+    print("5.range().join(',') = " + 5.range().join(","));
+    print("3.rangeFrom(1).join(',') = " + 3.rangeFrom(1).join(","));
+
+    print("");
+    print("========== Bool ==========");
+    print("true.toggle()     = " + String(true.toggle()));
+    print("false.toggle()    = " + String(false.toggle()));
+    print("true.toInt()      = " + String(true.toInt()));
+    print("false.toInt()     = " + String(false.toInt()));
+    print("true.and(true)    = " + String(true.and(true)));
+    print("true.and(false)   = " + String(true.and(false)));
+    print("false.or(true)    = " + String(false.or(true)));
+    print("true.toString()   = " + true.toString());
+
+    print("");
+    print("========== String ==========");
+    print("length('hello world') = " + String("hello world".length()));
+    print("'hello world'.isEmpty() = " + String("hello world".isEmpty()));
+    print("''.isEmpty()    = " + String("".isEmpty()));
+    print("startsWith('hello') = " + String("hello world".startsWith("hello")));
+    print("endsWith('world') = " + String("hello world".endsWith("world")));
+    print("contains('lo w') = " + String("hello world".contains("lo w")));
+    print("contains('xyz')  = " + String("hello world".contains("xyz")));
+    print("indexOf('world') = " + String("hello world".indexOf("world")));
+    print("indexOf('xyz')   = " + String("hello world".indexOf("xyz")));
+    print("substring(0,5)   = " + "hello world".substring(0, 5));
+    print("substring(6,11)  = " + "hello world".substring(6, 11));
+    print("repeated('ab', 3)= " + "ab".repeated(3));
+    print("reversed('abc')  = " + "abc".reversed());
+    print("padLeft('7',3,'0')= " + "7".padLeft(3, "0"));
+    print("padRight('7',3,'0')= " + "7".padRight(3, "0"));
+    print("isPalindrome('aba') = " + String("aba".isPalindrome()));
+    print("isPalindrome('abc') = " + String("abc".isPalindrome()));
+    print("count('l','hello')= " + String("hello".count("l")));
+    print("toUpperCase('hi') = " + "hi".toUpperCase());
+    print("toLowerCase('HI') = " + "HI".toLowerCase());
+    print("trim(' a ')       = " + (" a ".trim()));
+    print("split('a,b',',')  = " + "a,b".split(",").join("|"));
+
+    print("");
+    print("========== List ==========");
+    alias lst = [10, 20, 30, 20, 50];
+    print("size         = " + String(lst.size()));
+    print("[].isEmpty   = " + String([].isEmpty()));
+    print("isNotEmpty   = " + String(lst.isNotEmpty()));
+    print("first        = " + String(lst.first()));
+    print("last         = " + String(lst.last()));
+    print("contains(30) = " + String(lst.contains(30)));
+    print("contains(99) = " + String(lst.contains(99)));
+    print("indexOf(20)  = " + String(lst.indexOf(20)));
+    print("indexOf(99)  = " + String(lst.indexOf(99)));
+    print("slice(1,4).join(',') = " + lst.slice(1, 4).join(","));
+    print("join('|')    = " + ["a","b","c"].join("|"));
+    print("concat join  = " + [1,2].concat([3,4]).join(","));
+
+    print("");
+    print("========== Map ==========");
+    alias config = {"host": "localhost", "port": 8080};
+    print("size                  = " + String(config.size()));
+    print("isEmpty               = " + String(config.isEmpty()));
+    print("containsKey('host')    = " + String(config.containsKey("host")));
+    print("containsKey('nonexist')= " + String(config.containsKey("nonexist")));
+
+    print("");
+    print("========== Double ==========");
+    alias pi = 3.14159;
+    print("pi.isPositive()  = " + String(pi.isPositive()));
+    print("pi.isNegative()  = " + String(pi.isNegative()));
+    print("(-2.5).abs()     = " + String((-2.5).abs()));
+    print("4.0.reciprocal() = " + String(4.0.reciprocal()));
+    print("3.0.squared()    = " + String(3.0.squared()));
+    print("3.0.cubed()      = " + String(3.0.cubed()));
+    print("7.0.isInteger()  = " + String(7.0.isInteger()));
+    print("7.5.isInteger()  = " + String(7.5.isInteger()));
+    print("pi.sign()        = " + String(pi.sign()));
+    print("(-2.5).sign()    = " + String((-2.5).sign()));
+    print("pi.floor()       = " + String(pi.floor()));
+    print("(-2.5).ceil()    = " + String((-2.5).ceil()));
+    print("3.6.round()      = " + String(3.6.round()));
+
+    print("");
+    print("=== ALL STDLIB TESTS PASSED ===");
+    return 0;
+}

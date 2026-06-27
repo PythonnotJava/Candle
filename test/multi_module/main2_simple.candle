@@ -1,0 +1,11 @@
+// main2_simple.candle — 类跨模块最小测试
+
+load test.multi_module.shapes alias sh;
+
+// 只测基本：创建 Circle 并访问字段
+alias c = sh.Circle(5.0);
+print("radius = " + String(c.radius));
+
+// 测方法调用
+alias a = c.area();
+print("area = " + String(a));

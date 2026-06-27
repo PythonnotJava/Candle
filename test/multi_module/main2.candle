@@ -1,0 +1,19 @@
+// main2.candle — 类跨模块测试
+// 加载 shapes 模块，创建 Circle 实例并调用方法
+
+load test.multi_module.shapes alias sh;
+
+// 创建 Circle 实例 (类在 sh 命名空间下)
+
+int main() {
+    alias c = sh.Circle(5.0);
+    print(sh.describe(c));
+
+    // 测试嵌套模块调用：math 模块的 multiply
+    load test.multi_module.math_utils alias m;
+    alias area_doubled = m.multiply(2, c.area());
+    print("2 * area = " + String(area_doubled));
+
+    print("=== Class cross-module test passed ===");
+    return 0;
+}

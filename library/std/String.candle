@@ -1,33 +1,152 @@
-/// String — Candle 内置字符串类型的标准接口声明
+/// String — Candle 字符串类型标准库（reflect 扩展）
+/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 string_method。
 ///
-/// 接口契约 + 文档：方法实现由运行时内置提供（C 层），永远可用，无需 load。
-/// 运行时不依赖本文件。用户扩展请用 reflect。
+/// 使用: load library.std.String 后即可在任意 string 值上调用
+///
+/// 注意: 部分方法（toUpperCase/toLowerCase/trim/split/replaceAll/codeUnitAt）
+/// 依赖 C 内置回退，reflect 不覆盖它们。
 
-class String {
+export { };
+
+reflect string {
     // ── 查询 ──
-    int length();                      // 字符数
-    bool isEmpty();                    // 是否为空
-    bool isNotEmpty();                 // 是否非空
-    bool startsWith(string prefix);    // 是否以 prefix 开头
-    bool endsWith(string suffix);      // 是否以 suffix 结尾
-    bool contains(string sub);         // 是否包含子串
-    int indexOf(string sub);           // 子串首次出现下标，没有则 -1
+    int length() {
+        return len(self);
+    }
 
-    // ── 变换（返回新串）──
-    string toUpperCase();              // 转大写
-    string toLowerCase();              // 转小写
-    string trim();                     // 去首尾空白
-    string substring(int start, int end); // 子串 [start, end)
-    list split(string sep);            // 按分隔符拆分为列表
-    string replaceAll(string from, string to); // 全部替换
-    string repeated(int times);        // 重复 times 次
-    string reversed();                 // 反转
-    string padLeft(int width, string pad);  // 左填充到 width
-    string padRight(int width, string pad); // 右填充到 width
+    bool isEmpty() {
+        return len(self) == 0;
+    }
+
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    bool startsWith(string prefix) {
+        int plen = len(prefix);
+        if (plen > len(self)) { return false; }
+        for iter(i, 0, plen) {
+            if (self[i] != prefix[i]) { return false; }
+        }
+        return true;
+    }
+
+    bool endsWith(string suffix) {
+        int slen = len(suffix);
+        int tlen = len(self);
+        if (slen > tlen) { return false; }
+        for iter(i, 0, slen) {
+            if (self[tlen - slen + i] != suffix[i]) { return false; }
+        }
+        return true;
+    }
+
+    bool contains(string sub) {
+        return self.indexOf(sub) != -1;
+    }
+
+    int indexOf(string sub) {
+        int slen = len(sub);
+        int tlen = len(self);
+        if (slen > tlen) { return -1; }
+        if (slen == 0) { return 0; }
+        int first = sub[0];
+        int max = tlen - slen;
+        for iter(i, 0, max + 1) {
+            if (self[i] == first) {
+                int matched = 0;
+                for iter(k, 0, slen) {
+                    if (self[i + k] != sub[k]) {
+                        matched = 1;
+                    }
+                }
+                if (matched == 0) { return i; }
+            }
+        }
+        return -1;
+    }
+
+    // ── 变换 ──
+    string substring(int start, int end) {
+        string result = "";
+        int tlen = len(self);
+        if (start < 0) { start = 0; }
+        if (end > tlen) { end = tlen; }
+        for iter(i, start, end) {
+            result = result + self[i];
+        }
+        return result;
+    }
+
+    string repeated(int times) {
+        string result = "";
+        for iter(i, 0, times) {
+            result = result + self;
+        }
+        return result;
+    }
+
+    string reversed() {
+        string result = "";
+        int tlen = len(self);
+        int i = tlen - 1;
+        for iter(j, 0, tlen) {
+            result = result + self[i];
+            i = i - 1;
+        }
+        return result;
+    }
+
+    string padLeft(int width, string pad) {
+        string result = self;
+        int diff = width - len(result);
+        for iter(i, 0, diff) {
+            result = pad + result;
+        }
+        return result;
+    }
+
+    string padRight(int width, string pad) {
+        string result = self;
+        int diff = width - len(result);
+        for iter(i, 0, diff) {
+            result = result + pad;
+        }
+        return result;
+    }
 
     // ── 其它 ──
-    int codeUnitAt(int index);         // 指定位置字符码
-    int count(string sub);             // 子串出现次数
-    bool isPalindrome();               // 是否回文
-    string toString();                 // 自身
+    int count(string sub) {
+        int n = 0;
+        int slen = len(sub);
+        int tlen = len(self);
+        if (slen == 0) { return 0; }
+        int first = sub[0];
+        int max = tlen - slen;
+        for iter(i, 0, max + 1) {
+            if (self[i] == first) {
+                int matched = 0;
+                for iter(k, 0, slen) {
+                    if (self[i + k] != sub[k]) {
+                        matched = 1;
+                    }
+                }
+                if (matched == 0) { n = n + 1; }
+            }
+        }
+        return n;
+    }
+
+    bool isPalindrome() {
+        int tlen = len(self);
+        int half = tlen / 2;
+        for iter(i, 0, half) {
+            if (self[i] != self[tlen - 1 - i]) { return false; }
+        }
+        return true;
+    }
+
+    string toString() {
+        return self;
+    }
 }

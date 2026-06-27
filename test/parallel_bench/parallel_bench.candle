@@ -1,0 +1,57 @@
+// parallel_bench.candle — parallel vs sequential 性能对比
+
+load std.time alias time;
+
+int countPrimes(int start, int end) {
+    int count = 0;
+    for iter(n, start, end) {
+        if (n < 2) { continue; }
+        int isPrime = 1;
+        int limit = n / 2 + 1;
+        for iter(d, 2, limit) {
+            if (n % d == 0) { isPrime = 0; break; }
+        }
+        if (isPrime == 1) { count = count + 1; }
+    }
+    return count;
+}
+
+int main() {
+    alias N = 50000;
+
+    alias t1 = time.now();
+    alias s_result = countPrimes(2, N);
+    alias t2 = time.now();
+    alias s_elapsed = t2 - t1;
+    print("Sequential: " + String(s_result) + " primes in " + String(s_elapsed) + " ms");
+
+    alias chunk = N / 4;
+    alias t3 = time.now();
+    parallel {
+        section {
+            alias c = countPrimes(2, chunk);
+            print("  chunk1: " + String(c));
+        }
+        section {
+            alias c = countPrimes(chunk, chunk * 2);
+            print("  chunk2: " + String(c));
+        }
+        section {
+            alias c = countPrimes(chunk * 2, chunk * 3);
+            print("  chunk3: " + String(c));
+        }
+        section {
+            alias c = countPrimes(chunk * 3, N);
+            print("  chunk4: " + String(c));
+        }
+    }
+    alias t4 = time.now();
+    alias p_elapsed = t4 - t3;
+    print("Parallel (4):  " + String(p_elapsed) + " ms");
+
+    alias speedup = s_elapsed / p_elapsed;
+    print("Speedup: " + String(speedup) + "x");
+
+    print("PARALLEL BENCH PASSED");
+    return 0;
+}

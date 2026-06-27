@@ -1,0 +1,35 @@
+// generic_test.candle — 泛型类型测试（Candle 风格：int main 入口）
+
+int main() {
+    // 1. 基本泛型变量声明
+    List<int> xs = [1, 2, 3];
+    print("xs type = " + type(xs));
+
+    // 2. Map 泛型
+    Map<string, int> ages = {"alice": 30, "bob": 25};
+    print("ages type = " + type(ages));
+
+    // 3. alias 泛型类型别名
+    alias IntList = List<int>;
+    IntList nums = [10, 20];
+    print("nums type = " + type(nums));
+
+    // 4. 多参数泛型
+    alias StrIntMap = Map<string, int>;
+    StrIntMap config = {"port": 8080};
+    print("config size = " + String(config.size()));
+
+    // 5. 函数参数使用泛型
+    int sumList(List<int> items) {
+        return items.sum();
+    }
+    print("sum = " + String(sumList([1, 2, 3, 4])));
+
+    // 6. 嵌套泛型
+    alias IntListList = List<List<int>>;
+    IntListList matrix = [[1, 2], [3, 4]];
+    print("matrix type = " + type(matrix));
+
+    print("=== GENERIC TYPE TESTS PASSED ===");
+    return 0;
+}

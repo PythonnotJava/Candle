@@ -1,0 +1,40 @@
+// union_test.candle — 联合类型测试（Candle 风格：int main 入口）
+
+int main() {
+    // 1. alias 联合类型
+    alias IntOrFloat = int | double;
+    print("IntOrFloat alias OK");
+
+    // 2. 联合类型变量声明
+    int | double x = 42;
+    print("x = " + String(x));
+
+    x = 3.14;
+    print("x = " + String(x));
+
+    // 3. 三路联合
+    alias NumOrStr = int | double | string;
+    NumOrStr a = 100;
+    print("a = " + String(a));
+    a = 2.718;
+    print("a = " + String(a));
+    a = "hello";
+    print("a = " + String(a));
+
+    // 4. 函数参数使用联合类型
+    string describe(int | double val) {
+        return String(val);
+    }
+    print("describe(42) = " + describe(42));
+    print("describe(3.14) = " + describe(3.14));
+
+    // 5. 可空联合
+    alias OptNum = int | double | null;
+    OptNum n = null;
+    print("n = " + String(n));
+    n = 7;
+    print("n = " + String(n));
+
+    print("=== UNION TYPE TESTS PASSED ===");
+    return 0;
+}

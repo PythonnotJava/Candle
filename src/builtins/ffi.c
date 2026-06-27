@@ -62,7 +62,7 @@ static char *make_candidate(const char *base, int pi, int si) {
     const char *pre = k_lib_prefixes[pi];
     const char *suf = k_lib_suffixes[si];
     size_t n = strlen(pre) + strlen(base) + strlen(suf) + 1;
-    char *out = malloc(n);
+    char *out = GC_MALLOC(n);
     snprintf(out, n, "%s%s%s", pre, base, suf);
     return out;
 }
@@ -77,10 +77,10 @@ static DllHandle try_open_lib(const char *base, char **out_name) {
     for (int pi = 0; pi < N_LIB_PREFIXES; pi++) {
         for (int si = 0; si < N_LIB_SUFFIXES; si++) {
             char *cand = make_candidate(base, pi, si);
-            if (!first) first = strdup(cand);
+            if (!first) first = GC_STRDUP(cand);
             DllHandle h = DLL_OPEN(cand);
-            if (h) { free(first); *out_name = cand; return h; }
-            free(cand);
+            if (h) { GC_FREE(first); *out_name = cand; return h; }
+            GC_FREE(cand);
         }
     }
     *out_name = first;   // 首选候选名（用于诊断/记录）
@@ -97,8 +97,8 @@ Value ffi_dll_load(const char *dotted_path, const char *alias_name) {
     DllHandle h = try_open_lib(base, &libname);   // 多候选加载，libname 为成功/首选名
 
     if (g_nlibs < 64) {
-        g_libs[g_nlibs].alias   = strdup(alias_name ? alias_name : dotted_path);
-        g_libs[g_nlibs].libname = strdup(libname ? libname : base);
+        g_libs[g_nlibs].alias   = GC_STRDUP(alias_name ? alias_name : dotted_path);
+        g_libs[g_nlibs].libname = GC_STRDUP(libname ? libname : base);
         g_libs[g_nlibs].handle  = h;
         g_nlibs++;
     }
@@ -109,7 +109,7 @@ Value ffi_dll_load(const char *dotted_path, const char *alias_name) {
     v_map_set(m, "__dll__",    v_string(dotted_path));
     v_map_set(m, "__lib__",    v_string(libname ? libname : base));
     v_map_set(m, "__loaded__", v_bool(h != NULL));
-    free(libname);
+    GC_FREE(libname);
     return ns;
 }
 

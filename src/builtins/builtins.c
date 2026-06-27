@@ -9,7 +9,7 @@ static Value bi_print(int argc, Value *argv) {
     for (int i = 0; i < argc; i++) {
         char *s = v_to_string(argv[i]);
         puts(s);
-        free(s);
+        GC_FREE(s);
     }
     return v_null();
 }
@@ -19,7 +19,7 @@ static Value bi_write(int argc, Value *argv) {
     for (int i = 0; i < argc; i++) {
         char *s = v_to_string(argv[i]);
         fputs(s, stdout);
-        free(s);
+        GC_FREE(s);
     }
     return v_null();
 }
@@ -31,7 +31,7 @@ static Value bi_string(int argc, Value *argv) {
     if (argc < 1) return v_string("");
     char *s = v_to_string(argv[0]);
     Value r = v_string(s);
-    free(s);
+    GC_FREE(s);
     return r;
 }
 

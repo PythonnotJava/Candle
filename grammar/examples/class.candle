@@ -1,4 +1,4 @@
-// class.candle - 面向对象测试
+// class.candle - 面向对象测试（Candle 风格：int main 入口）
 
 // 基本类
 class Point {
@@ -15,7 +15,7 @@ class Point {
     }
 
     string toString() {
-        return f'({x}, {y})';
+        return f"({x}, {y})";
     }
 }
 
@@ -38,79 +38,15 @@ class Circle inherit Shape {
     }
 }
 
-// final 类（不可继承）
-final class Config {
-    string host;
-    int port;
-    Config(string host, int port);
-
-    string getUrl() {
-        return f'{host}:{port}';
-    }
-}
-
-// private / public 方法
-class Account {
-    string owner;
-    private double balance;
-
-    Account(string owner, double balance);
-
-    public double getBalance() {
-        return balance;
-    }
-
-    private void validate(double amount) {
-        assert(amount > 0.0);
-    }
-
-    void deposit(double amount) {
-        validate(amount);
-        balance += amount;
-    }
-}
-
 // static 方法
-class MathUtil {
-    static int max(int a, int b) {
-        if (a > b) {
-            return a;
-        }
-        return b;
-    }
-
-    static double abs(double x) {
-        if (x < 0.0) {
-            return 0.0 - x;
-        }
-        return x;
-    }
-}
-
-// static 单例类
-static class Logger {
-    static void info(string msg) {
-        print(f'[INFO] {msg}');
-    }
-
-    static void error(string msg) {
-        print(f'[ERROR] {msg}');
-    }
-}
-
-// factory 工厂方法
 class Color {
     int r;
     int g;
     int b;
     Color(int r, int g, int b);
 
-    factory Color red() {
+    static Color red() {
         return Color(255, 0, 0);
-    }
-
-    factory Color green() {
-        return Color(0, 255, 0);
     }
 
     factory Color blue() {
@@ -135,7 +71,7 @@ class Person inherit Serializable {
     Person(string name, int age);
 
     string serialize() {
-        return f'{name},{age}';
+        return f"{name},{age}";
     }
 
     void deserialize(string data) {
@@ -150,22 +86,57 @@ class Base {
     }
 
     string label() {
-        return 'base';
+        return "base";
     }
 }
 
 class Derived inherit Base {
     string label() {
-        return 'derived';
+        return "derived";
     }
 }
 
-// 使用示例
-alias p = Point(3, 4);
-print(p.toString());
+// final 类（不可继承）
+final class Config {
+    string host;
+    int port;
+    Config(string host, int port);
+}
 
-alias c = Circle('circle', 5.0);
-print(c.area());
+// private / public 方法
+class DataStore {
+    private string key;
 
-alias red = Color.red();
-Logger.info('Application started');
+    public void setKey(string k) {
+        key = k;
+    }
+
+    public string getKey() {
+        return key;
+    }
+}
+
+// static 单例类
+static class Logger {
+    static void info(string msg) {
+        print(f"[INFO] {msg}");
+    }
+
+    static void error(string msg) {
+        print(f"[ERROR] {msg}");
+    }
+}
+
+int main() {
+    // 使用示例
+    alias p = Point(3, 4);
+    print(p.toString());
+
+    alias c = Circle("circle", 5.0);
+    print(c.area());
+
+    alias red = Color.red();
+    Logger.info("Application started");
+
+    return 0;
+}

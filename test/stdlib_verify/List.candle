@@ -1,0 +1,83 @@
+/// List — Candle 列表类型标准库（reflect 扩展）
+
+export { };
+
+reflect list {
+    int size() {
+        return len(self);
+    }
+
+    int length() {
+        return len(self);
+    }
+
+    bool isEmpty() {
+        return len(self) == 0;
+    }
+
+    bool isNotEmpty() {
+        return len(self) > 0;
+    }
+
+    // first / last
+    auto first() {
+        if (len(self) == 0) { return null; }
+        return self[0];
+    }
+
+    auto last() {
+        int n = len(self);
+        if (n == 0) { return null; }
+        return self[n - 1];
+    }
+
+    // contains / indexOf
+    bool contains(auto item) {
+        return self.indexOf(item) != -1;
+    }
+
+    int indexOf(auto item) {
+        int n = len(self);
+        for iter(i, 0, n) {
+            if (self[i] == item) { return i; }
+        }
+        return -1;
+    }
+
+    // 切片 [start, end)
+    list slice(int start, int end) {
+        list result = [];
+        int n = len(self);
+        if (start < 0) { start = 0; }
+        if (end > n) { end = n; }
+        for iter(i, start, end) {
+            result.add(self[i]);
+        }
+        return result;
+    }
+
+    // 连接成字符串
+    string join(string sep) {
+        string result = "";
+        int n = len(self);
+        for iter(i, 0, n) {
+            if (i > 0) { result = result + sep; }
+            result = result + String(self[i]);
+        }
+        return result;
+    }
+
+    // 拼接另一个列表
+    list concat(list other) {
+        list result = [];
+        int n = len(self);
+        for iter(i, 0, n) {
+            result.add(self[i]);
+        }
+        int m = len(other);
+        for iter(i, 0, m) {
+            result.add(other[i]);
+        }
+        return result;
+    }
+}

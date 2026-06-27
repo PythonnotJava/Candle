@@ -1,0 +1,29 @@
+// time_test.candle — std.time 基础功能测试
+
+load std.time alias time;
+
+int main() {
+    alias pass = 0;
+
+    // now() 返回正数
+    alias t1 = time.now();
+    if (t1 > 0) { pass = pass + 1; }
+
+    // now() 单调递增
+    alias t2 = time.now();
+    if (t2 >= t1) { pass = pass + 1; }
+
+    // sleep() 不崩溃
+    time.sleep(1);
+
+    // sleep 确实消耗了时间
+    alias t3 = time.now();
+    if (t3 > t2) { pass = pass + 1; }
+
+    print("STD.TIME: " + String(pass) + "/3");
+    if (pass == 3) {
+        print("STD.TIME TESTS PASSED");
+        return 0;
+    }
+    return 1;
+}

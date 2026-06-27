@@ -16,18 +16,18 @@
 // ── Env ──────────────────────────────────────────────────────────────────────
 
 Env *env_new(Env *parent) {
-    Env *e = calloc(1, sizeof(Env));
+    Env *e = GC_CALLOC(1, sizeof(Env));
     e->cap = 8;
-    e->names = calloc(e->cap, sizeof(char*));
-    e->vals = calloc(e->cap, sizeof(Value));
+    e->names = GC_CALLOC(e->cap, sizeof(char*));
+    e->vals = GC_CALLOC(e->cap, sizeof(Value));
     e->parent = parent;
     return e;
 }
 
 void env_free(Env *e) {
     if (!e) return;
-    for (int i = 0; i < e->len; i++) free(e->names[i]);
-    free(e->names); free(e->vals); free(e);
+    for (int i = 0; i < e->len; i++) GC_FREE(e->names[i]);
+    GC_FREE(e->names); GC_FREE(e->vals); GC_FREE(e);
 }
 
 void env_define(Env *e, const char *name, Value v) {
@@ -36,10 +36,10 @@ void env_define(Env *e, const char *name, Value v) {
     }
     if (e->len >= e->cap) {
         e->cap *= 2;
-        e->names = realloc(e->names, sizeof(char*) * e->cap);
-        e->vals = realloc(e->vals, sizeof(Value) * e->cap);
+        e->names = GC_REALLOC(e->names, sizeof(char*) * e->cap);
+        e->vals = GC_REALLOC(e->vals, sizeof(Value) * e->cap);
     }
-    e->names[e->len] = strdup(name);
+    e->names[e->len] = GC_STRDUP(name);
     e->vals[e->len] = v;
     e->len++;
 }
@@ -119,7 +119,7 @@ static Value *static_define(const char *cls, const char *field, Value v) {
     if (g_nstatics >= 512) return NULL;
     char key[256];
     snprintf(key, sizeof(key), "%s.%s", cls, field);
-    g_statics[g_nstatics].key = strdup(key);
+    g_statics[g_nstatics].key = GC_STRDUP(key);
     g_statics[g_nstatics].val = v;
     return &g_statics[g_nstatics++].val;
 }
@@ -134,7 +134,7 @@ static void alias_lock_register(const char *name, ValueType t) {
     for (int i = 0; i < g_nalias_locks; i++)
         if (strcmp(g_alias_locks[i].name, name) == 0) { g_alias_locks[i].locked = t; return; }
     if (g_nalias_locks >= 256) return;
-    g_alias_locks[g_nalias_locks].name = strdup(name);
+    g_alias_locks[g_nalias_locks].name = GC_STRDUP(name);
     g_alias_locks[g_nalias_locks].locked = t;
     g_nalias_locks++;
 }
@@ -156,7 +156,7 @@ static int alias_type_compatible(ValueType locked, ValueType actual) {
 
 static void reflect_register(const char *target, AstNode *method) {
     if (g_nreflect >= 512) return;
-    g_reflect[g_nreflect].target = strdup(target);
+    g_reflect[g_nreflect].target = GC_STRDUP(target);
     g_reflect[g_nreflect].method = method;
     g_nreflect++;
 }
@@ -243,17 +243,17 @@ static void runtime_error(Interp *I, AstNode *node, const char *msg) {
 // ── String literal decode (strip quotes + handle escapes) ───────────────────
 
 static char *decode_str_lit(const char *raw) {
-    if (!raw) return strdup("");
+    if (!raw) return GC_STRDUP("");
     size_t n = strlen(raw);
     int prefix = 0;
     if (n > 0 && (raw[0] == 'f' || raw[0] == 'r')) prefix = 1;
     int is_raw = prefix && raw[0] == 'r';
-    if (n - prefix < 2) return strdup("");
+    if (n - prefix < 2) return GC_STRDUP("");
     char q = raw[prefix];
-    if (q != '\'' && q != '"') return strdup(raw);
+    if (q != '\'' && q != '"') return GC_STRDUP(raw);
     const char *p = raw + prefix + 1;
     size_t len = n - prefix - 2;
-    char *out = malloc(len + 1);
+    char *out = GC_MALLOC(len + 1);
     size_t o = 0;
     for (size_t i = 0; i < len; i++) {
         char c = p[i];
@@ -284,7 +284,7 @@ static char *fstring_interpolate(Interp *I, Env *env, const char *tpl, AstNode *
 static char *fstring_interpolate(Interp *I, Env *env, const char *tpl, AstNode *node) {
     (void)node;
     size_t cap = strlen(tpl) + 32;
-    char *out = malloc(cap);
+    char *out = GC_MALLOC(cap);
     size_t len = 0;
     for (size_t i = 0; tpl[i]; i++) {
         if (tpl[i] == '{') {
@@ -297,12 +297,12 @@ static char *fstring_interpolate(Interp *I, Env *env, const char *tpl, AstNode *
                 j++;
             }
             if (!tpl[j]) {
-                if (len + 1 >= cap) { cap *= 2; out = realloc(out, cap); }
+                if (len + 1 >= cap) { cap *= 2; out = GC_REALLOC(out, cap); }
                 out[len++] = tpl[i]; continue;
             }
             // extract sub-expression text between { and }
             size_t elen = j - i - 1;
-            char *expr_src = malloc(elen + 4);
+            char *expr_src = GC_MALLOC(elen + 4);
             memcpy(expr_src, tpl + i + 1, elen);
             expr_src[elen] = ';';
             expr_src[elen + 1] = 0;
@@ -317,15 +317,15 @@ static char *fstring_interpolate(Interp *I, Env *env, const char *tpl, AstNode *
                 if (e) v = eval(I, env, e);
             }
             if (sub) ast_free(sub);
-            free(expr_src);
+            GC_FREE(expr_src);
             char *s = v_to_string(v);
             size_t sl = strlen(s);
-            if (len + sl + 1 >= cap) { cap = (len + sl + 1) * 2; out = realloc(out, cap); }
+            if (len + sl + 1 >= cap) { cap = (len + sl + 1) * 2; out = GC_REALLOC(out, cap); }
             memcpy(out + len, s, sl); len += sl;
-            free(s);
+            GC_FREE(s);
             i = j;
         } else {
-            if (len + 1 >= cap) { cap *= 2; out = realloc(out, cap); }
+            if (len + 1 >= cap) { cap *= 2; out = GC_REALLOC(out, cap); }
             out[len++] = tpl[i];
         }
     }
@@ -419,7 +419,7 @@ static Value th_string_parse(int argc, Value *argv) {
     if (argc < 1) return v_string("");
     char *s = v_to_string(argv[0]);
     Value r = v_string(s);
-    free(s);
+    GC_FREE(s);
     return r;
 }
 
@@ -520,16 +520,16 @@ static Value list_method(Interp *I, Value lst, const char *name, int argc, Value
     }
     if (strcmp(name, "join") == 0) {
         const char *sep = (argc >= 1 && argv[0].type == V_STRING) ? argv[0].as.s : "";
-        size_t cap = 32, len = 0; char *buf = malloc(cap); buf[0] = 0;
+        size_t cap = 32, len = 0; char *buf = GC_MALLOC(cap); buf[0] = 0;
         for (int i = 0; i < l->len; i++) {
             char *part = v_to_string(l->items[i]);
             size_t need = len + strlen(part) + strlen(sep) + 1;
-            if (need > cap) { cap = need * 2; buf = realloc(buf, cap); }
+            if (need > cap) { cap = need * 2; buf = GC_REALLOC(buf, cap); }
             if (i > 0) { strcat(buf, sep); len += strlen(sep); }
             strcat(buf, part); len += strlen(part);
-            free(part);
+            GC_FREE(part);
         }
-        Value r = v_string(buf); free(buf); return r;
+        Value r = v_string(buf); GC_FREE(buf); return r;
     }
 
     // ── 高阶函数 ──
@@ -674,7 +674,7 @@ static Value list_method(Interp *I, Value lst, const char *name, int argc, Value
     if (strcmp(name, "toString") == 0) {
         char *s = v_to_string(lst);
         Value r = v_string(s);
-        free(s);
+        GC_FREE(s);
         return r;
     }
     return v_null();
@@ -713,34 +713,34 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
     }
 
     // ── 变换 ──
-    if (strcmp(name, "toUpperCase") == 0) {
-        char *r = malloc(slen + 1);
+    if (strcmp(name, "toUpperCase") == 0 || strcmp(name, "toUpper") == 0) {
+        char *r = GC_MALLOC(slen + 1);
         for (size_t i = 0; i < slen; i++) r[i] = (char)toupper((unsigned char)str[i]);
         r[slen] = 0;
-        Value v = v_string(r); free(r); return v;
+        Value v = v_string(r); GC_FREE(r); return v;
     }
-    if (strcmp(name, "toLowerCase") == 0) {
-        char *r = malloc(slen + 1);
+    if (strcmp(name, "toLowerCase") == 0 || strcmp(name, "toLower") == 0) {
+        char *r = GC_MALLOC(slen + 1);
         for (size_t i = 0; i < slen; i++) r[i] = (char)tolower((unsigned char)str[i]);
         r[slen] = 0;
-        Value v = v_string(r); free(r); return v;
+        Value v = v_string(r); GC_FREE(r); return v;
     }
     if (strcmp(name, "trim") == 0) {
         size_t a = 0, b = slen;
         while (a < b && isspace((unsigned char)str[a])) a++;
         while (b > a && isspace((unsigned char)str[b-1])) b--;
-        char *r = malloc(b - a + 1);
+        char *r = GC_MALLOC(b - a + 1);
         memcpy(r, str + a, b - a); r[b-a] = 0;
-        Value v = v_string(r); free(r); return v;
+        Value v = v_string(r); GC_FREE(r); return v;
     }
     if (strcmp(name, "substring") == 0) {
         int start = argc > 0 && argv[0].type == V_INT ? (int)argv[0].as.i : 0;
         int end   = argc > 1 && argv[1].type == V_INT ? (int)argv[1].as.i : (int)slen;
         if (start < 0) start = 0; if (end > (int)slen) end = (int)slen;
         if (start > end) start = end;
-        char *r = malloc(end - start + 1);
+        char *r = GC_MALLOC(end - start + 1);
         memcpy(r, str + start, end - start); r[end-start] = 0;
-        Value v = v_string(r); free(r); return v;
+        Value v = v_string(r); GC_FREE(r); return v;
     }
     if (strcmp(name, "split") == 0) {
         Value out = v_list();
@@ -756,8 +756,8 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
         const char *cur = str, *hit;
         while ((hit = strstr(cur, sep)) != NULL) {
             size_t n = hit - cur;
-            char *part = malloc(n + 1); memcpy(part, cur, n); part[n] = 0;
-            v_list_push(out.as.list, v_string(part)); free(part);
+            char *part = GC_MALLOC(n + 1); memcpy(part, cur, n); part[n] = 0;
+            v_list_push(out.as.list, v_string(part)); GC_FREE(part);
             cur = hit + seplen;
         }
         v_list_push(out.as.list, v_string(cur));
@@ -768,20 +768,20 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
         const char *from = argv[0].as.s, *to = argv[1].as.s;
         size_t flen = strlen(from), tlen = strlen(to);
         if (flen == 0) return s;
-        size_t cap = slen + 1, len = 0; char *out = malloc(cap);
+        size_t cap = slen + 1, len = 0; char *out = GC_MALLOC(cap);
         const char *cur = str, *hit;
         while ((hit = strstr(cur, from)) != NULL) {
             size_t n = hit - cur;
             size_t need = len + n + tlen + 1;
-            if (need > cap) { cap = need * 2; out = realloc(out, cap); }
+            if (need > cap) { cap = need * 2; out = GC_REALLOC(out, cap); }
             memcpy(out + len, cur, n); len += n;
             memcpy(out + len, to, tlen); len += tlen;
             cur = hit + flen;
         }
         size_t rest = strlen(cur);
-        if (len + rest + 1 > cap) { cap = len + rest + 1; out = realloc(out, cap); }
+        if (len + rest + 1 > cap) { cap = len + rest + 1; out = GC_REALLOC(out, cap); }
         memcpy(out + len, cur, rest); len += rest; out[len] = 0;
-        Value v = v_string(out); free(out); return v;
+        Value v = v_string(out); GC_FREE(out); return v;
     }
     if (strcmp(name, "codeUnitAt") == 0) {
         int i = argc > 0 && argv[0].type == V_INT ? (int)argv[0].as.i : 0;
@@ -793,16 +793,16 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
     if (strcmp(name, "repeated") == 0) {
         int times = argc > 0 && argv[0].type == V_INT ? (int)argv[0].as.i : 0;
         if (times <= 0) return v_string("");
-        char *out = malloc(slen * times + 1);
+        char *out = GC_MALLOC(slen * times + 1);
         for (int i = 0; i < times; i++) memcpy(out + i*slen, str, slen);
         out[slen*times] = 0;
-        Value v = v_string(out); free(out); return v;
+        Value v = v_string(out); GC_FREE(out); return v;
     }
     if (strcmp(name, "reversed") == 0) {
-        char *out = malloc(slen + 1);
+        char *out = GC_MALLOC(slen + 1);
         for (size_t i = 0; i < slen; i++) out[i] = str[slen-1-i];
         out[slen] = 0;
-        Value v = v_string(out); free(out); return v;
+        Value v = v_string(out); GC_FREE(out); return v;
     }
     if (strcmp(name, "padLeft") == 0 || strcmp(name, "padRight") == 0) {
         int width = argc > 0 && argv[0].type == V_INT ? (int)argv[0].as.i : 0;
@@ -811,7 +811,7 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
         if ((int)slen >= width || plen == 0) return s;
         int left = (strcmp(name, "padLeft") == 0);
         size_t total = slen + (width - slen) * plen;  // 上界
-        char *out = malloc(total + 1); out[0] = 0;
+        char *out = GC_MALLOC(total + 1); out[0] = 0;
         size_t cur = 0;
         if (left) {
             while ((int)(cur + slen) < width) { memcpy(out+cur, pad, plen); cur += plen; }
@@ -821,7 +821,7 @@ static Value string_method(Value s, const char *name, int argc, Value *argv) {
             while ((int)cur < width) { memcpy(out+cur, pad, plen); cur += plen; }
         }
         out[cur] = 0;
-        Value v = v_string(out); free(out); return v;
+        Value v = v_string(out); GC_FREE(out); return v;
     }
     if (strcmp(name, "count") == 0) {
         if (argc < 1 || argv[0].type != V_STRING) return v_int(0);
@@ -854,18 +854,18 @@ static Value map_method(Interp *I, Value mp, const char *name, int argc, Value *
         char *k = v_to_string(argv[0]);
         int found = 0;
         for (int i = 0; i < m->len; i++) if (strcmp(m->keys[i], k) == 0) { found = 1; break; }
-        free(k);
+        GC_FREE(k);
         return v_bool(found);
     }
     if (strcmp(name, "get") == 0) {
         if (argc < 1) return v_null();
         char *k = v_to_string(argv[0]);
-        Value r = v_map_get(m, k); free(k); return r;
+        Value r = v_map_get(m, k); GC_FREE(k); return r;
     }
     if (strcmp(name, "set") == 0 || strcmp(name, "put") == 0) {
         if (argc < 2) return mp;
         char *k = v_to_string(argv[0]);
-        v_map_set(m, k, argv[1]); free(k); return mp;
+        v_map_set(m, k, argv[1]); GC_FREE(k); return mp;
     }
     if (strcmp(name, "remove") == 0) {
         if (argc < 1) return v_null();
@@ -874,13 +874,13 @@ static Value map_method(Interp *I, Value mp, const char *name, int argc, Value *
         for (int i = 0; i < m->len; i++) {
             if (strcmp(m->keys[i], k) == 0) {
                 removed = m->vals[i];
-                free(m->keys[i]);
+                GC_FREE(m->keys[i]);
                 for (int j = i; j < m->len - 1; j++) { m->keys[j] = m->keys[j+1]; m->vals[j] = m->vals[j+1]; }
                 m->len--;
                 break;
             }
         }
-        free(k);
+        GC_FREE(k);
         return removed;
     }
     if (strcmp(name, "keys") == 0) {
@@ -894,14 +894,14 @@ static Value map_method(Interp *I, Value mp, const char *name, int argc, Value *
         return out;
     }
     if (strcmp(name, "clear") == 0) {
-        for (int i = 0; i < m->len; i++) free(m->keys[i]);
+        for (int i = 0; i < m->len; i++) GC_FREE(m->keys[i]);
         m->len = 0;
         return mp;
     }
     if (strcmp(name, "toString") == 0) {
         char *s = v_to_string(mp);
         Value r = v_string(s);
-        free(s);
+        GC_FREE(s);
         return r;
     }
     return v_null();
@@ -921,7 +921,7 @@ static Value num_method(Value n, const char *name, int argc, Value *argv) {
     if (strcmp(name, "toDouble") == 0) return v_double(d);
     if (strcmp(name, "toInt") == 0)    return v_int(i);
     if (strcmp(name, "toString") == 0) {
-        char *s = v_to_string(n); Value r = v_string(s); free(s); return r;
+        char *s = v_to_string(n); Value r = v_string(s); GC_FREE(s); return r;
     }
     if (strcmp(name, "isNegative") == 0) return v_bool(d < 0);
     if (strcmp(name, "isZero") == 0)     return v_bool(d == 0);
@@ -961,7 +961,7 @@ static Value bool_method(Value b, const char *name, int argc, Value *argv) {
 static Value bin_arith(Interp *I, AstNode *node, TokenType op, Value a, Value b) {
     if (op == TK_PLUS && a.type == V_STRING && b.type == V_STRING) {
         size_t la = strlen(a.as.s), lb = strlen(b.as.s);
-        char *r = malloc(la + lb + 1);
+        char *r = GC_MALLOC(la + lb + 1);
         memcpy(r, a.as.s, la); memcpy(r + la, b.as.s, lb); r[la+lb] = 0;
         Value v = { .type = V_STRING }; v.as.s = r; return v;
     }
@@ -1064,7 +1064,7 @@ static Value incr_decr(Interp *I, Env *env, AstNode *target, int delta, int is_p
             Value oldv = v_map_get(obj.as.map, ks);
             Value newv = step_value(oldv, delta);
             v_map_set(obj.as.map, ks, newv);
-            free(ks);
+            GC_FREE(ks);
             return is_prefix ? newv : oldv;
         }
         runtime_error(I, target, "invalid index target for ++/--");
@@ -1085,7 +1085,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             char *decoded = decode_str_lit(node->as.string_lit.value);
             if (node->as.string_lit.is_fmt) {
                 char *interp_s = fstring_interpolate(I, env, decoded, node);
-                free(decoded);
+                GC_FREE(decoded);
                 Value v = { .type = V_STRING };
                 v.as.s = interp_s;
                 return v;
@@ -1327,7 +1327,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                         newv = bin_arith(I, node, bop, old, rhs);
                     }
                     v_map_set(obj.as.map, ks, newv);
-                    free(ks);
+                    GC_FREE(ks);
                     return newv;
                 }
                 runtime_error(I, node, "index assignment on non-indexable value");
@@ -1357,7 +1357,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                         AstNode *mth = parent ? find_method(parent, m->as.member.name) : NULL;
                         if (mth) {
                             int argc = node->as.call.args.count;
-                            Value *argv = calloc(argc, sizeof(Value));
+                            Value *argv = GC_CALLOC(argc, sizeof(Value));
                             for (int i = 0; i < argc; i++)
                                 argv[i] = eval(I, env, node->as.call.args.items[i]);
                             Env *call_env = env_new(env);
@@ -1371,7 +1371,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                                 exec_block(I, call_env, &mth->as.func.body->as.program.stmts);
                                 if (I->return_active) { result = I->return_value; I->return_active = 0; }
                             }
-                            free(argv);
+                            GC_FREE(argv);
                             return result;
                         }
                     }
@@ -1385,7 +1385,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                 // 基本类型（int/double/bool）：先内置数值方法，未命中再查 reflect
                 if (receiver.type == V_INT || receiver.type == V_DOUBLE || receiver.type == V_BOOL) {
                     int argc = node->as.call.args.count;
-                    Value *argv = calloc(argc, sizeof(Value));
+                    Value *argv = GC_CALLOC(argc, sizeof(Value));
                     for (int i = 0; i < argc; i++)
                         argv[i] = eval(I, env, node->as.call.args.items[i]);
                     AstNode *rm = reflect_lookup(reflect_type_of(receiver), method_name);
@@ -1397,30 +1397,30 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                     } else {
                         r = num_method(receiver, method_name, argc, argv);
                     }
-                    free(argv);
+                    GC_FREE(argv);
                     return r;
                 }
                 if (receiver.type == V_LIST || receiver.type == V_TUPLE) {
                     int argc = node->as.call.args.count;
-                    Value *argv = calloc(argc, sizeof(Value));
+                    Value *argv = GC_CALLOC(argc, sizeof(Value));
                     for (int i = 0; i < argc; i++)
                         argv[i] = eval(I, env, node->as.call.args.items[i]);
                     // 优先内建方法；不存在的方法名回退到 reflect 扩展表
                     AstNode *rm = reflect_lookup("list", method_name);
                     Value r = rm ? reflect_invoke(I, env, rm, receiver, argc, argv)
                                  : list_method(I, receiver, method_name, argc, argv);
-                    free(argv);
+                    GC_FREE(argv);
                     return r;
                 }
                 if (receiver.type == V_STRING) {
                     int argc = node->as.call.args.count;
-                    Value *argv = calloc(argc, sizeof(Value));
+                    Value *argv = GC_CALLOC(argc, sizeof(Value));
                     for (int i = 0; i < argc; i++)
                         argv[i] = eval(I, env, node->as.call.args.items[i]);
                     AstNode *rm = reflect_lookup("string", method_name);
                     Value r = rm ? reflect_invoke(I, env, rm, receiver, argc, argv)
                                  : string_method(receiver, method_name, argc, argv);
-                    free(argv);
+                    GC_FREE(argv);
                     return r;
                 }
                 if (receiver.type == V_MAP) {
@@ -1431,18 +1431,18 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                     } else {
                         // 否则按 Map<K,V> 内建方法处理（containsKey/keys/values/...）
                         int argc = node->as.call.args.count;
-                        Value *argv = calloc(argc, sizeof(Value));
+                        Value *argv = GC_CALLOC(argc, sizeof(Value));
                         for (int i = 0; i < argc; i++)
                             argv[i] = eval(I, env, node->as.call.args.items[i]);
                         Value r = map_method(I, receiver, method_name, argc, argv);
-                        free(argv);
+                        GC_FREE(argv);
                         return r;
                     }
                 }
                 if (receiver.type == V_OBJECT) {
                     AstNode *mth = find_method(receiver.as.obj->class_node, method_name);
                     if (mth) {
-                        VFunc *f = calloc(1, sizeof(VFunc));
+                        VFunc *f = GC_CALLOC(1, sizeof(VFunc));
                         f->decl = mth; f->closure = env;
                         callee.type = V_FN; callee.as.fn = f;
                         has_receiver = 1;
@@ -1461,11 +1461,11 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                             }
                             if (rm) {
                                 int argc = node->as.call.args.count;
-                                Value *argv = calloc(argc, sizeof(Value));
+                                Value *argv = GC_CALLOC(argc, sizeof(Value));
                                 for (int i = 0; i < argc; i++)
                                     argv[i] = eval(I, env, node->as.call.args.items[i]);
                                 Value r = reflect_invoke(I, env, rm, receiver, argc, argv);
-                                free(argv);
+                                GC_FREE(argv);
                                 return r;
                             }
                         }
@@ -1474,7 +1474,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                     // 静态字段访问：ClassName.field
                     AstNode *mth = find_method(receiver.as.cls, method_name);
                     if (mth && (mth->type == NODE_FACTORY_DECL || mth->as.func.is_static)) {
-                        VFunc *f = calloc(1, sizeof(VFunc));
+                        VFunc *f = GC_CALLOC(1, sizeof(VFunc));
                         f->decl = mth; f->closure = env;
                         callee.type = V_FN; callee.as.fn = f;
                         // 记录所属类名，供静态方法体内访问静态字段
@@ -1495,7 +1495,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                         if (self && self->type == V_OBJECT) {
                             AstNode *mth = find_method(self->as.obj->class_node, cnode->as.ident.name);
                             if (mth) {
-                                VFunc *f = calloc(1, sizeof(VFunc));
+                                VFunc *f = GC_CALLOC(1, sizeof(VFunc));
                                 f->decl = mth; f->closure = env;
                                 callee.type = V_FN; callee.as.fn = f;
                                 receiver = *self;
@@ -1513,14 +1513,14 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                 AstNode *cls = callee.as.cls;
                 AstNode *ctor = find_constructor(cls);
                 Value obj_v = { .type = V_OBJECT };
-                VObject *obj = calloc(1, sizeof(VObject));
+                VObject *obj = GC_CALLOC(1, sizeof(VObject));
                 obj->class_node = cls;
                 Value mp = v_map();
                 obj->fields = mp.as.map;
                 obj_v.as.obj = obj;
 
                 int argc = node->as.call.args.count;
-                Value *argv = calloc(argc, sizeof(Value));
+                Value *argv = GC_CALLOC(argc, sizeof(Value));
                 for (int i = 0; i < argc; i++)
                     argv[i] = eval(I, env, node->as.call.args.items[i]);
 
@@ -1548,12 +1548,12 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                         I->return_active = 0;
                     }
                 }
-                free(argv);
+                GC_FREE(argv);
                 return obj_v;
             }
 
             int argc = node->as.call.args.count;
-            Value *argv = calloc(argc, sizeof(Value));
+            Value *argv = GC_CALLOC(argc, sizeof(Value));
             for (int i = 0; i < argc; i++)
                 argv[i] = eval(I, env, node->as.call.args.items[i]);
             Value result = v_null();
@@ -1565,7 +1565,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                 if (decl->type == NODE_FUNC_DECL && decl->as.func.is_ellipsis) {
                     result = ffi_call(decl->as.func.name,
                                       decl->as.func.return_type, argc, argv);
-                    free(argv);
+                    GC_FREE(argv);
                     return result;
                 }
                 NodeList *params;
@@ -1604,7 +1604,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             } else {
                 runtime_error(I, node, "value not callable");
             }
-            free(argv);
+            GC_FREE(argv);
             return result;
         }
         case NODE_MEMBER: {
@@ -1695,6 +1695,16 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                     strcmp(n, "bool") == 0 || strcmp(n, "string") == 0 ||
                     strcmp(n, "void") == 0 || strcmp(n, "list") == 0 ||
                     strcmp(n, "map") == 0 || strcmp(n, "Function") == 0) {
+                    env_define(env, node->as.alias.name, make_type_handle(n));
+                    return v_null();
+                }
+                // Compound type names: unions (int|double), generics (List<int>),
+                // nullables (int?), or type-name-prefixed identifiers
+                if (strchr(n, '|') || strchr(n, '<') ||
+                    strncmp(n, "int", 3) == 0 || strncmp(n, "double", 6) == 0 ||
+                    strncmp(n, "bool", 4) == 0 || strncmp(n, "string", 6) == 0 ||
+                    strncmp(n, "void", 4) == 0 || strncmp(n, "list", 4) == 0 ||
+                    strncmp(n, "map", 3) == 0 || strncmp(n, "Function", 8) == 0) {
                     env_define(env, node->as.alias.name, make_type_handle(n));
                     return v_null();
                 }
@@ -1827,18 +1837,18 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             if (v && v->type == NODE_CALL && v->as.call.callee->type == NODE_IDENT) {
                 const char *cn = v->as.call.callee->as.ident.name;
                 if (!find_class(cn) && !env_lookup(env, cn)) {
-                    char *prefix = strdup(cn);
+                    char *prefix = GC_STRDUP(cn);
                     if (v->as.call.args.count > 0) {
                         Value arg = eval(I, env, v->as.call.args.items[0]);
                         char *as = v_to_string(arg);
-                        char *combined = malloc(strlen(prefix) + strlen(as) + 4);
+                        char *combined = GC_MALLOC(strlen(prefix) + strlen(as) + 4);
                         sprintf(combined, "%s: %s", prefix, as);
-                        free(prefix); free(as);
+                        GC_FREE(prefix); GC_FREE(as);
                         I->exc_value = v_string(combined);
-                        free(combined);
+                        GC_FREE(combined);
                     } else {
                         I->exc_value = v_string(prefix);
-                        free(prefix);
+                        GC_FREE(prefix);
                     }
                     I->exc_active = 1;
                     return v_null();
@@ -1944,7 +1954,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                         v_map_set(wrap.as.map, "type", v_string("Exception"));
                         v_map_set(wrap.as.map, "message", v_string(full));
                     }
-                    free(full);
+                    GC_FREE(full);
                     exc = wrap;
                 }
 
@@ -2004,7 +2014,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             return v_null();
         }
         case NODE_FUNC_DECL: {
-            VFunc *f = calloc(1, sizeof(VFunc));
+            VFunc *f = GC_CALLOC(1, sizeof(VFunc));
             f->decl = node;
             f->closure = env;
             Value v = { .type = V_FN }; v.as.fn = f;
@@ -2012,7 +2022,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             return v_null();
         }
         case NODE_LAMBDA: {
-            VFunc *f = calloc(1, sizeof(VFunc));
+            VFunc *f = GC_CALLOC(1, sizeof(VFunc));
             f->decl = node;
             f->closure = env;
             Value v = { .type = V_LAMBDA }; v.as.fn = f;
@@ -2038,7 +2048,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
                 Value vv = eval(I, env, node->as.map_lit.values.items[i]);
                 char *ks = v_to_string(k);
                 v_map_set(mp.as.map, ks, vv);
-                free(ks);
+                GC_FREE(ks);
             }
             return mp;
         }
@@ -2053,7 +2063,7 @@ static Value eval(Interp *I, Env *env, AstNode *node) {
             if (obj.type == V_MAP) {
                 char *ks = v_to_string(idx);
                 Value r = v_map_get(obj.as.map, ks);
-                free(ks);
+                GC_FREE(ks);
                 return r;
             }
             if (obj.type == V_STRING) {
@@ -2119,7 +2129,7 @@ static char *quiet_read_file(const char *path) {
     fseek(f, 0, SEEK_END);
     long size = ftell(f);
     fseek(f, 0, SEEK_SET);
-    char *buf = malloc(size + 1);
+    char *buf = GC_MALLOC(size + 1);
     if (!buf) { fclose(f); return NULL; }
     size_t rd = fread(buf, 1, size, f);
     buf[rd] = 0;
@@ -2161,7 +2171,7 @@ static Value load_candle_module(Interp *I, const char *dotted_path) {
     if (!src) return v_null();
 
     AstNode *ast = parse(src, dotted_path);
-    free(src);
+    GC_FREE(src);
     if (!ast) return v_null();
 
     // 在独立模块作用域里执行顶层声明（不调用 main）
@@ -2215,7 +2225,7 @@ static Value load_candle_module(Interp *I, const char *dotted_path) {
 
     // 入缓存（注意：AST 与 modenv 故意不释放，导出的函数闭包仍引用它们）
     if (g_nmodcache < 128) {
-        g_modcache[g_nmodcache].path = strdup(dotted_path);
+        g_modcache[g_nmodcache].path = GC_STRDUP(dotted_path);
         g_modcache[g_nmodcache].mod = ns;
         g_nmodcache++;
     }
@@ -2223,6 +2233,8 @@ static Value load_candle_module(Interp *I, const char *dotted_path) {
 }
 
 int interp_run(AstNode *program, const char *filename) {
+    GC_INIT();
+    GC_INIT();
     Interp I = { .filename = filename };
     Env *globals = env_new(NULL);
     g_class_env = globals;
@@ -2233,7 +2245,7 @@ int interp_run(AstNode *program, const char *filename) {
     if (I.exc_active) {
         char *m = v_to_string(I.exc_value);
         fprintf(stderr, "%s: uncaught exception: %s\n", filename, m);
-        free(m);
+        GC_FREE(m);
         I.had_error = 1;
     }
 
@@ -2245,6 +2257,8 @@ int interp_run(AstNode *program, const char *filename) {
 // ── REPL ─────────────────────────────────────────────────────────────────────
 
 int interp_repl(void) {
+    GC_INIT();
+    GC_INIT();
     Interp I = { .filename = "<repl>" };
     Env *globals = env_new(NULL);
     g_class_env = globals;
@@ -2288,12 +2302,12 @@ int interp_repl(void) {
                     if (!I.had_error && !I.exc_active && v.type != V_NULL) {
                         char *r = v_to_string(v);
                         printf("=> %s\n", r);
-                        free(r);
+                        GC_FREE(r);
                     }
                     if (I.exc_active) {
                         char *m = v_to_string(I.exc_value);
                         fprintf(stderr, "uncaught: %s\n", m);
-                        free(m);
+                        GC_FREE(m);
                         I.exc_active = 0;
                     }
                     I.had_error = 0;
@@ -2313,7 +2327,7 @@ int interp_repl(void) {
         if (I.exc_active) {
             char *m = v_to_string(I.exc_value);
             fprintf(stderr, "uncaught: %s\n", m);
-            free(m);
+            GC_FREE(m);
             I.exc_active = 0;
         }
         ast_free(ast);

@@ -1,134 +1,57 @@
-// parallel.candle - 并行模式测试
+// parallel.candle - 并行模式测试（Candle 风格：int main 入口）
 
-// 基本并行块
-int sum1 = 0;
-int sum2 = 0;
-int sum3 = 0;
+int main() {
+    // 基本并行块
+    int sum1 = 0;
+    int sum2 = 0;
+    int sum3 = 0;
 
-parallel {
-    {
-        for iter(i, 10000) {
-            sum1 += i;
-        }
-    }
-    {
-        for iter(i, 10000, 20000) {
-            sum2 += i;
-        }
-    }
-    {
-        for iter(i, 20000, 30000) {
-            sum3 += i;
-        }
-    }
-}
-
-alias total = sum1 + sum2 + sum3;
-print(f'Total: {total}');
-
-// parallel for 自动并行化
-alias results = 0;
-parallel for iter(i, 8) {
-    results += heavyCompute(i);
-}
-
-int heavyCompute(int n) {
-    int sum = 0;
-    for iter(i, n, n + 10000) {
-        sum += i;
-    }
-    return sum;
-}
-
-// signal + delay 阶梯并行
-int data = 0;
-int processed = 0;
-
-parallel {
-    {
-        // 任务一：加载数据
-        data = loadData();
-        signal(dataReady) {
-            // 数据加载完成的信号点
-            print('Data loaded');
-        }
-        // 继续做其他事情
-        doCleanup();
-    }
-    delay(dataReady) {
-        // 任务二：等 dataReady 信号后开始
-        processed = processData(data);
-        print(f'Processed: {processed}');
-    }
-}
-
-// 多个 signal/delay 组合
-int step1Result = 0;
-int step2Result = 0;
-int finalResult = 0;
-
-parallel {
-    {
-        step1Result = compute1();
-        signal(step1Done) {
-            print('Step 1 done');
-        }
-        doExtraWork();
-    }
-    delay(step1Done) {
-        step2Result = compute2(step1Result);
-        signal(step2Done) {
-            print('Step 2 done');
-        }
-    }
-    delay(step2Done) {
-        finalResult = compute3(step2Result);
-        print(f'Final: {finalResult}');
-    }
-}
-
-// 嵌套并行
-parallel {
-    {
-        parallel {
-            {
-                print('nested-1a');
+    parallel {
+        {
+            for iter(i, 10000) {
+                sum1 += i;
             }
-            {
-                print('nested-1b');
+        }
+        {
+            for iter(i, 10000, 20000) {
+                sum2 += i;
+            }
+        }
+        {
+            for iter(i, 20000, 30000) {
+                sum3 += i;
             }
         }
     }
-    {
-        print('task-2');
+
+    alias total = sum1 + sum2 + sum3;
+    print(f"Total: {total}");
+
+    // 数据并行
+    alias results = 0;
+    parallel for iter(n, [1, 2, 3, 4]) {
+        results += n;
     }
-}
+    print(f"Data load: {results}");
 
-int loadData() {
-    ellipsis;
-    return 100;
-}
+    // 嵌套并行
+    parallel {
+        section {
+            print("nested-1a");
+        }
+        section {
+            print("nested-1b");
+        }
+        section {
+            parallel {
+                section {
+                    print("task-2");
+                }
+            }
+        }
+    }
 
-int processData(int d) {
-    return d * 2;
-}
+    print(f"Final: {total}");
 
-void doCleanup() {
-    ellipsis;
-}
-
-int compute1() {
-    return 10;
-}
-
-int compute2(int x) {
-    return x * 2;
-}
-
-int compute3(int x) {
-    return x + 1;
-}
-
-void doExtraWork() {
-    ellipsis;
+    return 0;
 }

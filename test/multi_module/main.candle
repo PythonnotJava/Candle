@@ -1,0 +1,43 @@
+// main.candle — 多文件模块测试 v2
+// 测试多种 export/load 模式
+
+load test.multi_module.math_utils alias math;
+load test.multi_module.string_utils alias str;
+load test.multi_module.wild_utils alias w;
+load test.multi_module.noexport_utils alias nx;
+
+// 1. 带 alias 加载（同上轮）
+
+int main() {
+    alias sum = math.add(10, 20);
+    print("1. add(10,20) = " + String(sum));
+
+    // 2. 通配符导出：square/cube 可见，internalSecret 不可见
+    alias sq = w.square(7);
+    print("2. square(7) = " + String(sq));
+
+    alias cb = w.cube(3);
+    print("3. cube(3) = " + String(cb));
+
+    // 3. 无 export 模块：默认导出全部
+    alias d = nx.doubleIt(21);
+    print("4. doubleIt(21) = " + String(d));
+
+    alias t = nx.tripleIt(11);
+    print("5. tripleIt(11) = " + String(t));
+
+    // 4. 字符串模块（无分号 export）
+    alias g = str.greet("Candle");
+    print("6. greet = " + g);
+
+    alias r = str.repeat("Go", 4);
+    print("7. repeat = " + r);
+
+    // 5. 模块缓存：重复加载同一模块
+    load test.multi_module.math_utils alias math2;
+    alias fact5 = math2.factorial(5);
+    print("8. factorial(5) via math2 = " + String(fact5));
+
+    print("=== All v2 multi-module tests passed ===");
+    return 0;
+}

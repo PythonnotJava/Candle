@@ -1,0 +1,14 @@
+// 字符串工具模块 — 测试 export 末尾无分号
+export { greet, repeat }
+
+string greet(string name) {
+    return "Hello, " + name + "!";
+}
+
+string repeat(string s, int times) {
+    string result = "";
+    for iter(i, 0, times) {
+        result = result + s;
+    }
+    return result;
+}

@@ -1,0 +1,22 @@
+// stdlib_test_v3.candle — 标准库全面测试（Candle 风格：int main 入口）
+load library.std.Int alias _Int;
+load library.std.Bool alias _Bool;
+load library.std.String alias _Str;
+load library.std.List alias _List;
+load library.std.Map alias _Map;
+load library.std.Double alias _Double;
+
+int main() {
+    print("=== ALL 6 MODULES LOADED ===");
+
+    print("42.isEven()       = " + String(42.isEven()));
+    print("true.toggle()     = " + String(true.toggle()));
+    print("len('hello')      = " + String(len("hello")));
+    print("'hi'.toupper      = " + "hi".toUpperCase());
+    print("[1,2,3].join(',')= " + [1,2,3].join(","));
+    print("{a:1}.containsKey('a') = " + String({"a": 1}.containsKey("a")));
+    print("3.14.squared()   = " + String(3.14.squared()));
+
+    print("=== DONE ===");
+    return 0;
+}

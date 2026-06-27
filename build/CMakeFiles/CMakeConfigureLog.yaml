@@ -1,0 +1,1149 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: D:/SDK/LLVM/bin/clang.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is Clang, found in:
+        C:/Users/25654/Desktop/Candle/build/CMakeFiles/3.29.3/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-2ywwuy"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-2ywwuy"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-2ywwuy'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_b0063/fast
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b0063.dir\\build.make CMakeFiles/cmTC_b0063.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-2ywwuy'
+        Building C object CMakeFiles/cmTC_b0063.dir/CMakeCCompilerABI.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_b0063.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_b0063.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles\\cmTC_b0063.dir\\CMakeCCompilerABI.c.obj -c D:\\SDK\\Cmake\\share\\cmake-3.29\\Modules\\CMakeCCompilerABI.c
+        Linking C executable cmTC_b0063.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_b0063.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd  -v -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_b0063.dir\\objects1.rsp -o cmTC_b0063.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_b0063.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2ywwuy\\cmTC_b0063.pdb -Xlinker /version:0.0 
+        clang version 18.1.8
+        Target: x86_64-pc-windows-msvc
+        Thread model: posix
+        InstalledDir: D:\\SDK\\LLVM\\bin
+         "D:\\\\SDK\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_b0063.exe "-libpath:D:\\\\VS\\\\App\\\\VC\\\\Tools\\\\MSVC\\\\14.41.34120\\\\lib\\\\x64" "-libpath:D:\\\\VS\\\\App\\\\VC\\\\Tools\\\\MSVC\\\\14.41.34120\\\\atlmfc\\\\lib\\\\x64" "-libpath:D:\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\ucrt\\\\x64" "-libpath:D:\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\um\\\\x64" "-libpath:D:\\\\SDK\\\\LLVM\\\\lib\\\\clang\\\\18\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_b0063.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_b0063.lib "/pdb:C:\\\\Users\\\\25654\\\\Desktop\\\\Candle\\\\build\\\\CMakeFiles\\\\CMakeScratch\\\\TryCompile-2ywwuy\\\\cmTC_b0063.pdb" /version:0.0
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-2ywwuy'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': D:/SDK/LLVM/bin/lld-link
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "D:/SDK/LLVM/bin/lld-link" "-v"
+      lld-link: warning: ignoring unknown argument '-v'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "D:/SDK/LLVM/bin/lld-link" "-V"
+      lld-link: warning: ignoring unknown argument '-V'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "D:/SDK/LLVM/bin/lld-link" "--version"
+      LLD 18.1.8
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jliiqe"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jliiqe"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jliiqe'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_1b123/fast
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_1b123.dir\\build.make CMakeFiles/cmTC_1b123.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jliiqe'
+        Building C object CMakeFiles/cmTC_1b123.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_1b123.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_1b123.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_1b123.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jliiqe\\OpenMPTryFlag.c
+        Linking C executable cmTC_1b123.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_1b123.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_1b123.dir\\objects1.rsp -o cmTC_1b123.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_1b123.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jliiqe\\cmTC_1b123.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_1b123.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jliiqe'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nepmy7"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nepmy7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nepmy7'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_db668/fast
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_db668.dir\\build.make CMakeFiles/cmTC_db668.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nepmy7'
+        Building C object CMakeFiles/cmTC_db668.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_db668.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_db668.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_db668.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nepmy7\\OpenMPTryFlag.c
+        Linking C executable cmTC_db668.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_db668.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_db668.dir\\objects1.rsp -o cmTC_db668.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_db668.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nepmy7\\cmTC_db668.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_db668.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[1]: *** [CMakeFiles\\cmTC_db668.dir\\build.make:101: cmTC_db668.exe] Error 1
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nepmy7'
+        mingw32-make: *** [Makefile:126: cmTC_db668/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-0l3jwl"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-0l3jwl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-0l3jwl'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_41ce1/fast
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_41ce1.dir\\build.make CMakeFiles/cmTC_41ce1.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-0l3jwl'
+        Building C object CMakeFiles/cmTC_41ce1.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_41ce1.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_41ce1.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_41ce1.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-0l3jwl\\OpenMPTryFlag.c
+        Linking C executable cmTC_41ce1.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_41ce1.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_41ce1.dir\\objects1.rsp -o cmTC_41ce1.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_41ce1.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-0l3jwl\\cmTC_41ce1.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_41ce1.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-0l3jwl'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-k4o5zf"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-k4o5zf"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-k4o5zf'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_05eb5/fast
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_05eb5.dir\\build.make CMakeFiles/cmTC_05eb5.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-k4o5zf'
+        Building C object CMakeFiles/cmTC_05eb5.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_05eb5.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_05eb5.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_05eb5.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k4o5zf\\OpenMPTryFlag.c
+        Linking C executable cmTC_05eb5.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_05eb5.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_05eb5.dir\\objects1.rsp -o cmTC_05eb5.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_05eb5.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k4o5zf\\cmTC_05eb5.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_05eb5.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k4o5zf\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_05eb5.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[1]: *** [CMakeFiles\\cmTC_05eb5.dir\\build.make:101: cmTC_05eb5.exe] Error 1
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-k4o5zf'
+        mingw32-make: *** [Makefile:126: cmTC_05eb5/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_8a1a5/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_8a1a5.dir\\build.make CMakeFiles/cmTC_8a1a5.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq'
+        Building C object CMakeFiles/cmTC_8a1a5.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_8a1a5.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_8a1a5.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_8a1a5.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9apkhq\\OpenMPTryFlag.c
+        Linking C executable cmTC_8a1a5.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_8a1a5.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_8a1a5.dir\\objects1.rsp -o cmTC_8a1a5.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_8a1a5.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9apkhq\\cmTC_8a1a5.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_8a1a5.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-9apkhq'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_e9b65/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_e9b65.dir\\build.make CMakeFiles/cmTC_e9b65.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb'
+        Building C object CMakeFiles/cmTC_e9b65.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_e9b65.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_e9b65.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_e9b65.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5zmxjb\\OpenMPTryFlag.c
+        Linking C executable cmTC_e9b65.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_e9b65.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_e9b65.dir\\objects1.rsp -o cmTC_e9b65.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_e9b65.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5zmxjb\\cmTC_e9b65.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_e9b65.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_e9b65.dir\\build.make:101: cmTC_e9b65.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb'
+        mingw32-make[1]: *** [Makefile:126: cmTC_e9b65/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-5zmxjb'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_26eea/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_26eea.dir\\build.make CMakeFiles/cmTC_26eea.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5'
+        Building C object CMakeFiles/cmTC_26eea.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_26eea.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_26eea.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_26eea.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-80akg5\\OpenMPTryFlag.c
+        Linking C executable cmTC_26eea.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_26eea.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_26eea.dir\\objects1.rsp -o cmTC_26eea.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_26eea.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-80akg5\\cmTC_26eea.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_26eea.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-80akg5'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_09639/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_09639.dir\\build.make CMakeFiles/cmTC_09639.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt'
+        Building C object CMakeFiles/cmTC_09639.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_09639.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_09639.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_09639.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amaljt\\OpenMPTryFlag.c
+        Linking C executable cmTC_09639.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_09639.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_09639.dir\\objects1.rsp -o cmTC_09639.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_09639.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amaljt\\cmTC_09639.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_09639.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amaljt\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_09639.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_09639.dir\\build.make:101: cmTC_09639.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt'
+        mingw32-make[1]: *** [Makefile:126: cmTC_09639/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-amaljt'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_60276/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_60276.dir\\build.make CMakeFiles/cmTC_60276.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua'
+        Building C object CMakeFiles/cmTC_60276.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_60276.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_60276.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_60276.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jt0tua\\OpenMPTryFlag.c
+        Linking C executable cmTC_60276.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_60276.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_60276.dir\\objects1.rsp -o cmTC_60276.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_60276.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jt0tua\\cmTC_60276.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_60276.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-jt0tua'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_726b7/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_726b7.dir\\build.make CMakeFiles/cmTC_726b7.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x'
+        Building C object CMakeFiles/cmTC_726b7.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_726b7.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_726b7.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_726b7.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8dy78x\\OpenMPTryFlag.c
+        Linking C executable cmTC_726b7.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_726b7.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_726b7.dir\\objects1.rsp -o cmTC_726b7.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_726b7.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8dy78x\\cmTC_726b7.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_726b7.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_726b7.dir\\build.make:101: cmTC_726b7.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x'
+        mingw32-make[1]: *** [Makefile:126: cmTC_726b7/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8dy78x'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_eec03/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_eec03.dir\\build.make CMakeFiles/cmTC_eec03.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r'
+        Building C object CMakeFiles/cmTC_eec03.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_eec03.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_eec03.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_eec03.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xksa8r\\OpenMPTryFlag.c
+        Linking C executable cmTC_eec03.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_eec03.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_eec03.dir\\objects1.rsp -o cmTC_eec03.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_eec03.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xksa8r\\cmTC_eec03.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_eec03.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-xksa8r'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:65 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_7cb2e/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_7cb2e.dir\\build.make CMakeFiles/cmTC_7cb2e.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt'
+        Building C object CMakeFiles/cmTC_7cb2e.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_7cb2e.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_7cb2e.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_7cb2e.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-by3xdt\\OpenMPTryFlag.c
+        Linking C executable cmTC_7cb2e.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_7cb2e.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_7cb2e.dir\\objects1.rsp -o cmTC_7cb2e.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_7cb2e.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-by3xdt\\cmTC_7cb2e.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_7cb2e.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-by3xdt\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_7cb2e.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_7cb2e.dir\\build.make:101: cmTC_7cb2e.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt'
+        mingw32-make[1]: *** [Makefile:126: cmTC_7cb2e/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-by3xdt'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:66 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_6254d/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_6254d.dir\\build.make CMakeFiles/cmTC_6254d.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws'
+        Building C object CMakeFiles/cmTC_6254d.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_6254d.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_6254d.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_6254d.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ev7kws\\OpenMPTryFlag.c
+        Linking C executable cmTC_6254d.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_6254d.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_6254d.dir\\objects1.rsp -o cmTC_6254d.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_6254d.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ev7kws\\cmTC_6254d.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_6254d.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ev7kws'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:66 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_28191/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_28191.dir\\build.make CMakeFiles/cmTC_28191.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab'
+        Building C object CMakeFiles/cmTC_28191.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_28191.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_28191.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_28191.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-76taab\\OpenMPTryFlag.c
+        Linking C executable cmTC_28191.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_28191.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_28191.dir\\objects1.rsp -o cmTC_28191.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_28191.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-76taab\\cmTC_28191.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_28191.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_28191.dir\\build.make:101: cmTC_28191.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab'
+        mingw32-make[1]: *** [Makefile:126: cmTC_28191/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-76taab'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:66 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_c6681/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_c6681.dir\\build.make CMakeFiles/cmTC_c6681.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx'
+        Building C object CMakeFiles/cmTC_c6681.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_c6681.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_c6681.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_c6681.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ubt2bx\\OpenMPTryFlag.c
+        Linking C executable cmTC_c6681.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_c6681.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_c6681.dir\\objects1.rsp -o cmTC_c6681.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_c6681.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ubt2bx\\cmTC_c6681.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_c6681.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-ubt2bx'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:66 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_ee3f1/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_ee3f1.dir\\build.make CMakeFiles/cmTC_ee3f1.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b'
+        Building C object CMakeFiles/cmTC_ee3f1.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_ee3f1.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_ee3f1.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_ee3f1.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-01kq1b\\OpenMPTryFlag.c
+        Linking C executable cmTC_ee3f1.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_ee3f1.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_ee3f1.dir\\objects1.rsp -o cmTC_ee3f1.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_ee3f1.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-01kq1b\\cmTC_ee3f1.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_ee3f1.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-01kq1b\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_ee3f1.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_ee3f1.dir\\build.make:101: cmTC_ee3f1.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b'
+        mingw32-make[1]: *** [Makefile:126: cmTC_ee3f1/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-01kq1b'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:67 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_89058/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_89058.dir\\build.make CMakeFiles/cmTC_89058.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr'
+        Building C object CMakeFiles/cmTC_89058.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_89058.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_89058.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_89058.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dxfwdr\\OpenMPTryFlag.c
+        Linking C executable cmTC_89058.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_89058.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_89058.dir\\objects1.rsp -o cmTC_89058.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_89058.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dxfwdr\\cmTC_89058.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_89058.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-dxfwdr'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:67 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_53dd2/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_53dd2.dir\\build.make CMakeFiles/cmTC_53dd2.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k'
+        Building C object CMakeFiles/cmTC_53dd2.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_53dd2.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_53dd2.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_53dd2.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nuuz2k\\OpenMPTryFlag.c
+        Linking C executable cmTC_53dd2.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_53dd2.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_53dd2.dir\\objects1.rsp -o cmTC_53dd2.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_53dd2.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nuuz2k\\cmTC_53dd2.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_53dd2.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_53dd2.dir\\build.make:101: cmTC_53dd2.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k'
+        mingw32-make[1]: *** [Makefile:126: cmTC_53dd2/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-nuuz2k'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:67 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_2132e/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_2132e.dir\\build.make CMakeFiles/cmTC_2132e.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p'
+        Building C object CMakeFiles/cmTC_2132e.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_2132e.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_2132e.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_2132e.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o1dq1p\\OpenMPTryFlag.c
+        Linking C executable cmTC_2132e.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_2132e.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_2132e.dir\\objects1.rsp -o cmTC_2132e.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_2132e.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o1dq1p\\cmTC_2132e.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_2132e.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-o1dq1p'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:67 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_6c1b3/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_6c1b3.dir\\build.make CMakeFiles/cmTC_6c1b3.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj'
+        Building C object CMakeFiles/cmTC_6c1b3.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_6c1b3.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_6c1b3.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_6c1b3.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8pwgoj\\OpenMPTryFlag.c
+        Linking C executable cmTC_6c1b3.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_6c1b3.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_6c1b3.dir\\objects1.rsp -o cmTC_6c1b3.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_6c1b3.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8pwgoj\\cmTC_6c1b3.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_6c1b3.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8pwgoj\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_6c1b3.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_6c1b3.dir\\build.make:101: cmTC_6c1b3.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj'
+        mingw32-make[1]: *** [Makefile:126: cmTC_6c1b3/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-8pwgoj'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_54b5a/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_54b5a.dir\\build.make CMakeFiles/cmTC_54b5a.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80'
+        Building C object CMakeFiles/cmTC_54b5a.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_54b5a.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_54b5a.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_54b5a.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-y21g80\\OpenMPTryFlag.c
+        Linking C executable cmTC_54b5a.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_54b5a.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_54b5a.dir\\objects1.rsp -o cmTC_54b5a.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_54b5a.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-y21g80\\cmTC_54b5a.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_54b5a.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-y21g80'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_5586a/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_5586a.dir\\build.make CMakeFiles/cmTC_5586a.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3'
+        Building C object CMakeFiles/cmTC_5586a.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5586a.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_5586a.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_5586a.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j6e9q3\\OpenMPTryFlag.c
+        Linking C executable cmTC_5586a.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_5586a.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_5586a.dir\\objects1.rsp -o cmTC_5586a.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_5586a.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j6e9q3\\cmTC_5586a.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_5586a.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_5586a.dir\\build.make:101: cmTC_5586a.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3'
+        mingw32-make[1]: *** [Makefile:126: cmTC_5586a/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-j6e9q3'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_3fcd4/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_3fcd4.dir\\build.make CMakeFiles/cmTC_3fcd4.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn'
+        Building C object CMakeFiles/cmTC_3fcd4.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_3fcd4.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_3fcd4.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_3fcd4.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kiuxxn\\OpenMPTryFlag.c
+        Linking C executable cmTC_3fcd4.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_3fcd4.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_3fcd4.dir\\objects1.rsp -o cmTC_3fcd4.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_3fcd4.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kiuxxn\\cmTC_3fcd4.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_3fcd4.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-kiuxxn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_2a754/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_2a754.dir\\build.make CMakeFiles/cmTC_2a754.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6'
+        Building C object CMakeFiles/cmTC_2a754.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_2a754.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_2a754.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_2a754.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc0vl6\\OpenMPTryFlag.c
+        Linking C executable cmTC_2a754.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_2a754.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_2a754.dir\\objects1.rsp -o cmTC_2a754.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_2a754.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc0vl6\\cmTC_2a754.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_2a754.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc0vl6\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_2a754.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_2a754.dir\\build.make:101: cmTC_2a754.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6'
+        mingw32-make[1]: *** [Makefile:126: cmTC_2a754/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-rc0vl6'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:69 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibomp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_f5395/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_f5395.dir\\build.make CMakeFiles/cmTC_f5395.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs'
+        Building C object CMakeFiles/cmTC_f5395.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libomp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_f5395.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_f5395.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_f5395.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6p9jzs\\OpenMPTryFlag.c
+        Linking C executable cmTC_f5395.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_f5395.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libomp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_f5395.dir\\objects1.rsp -o cmTC_f5395.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_f5395.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6p9jzs\\cmTC_f5395.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_f5395.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-6p9jzs'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:69 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmplibiomp5"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_bde13/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_bde13.dir\\build.make CMakeFiles/cmTC_bde13.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd'
+        Building C object CMakeFiles/cmTC_bde13.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_bde13.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_bde13.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_bde13.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x8l4rd\\OpenMPTryFlag.c
+        Linking C executable cmTC_bde13.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_bde13.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp=libiomp5 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_bde13.dir\\objects1.rsp -o cmTC_bde13.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_bde13.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x8l4rd\\cmTC_bde13.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_bde13.dir\\linkLibs.rsp
+        lld-link: error: could not open 'libiomp5md.lib': no such file or directory
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_bde13.dir\\build.make:101: cmTC_bde13.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd'
+        mingw32-make[1]: *** [Makefile:126: cmTC_bde13/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-x8l4rd'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:69 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_7109d/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_7109d.dir\\build.make CMakeFiles/cmTC_7109d.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg'
+        Building C object CMakeFiles/cmTC_7109d.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_7109d.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_7109d.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_7109d.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-pmsceg\\OpenMPTryFlag.c
+        Linking C executable cmTC_7109d.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_7109d.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_7109d.dir\\objects1.rsp -o cmTC_7109d.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_7109d.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-pmsceg\\cmTC_7109d.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_7109d.dir\\linkLibs.rsp
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg'
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-pmsceg'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:69 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y"
+      binary: "C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_Xclang fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y'
+        
+        Run Build Command(s): D:/SDK/Cmake/bin/cmake.exe -E env VERBOSE=1 "D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe" -f Makefile cmTC_c0665/fast
+        mingw32-make[1]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y'
+        D:/CLion 2026.1.2/bin/mingw/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_c0665.dir\\build.make CMakeFiles/cmTC_c0665.dir/build
+        mingw32-make[2]: Entering directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y'
+        Building C object CMakeFiles/cmTC_c0665.dir/OpenMPTryFlag.c.obj
+        D:\\SDK\\LLVM\\bin\\clang.exe   -Xclang -fopenmp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_c0665.dir/OpenMPTryFlag.c.obj -MF CMakeFiles\\cmTC_c0665.dir\\OpenMPTryFlag.c.obj.d -o CMakeFiles\\cmTC_c0665.dir\\OpenMPTryFlag.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myrh5y\\OpenMPTryFlag.c
+        Linking C executable cmTC_c0665.exe
+        D:\\SDK\\Cmake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_c0665.dir\\link.txt --verbose=1
+        D:\\SDK\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib  -Xclang -fopenmp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_c0665.dir\\objects1.rsp -o cmTC_c0665.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_c0665.lib -Xlinker /pdb:C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myrh5y\\cmTC_c0665.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_c0665.dir\\linkLibs.rsp
+        lld-link: error: undefined symbol: omp_get_max_threads
+        >>> referenced by C:\\Users\\25654\\Desktop\\Candle\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myrh5y\\OpenMPTryFlag.c:5
+        >>>               CMakeFiles/cmTC_c0665.dir/OpenMPTryFlag.c.obj:(main)
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        mingw32-make[2]: *** [CMakeFiles\\cmTC_c0665.dir\\build.make:101: cmTC_c0665.exe] Error 1
+        mingw32-make[2]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y'
+        mingw32-make[1]: *** [Makefile:126: cmTC_c0665/fast] Error 2
+        mingw32-make[1]: Leaving directory 'C:/Users/25654/Desktop/Candle/build/CMakeFiles/CMakeScratch/TryCompile-myrh5y'
+        
+      exitCode: 2
+...
