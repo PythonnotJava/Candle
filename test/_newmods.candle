@@ -1,0 +1,46 @@
+int main() {
+    print("=== File ===");
+    load std.file alias file;
+    alias h = file.open("test/_ftmp.txt", "w");
+    file.writeLine(h, "hello file");
+    file.close(h);
+    alias h2 = file.open("test/_ftmp.txt", "r");
+    alias content = file.read(h2);
+    file.close(h2);
+    print(content);
+
+    print("=== Random ===");
+    load std.random alias rnd;
+    print(rnd.randomInt(1, 100));
+    print(rnd.randomInt(1, 100));
+    print(rnd.randomDouble());
+
+    print("=== Process ===");
+    load std.process alias proc;
+    print(proc.exec("echo hello"));
+
+    print("=== Path ===");
+    load std.path alias path;
+    print(path.basename("/foo/bar/file.txt"));
+    print(path.dirname("/foo/bar/file.txt"));
+    print(path.extension("/foo/bar/file.txt"));
+    print(path.join("a", "b", "c"));
+    print(path.isAbsolute("/foo/bar"));
+
+    print("=== Set ===");
+    // Set is implemented as reflect on map
+    map s = {};
+    s.set("apple", true);
+    s.set("banana", true);
+    s.set("cherry", true);
+    load library.std.Set alias _;
+    print(s.setSize());
+    print(s.setContains("banana"));
+    s.setRemove("banana");
+    print(s.setContains("banana"));
+    print(s.setSize());
+
+    file.delete("test/_ftmp.txt");
+    print("ALL 5 NEW MODULES OK");
+    return 0;
+}

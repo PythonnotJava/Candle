@@ -1,0 +1,10 @@
+int demo() {
+    load std.math alias m;
+    return m.floor(3.14);
+}
+
+int main() {
+    print(demo());
+    print("OK");
+    return 0;
+}

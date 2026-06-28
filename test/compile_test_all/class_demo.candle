@@ -1,0 +1,45 @@
+/// class_demo.candle — 类与继承测试模块
+/// 测试: class, inherit, constructor, method, field, this, super, factory, static
+
+class Animal {
+    string name;
+    int age;
+
+    Animal(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    string describe() {
+        return name + " is " + String(age) + " years old";
+    }
+
+    int getAge() {
+        return age;
+    }
+}
+
+class Dog inherit Animal {
+    string breed;
+
+    Dog(string n, int a, string b) {
+        super(n, a);
+        breed = b;
+    }
+
+    string bark() {
+        return name + " says woof!";
+    }
+
+    string describeDog() {
+        return name + " the " + breed + ", age " + String(age);
+    }
+}
+
+factory Animal {
+    Animal puppy(string n) {
+        return Animal(n, 0);
+    }
+}
+
+export { Animal, Dog };

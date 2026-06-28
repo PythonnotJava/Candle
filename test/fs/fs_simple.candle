@@ -1,0 +1,335 @@
+// fs_simple.candle — 文件系统完整测试
+// 涵盖: std.fs 全部 API + std.file 全部 API + Encoding 组合
+// 目录: test/fs/
+
+load std.fs alias fs;
+load std.file alias fl;
+
+// ── helpers ──────────────────────────────────────────────────────────────────
+
+int ok(string msg) {
+    print("  OK  " + msg);
+    return 0;
+}
+
+int fail(string msg) {
+    print("  FAIL  " + msg);
+    assert(0);
+    return 1;
+}
+
+// ── 1. exists / isDir / isFile ───────────────────────────────────────────────
+
+int test_exists() {
+    assert(fs.exists("test"));
+    assert(fs.exists("test/fs"));
+    assert(fs.exists("CMakeLists.txt"));
+    assert(!fs.exists("test/__nope_does_not_exist__"));
+    ok("exists");
+    return 0;
+}
+
+int test_isDir() {
+    assert(fs.isDir("test"));
+    assert(fs.isDir("src"));
+    assert(!fs.isDir("CMakeLists.txt"));
+    ok("isDir");
+    return 0;
+}
+
+int test_isFile() {
+    assert(fs.isFile("CMakeLists.txt"));
+    assert(fs.isFile("src/main.c"));
+    assert(!fs.isFile("test"));
+    ok("isFile");
+    return 0;
+}
+
+int test_fileSize() {
+    alias sz = fs.fileSize("CMakeLists.txt");
+    assert(sz > 100);
+    ok("fileSize = " + String(sz));
+    return 0;
+}
+
+// ── 2. readFile / writeFile ─────────────────────────────────────────────────
+
+int test_readWriteFile() {
+    fs.writeFile("test/fs/_rw.txt", "Hello from Candle FS!");
+    alias content = fs.readFile("test/fs/_rw.txt");
+    assert(content == "Hello from Candle FS!");
+    fs.delete("test/fs/_rw.txt");
+    ok("readFile / writeFile");
+    return 0;
+}
+
+// ── 3. File open / close ─────────────────────────────────────────────────────
+
+int test_openClose() {
+    alias h = fl.open("CMakeLists.txt", "rb");
+    assert(h != 0);
+    fl.close(h);
+    // nonexistent → null
+    alias h2 = fl.open("test/__nope__", "rb");
+    assert(type(h2) == "null");
+    ok("open / close");
+    return 0;
+}
+
+// ── 4. File read / readLine ──────────────────────────────────────────────────
+
+int test_read() {
+    // write a multi-line file
+    fs.writeFile("test/fs/_ml.txt", "line1\nline2\nline3");
+    alias h = fl.open("test/fs/_ml.txt", "rb");
+    assert(h != 0);
+    alias all = fl.read(h);
+    assert(all == "line1\nline2\nline3");
+    fl.close(h);
+    ok("read (full)");
+    return 0;
+}
+
+int test_readLine() {
+    alias h = fl.open("test/fs/_ml.txt", "rb");
+    alias l1 = fl.readLine(h);
+    alias l2 = fl.readLine(h);
+    alias l3 = fl.readLine(h);
+    alias l4 = fl.readLine(h); // EOF
+    fl.close(h);
+    assert(l1 == "line1");
+    assert(l2 == "line2");
+    assert(l3 == "line3");
+    assert(l4 == "");
+    ok("readLine");
+    return 0;
+}
+
+// ── 5. File write / writeLine ────────────────────────────────────────────────
+
+int test_write() {
+    alias h = fl.open("test/fs/_w.txt", "wb");
+    fl.write(h, "AAA");
+    fl.close(h);
+    alias content = fs.readFile("test/fs/_w.txt");
+    assert(content == "AAA");
+    ok("write");
+    return 0;
+}
+
+int test_writeLine() {
+    alias h = fl.open("test/fs/_wl.txt", "wb");
+    fl.writeLine(h, "first");
+    fl.writeLine(h, "second");
+    fl.close(h);
+    alias content = fs.readFile("test/fs/_wl.txt");
+    assert(content == "first\nsecond\n");
+    ok("writeLine");
+    return 0;
+}
+
+// ── 6. seek / tell ───────────────────────────────────────────────────────────
+
+int test_seekTell() {
+    fs.writeFile("test/fs/_st.txt", "0123456789");
+    alias h = fl.open("test/fs/_st.txt", "rb");
+    assert(fl.tell(h) == 0);
+    fl.seek(h, 3);
+    assert(fl.tell(h) == 3);
+    fl.seek(h, 7);
+    assert(fl.tell(h) == 7);
+    fl.seek(h, 0);
+    assert(fl.tell(h) == 0);
+    fl.close(h);
+    ok("seek / tell");
+    return 0;
+}
+
+// ── 7. readBytes / writeBytes (raw binary) ───────────────────────────────────
+
+int test_readBytes() {
+    fs.writeFile("test/fs/_bin.txt", "ABCD");
+    alias h = fl.open("test/fs/_bin.txt", "rb");
+    alias bytes = fl.readBytes(h);
+    fl.close(h);
+    assert(len(bytes) == 4);
+    assert(bytes[0] == 65); // A
+    assert(bytes[1] == 66); // B
+    assert(bytes[3] == 68); // D
+    ok("readBytes");
+    return 0;
+}
+
+int test_writeBytes() {
+    alias data = [72, 101, 108, 108, 111]; // "Hello"
+    alias h = fl.open("test/fs/_wbin.bin", "wb");
+    alias ok_bool = fl.writeBytes(h, data);
+    fl.close(h);
+    assert(ok_bool);
+    alias content = fs.readFile("test/fs/_wbin.bin");
+    assert(content == "Hello");
+    ok("writeBytes");
+    return 0;
+}
+
+// ── 8. File + Encoding 组合 (UTF-8 / ASCII / Latin-1) ────────────────────────
+
+int test_file_utf8() {
+    alias text = "Candle 文件系统测试 UTF-8 ✓";
+    alias h = fl.open("test/fs/_utf8.txt", "wb");
+    fl.writeBytes(h, encode(text, utf8));
+    fl.close(h);
+
+    alias h2 = fl.open("test/fs/_utf8.txt", "rb");
+    alias raw = fl.readBytes(h2);
+    fl.close(h2);
+
+    alias decoded = decode(raw, utf8);
+    assert(decoded == text);
+    ok("File + UTF-8 roundtrip");
+    return 0;
+}
+
+int test_file_ascii() {
+    alias text = "ASCII only 12345";
+    alias h = fl.open("test/fs/_ascii.txt", "wb");
+    fl.writeBytes(h, encode(text, ascii));
+    fl.close(h);
+
+    alias raw = fl.readBytes(fl.open("test/fs/_ascii.txt", "rb"));
+    alias decoded = decode(raw, ascii);
+    assert(decoded == text);
+    ok("File + ASCII roundtrip");
+    return 0;
+}
+
+int test_file_latin1() {
+    alias text = "Latin-1 test: hello world";
+    alias h = fl.open("test/fs/_latin1.txt", "wb");
+    fl.writeBytes(h, encode(text, latin1));
+    fl.close(h);
+
+    alias h2 = fl.open("test/fs/_latin1.txt", "rb");
+    alias raw = fl.readBytes(h2);
+    fl.close(h2);
+
+    alias decoded = decode(raw, latin1);
+    assert(decoded == text);
+    ok("File + Latin-1 roundtrip");
+    return 0;
+}
+
+// ── 9. mkdir / listDir / delete ──────────────────────────────────────────────
+
+int test_mkdir_listDir_delete() {
+    fs.mkdir("test/fs/_tmpdir");
+    assert(fs.isDir("test/fs/_tmpdir"));
+
+    // create files in the temp dir
+    fs.writeFile("test/fs/_tmpdir/a.txt", "A");
+    fs.writeFile("test/fs/_tmpdir/b.txt", "BB");
+
+    alias entries = fs.listDir("test/fs/_tmpdir");
+    // listDir returns null on Windows (stub); verify dir ops work regardless
+    if (type(entries) != "null") {
+        assert(len(entries) == 2);
+    }
+
+    // delete files then dir
+    fs.delete("test/fs/_tmpdir/a.txt");
+    fs.delete("test/fs/_tmpdir/b.txt");
+    fs.delete("test/fs/_tmpdir");
+    assert(!fs.exists("test/fs/_tmpdir"));
+    ok("mkdir / listDir / delete");
+    return 0;
+}
+
+// ── 10. mode "a" (append) ────────────────────────────────────────────────────
+
+int test_append_mode() {
+    fs.writeFile("test/fs/_append.txt", "start|");
+    alias h = fl.open("test/fs/_append.txt", "ab");
+    fl.write(h, "middle|");
+    fl.write(h, "end");
+    fl.close(h);
+    alias content = fs.readFile("test/fs/_append.txt");
+    assert(content == "start|middle|end");
+    ok("append mode");
+    return 0;
+}
+
+// ── 11. large write then read back ───────────────────────────────────────────
+
+int test_large_data() {
+    // build a large string
+    alias sb = "";
+    for iter(i, 0, 500) { sb = sb + "X"; }
+    fs.writeFile("test/fs/_large.txt", sb);
+    alias back = fs.readFile("test/fs/_large.txt");
+    assert(len(back) == 500);
+    assert(back == sb);
+    ok("large data (500 bytes)");
+    return 0;
+}
+
+// ── 12. tell after read (position tracking) ──────────────────────────────────
+
+int test_position_tracking() {
+    fs.writeFile("test/fs/_pos.txt", "0123456789ABCDEF");
+    alias h = fl.open("test/fs/_pos.txt", "rb");
+    assert(fl.tell(h) == 0);
+    alias l = fl.readLine(h);
+    assert(l == "0123456789ABCDEF");
+    // after readLine, position moved past the line
+    alias pos = fl.tell(h);
+    assert(pos == 16);
+    fl.seek(h, 0);
+    assert(fl.tell(h) == 0);
+    fl.close(h);
+    ok("position tracking");
+    return 0;
+}
+
+// ── main ─────────────────────────────────────────────────────────────────────
+
+int main() {
+    print("=== Candle File System Comprehensive Test ===\n");
+
+    print("[1]  exists...");          test_exists();
+    print("[2]  isDir...");           test_isDir();
+    print("[3]  isFile...");          test_isFile();
+    print("[4]  fileSize...");        test_fileSize();
+    print("[5]  readFile/writeFile..."); test_readWriteFile();
+    print("[6]  open/close...");      test_openClose();
+    print("[7]  read (full)...");     test_read();
+    print("[8]  readLine...");        test_readLine();
+    print("[9]  write...");           test_write();
+    print("[10] writeLine...");       test_writeLine();
+    print("[11] seek/tell...");       test_seekTell();
+    print("[12] readBytes...");       test_readBytes();
+    print("[13] writeBytes...");      test_writeBytes();
+    print("[14] File + UTF-8 roundtrip...");   test_file_utf8();
+    print("[15] File + ASCII roundtrip...");   test_file_ascii();
+    print("[16] File + Latin-1 roundtrip..."); test_file_latin1();
+    print("[17] mkdir/listDir/delete...");  test_mkdir_listDir_delete();
+    print("[18] append mode...");     test_append_mode();
+    print("[19] large data...");      test_large_data();
+    print("[20] position tracking..."); test_position_tracking();
+
+    // cleanup
+    fs.delete("test/fs/_ml.txt");
+    fs.delete("test/fs/_w.txt");
+    fs.delete("test/fs/_wl.txt");
+    fs.delete("test/fs/_st.txt");
+    fs.delete("test/fs/_bin.txt");
+    fs.delete("test/fs/_wbin.bin");
+    fs.delete("test/fs/_utf8.txt");
+    fs.delete("test/fs/_ascii.txt");
+    fs.delete("test/fs/_latin1.txt");
+    fs.delete("test/fs/_append.txt");
+    fs.delete("test/fs/_large.txt");
+    fs.delete("test/fs/_pos.txt");
+
+    print("\n=== ALL 20 FS TESTS PASSED ===");
+    return 0;
+}

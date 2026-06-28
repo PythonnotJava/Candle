@@ -1,0 +1,25 @@
+class A { }
+class B inherit A { }
+
+int main() {
+    // V_CLASS checks — class node itself
+    print(is(B, "A"));       // true
+    print(is(B, "Object"));  // true
+    print(is(A, "Object"));  // true
+    print(is(B, "B"));       // true
+    print(is(A, "B"));       // false
+
+    // V_OBJECT checks — instances (unchanged)
+    alias b = B();
+    print(is(b, "B"));
+    print(is(b, "A"));
+    print(is(b, "Object"));
+
+
+    print("ISA_CLASS OK");
+    print(b.hashCode());
+    print(b.toString());
+    print(b.type());
+    return 0;
+}
+

@@ -1,0 +1,189 @@
+// lambda_test.candle - anonymous function AOT-compatible test
+
+bool checkEq(int a, int b) {
+    if (a == b) { print("  PASS"); return true; }
+    print("  FAIL");
+    return false;
+}
+
+// === 1. typed params + expr body ===
+int test_typed_expr() {
+    print("=== 1. typed expr body ===");
+
+    alias f1 = (int x) => x * 2;
+    checkEq(f1(21), 42);
+
+    alias f2 = (int a, int b) => a + b;
+    checkEq(f2(30, 12), 42);
+
+    alias f3 = (double x) => x * 2.0;
+    checkEq(f3(21.0), 42);
+
+    alias f4 = (int a, int b, int c) => a + b + c;
+    checkEq(f4(10, 12, 20), 42);
+
+    alias f5 = (bool x) => !x;
+    if (f5(false) == true) { print("  PASS"); }
+    else { print("  FAIL: bool lambda"); }
+
+    alias f6 = (string s) => s;
+    print("  " + f6("ok"));
+
+    return 0;
+}
+
+// === 2. untyped params + expr body ===
+int test_untyped_expr() {
+    print("=== 2. untyped expr body ===");
+
+    alias f1 = x => x + 1;
+    checkEq(f1(41), 42);
+
+    alias f2 = (x, y) => x + y;
+    checkEq(f2(20, 22), 42);
+
+    alias f3 = (x, y, z) => x + y + z;
+    checkEq(f3(10, 12, 20), 42);
+
+    alias f4 = a => a * a;
+    checkEq(f4(7), 49);
+
+    return 0;
+}
+
+// === 3. typed params + block body ===
+int test_typed_block() {
+    print("=== 3. typed block body ===");
+
+    alias f1 = (int x) {
+        if (x > 0) { return x * 2; }
+        return 0;
+    };
+    checkEq(f1(21), 42);
+    checkEq(f1(-1), 0);
+
+    alias f2 = (int a, int b) {
+        alias sum = a + b;
+        return sum;
+    };
+    checkEq(f2(20, 22), 42);
+
+    alias f3 = (int n) {
+        alias result = 1;
+        for iter(i, 1, n + 1) {
+            result = result * i;
+        }
+        return result;
+    };
+    checkEq(f3(5), 120);
+
+    return 0;
+}
+
+// === 4. arrow + block ===
+int test_arrow_block() {
+    print("=== 4. arrow + block ===");
+
+    alias f1 = (int x) => {
+        alias r = x * 2;
+        return r;
+    };
+    checkEq(f1(21), 42);
+
+    return 0;
+}
+
+// === 5. inline closure ===
+int test_inline_closure() {
+    print("=== 5. inline closure ===");
+
+    alias n = 10;
+    alias add10 = (int x) => x + n;
+    checkEq(add10(32), 42);
+
+    alias m = 7;
+    alias mul7 = (int x) { return x * m; };
+    checkEq(mul7(6), 42);
+
+    return 0;
+}
+
+// === 6. void lambda ===
+int test_void_lambda() {
+    print("=== 6. void lambda ===");
+    alias printer = (string s) => print(s);
+    printer("  hello from void lambda");
+    return 0;
+}
+
+// === 7. no-parameter lambda ===
+int test_no_params() {
+    print("=== 7. no-parameter lambdas ===");
+
+    alias get42 = () => 42;
+    checkEq(get42(), 42);
+
+    alias getHello = () { return "world"; };
+    print("  " + getHello());
+
+    return 0;
+}
+
+// === 8. variable assignment ===
+int test_lambda_variable() {
+    print("=== 8. variable assignment ===");
+
+    alias fn = (int x) => x * 2;
+    checkEq(fn(21), 42);
+
+    alias fn3 = (int x) => x + 40;
+    checkEq(fn3(2), 42);
+
+    return 0;
+}
+
+// === 9. conditional lambda ===
+int test_conditional_lambda() {
+    print("=== 9. conditional lambda ===");
+
+    alias fn = (int x) => x + 1;
+    if (true) {
+        fn = (int x) => x * 2;
+    }
+    checkEq(fn(21), 42);
+
+    return 0;
+}
+
+// === 10. nested scope closure ===
+int test_nested_scope() {
+    print("=== 10. nested scope closure ===");
+
+    alias outer = 10;
+    alias outer2 = 32;
+    alias fn = (int x) => x + outer + outer2;
+    checkEq(fn(0), 42);
+
+    return 0;
+}
+
+// === main ===
+int main() {
+    print("Lambda Test Suite");
+    print("=================");
+
+    test_typed_expr();
+    test_untyped_expr();
+    test_typed_block();
+    test_arrow_block();
+    test_inline_closure();
+    test_void_lambda();
+    test_no_params();
+    test_lambda_variable();
+    test_conditional_lambda();
+    test_nested_scope();
+
+    print("");
+    print("=== ALL LAMBDA TESTS COMPLETE ===");
+    return 0;
+}

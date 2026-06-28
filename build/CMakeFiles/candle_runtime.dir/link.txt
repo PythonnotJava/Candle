@@ -1,2 +1,0 @@
-D:\SDK\LLVM\bin\llvm-ar.exe qc candle_runtime.lib CMakeFiles/candle_runtime.dir/src/vendor/cjson/cJSON.c.obj CMakeFiles/candle_runtime.dir/src/vendor/mongoose/mongoose.c.obj
-D:\SDK\LLVM\bin\llvm-ranlib.exe candle_runtime.lib

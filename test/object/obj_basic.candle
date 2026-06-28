@@ -1,0 +1,8 @@
+class Bar { int x; }
+int main() {
+    alias b = Bar();
+    b.x = 42;
+    print(b.x);
+    print("OK");
+    return 0;
+}

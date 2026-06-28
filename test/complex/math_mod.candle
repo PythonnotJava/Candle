@@ -1,0 +1,3 @@
+load std.math alias math;
+export { getPI };
+double getPI() { return math.PI; }

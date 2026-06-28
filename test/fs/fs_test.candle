@@ -1,0 +1,35 @@
+/// test.fs.candle — std.fs 文件系统测试
+load std.fs;
+
+int main() {
+    print("=== FS Test ===");
+
+    // exists
+    print(fs.exists("test"));
+    print(fs.exists("test/nonexistent_xyz"));
+
+    // isDir / isFile
+    print(fs.isDir("test"));
+    print(fs.isFile("test/run_tests.py"));
+
+    // fileSize
+    print(fs.fileSize("test/run_tests.py"));
+
+    // readFile / writeFile
+    fs.writeFile("test/fs_test_tmp.txt", "Hello Candle FS!");
+    alias content = fs.readFile("test/fs_test_tmp.txt");
+    print(content);
+
+    // mkdir / listDir / delete
+    fs.mkdir("test/fs_test_dir");
+    print(fs.isDir("test/fs_test_dir"));
+    alias files = fs.listDir("test/fs_test_dir");
+    print(len(files));
+    fs.delete("test/fs_test_dir");
+
+    // clean up
+    fs.delete("test/fs_test_tmp.txt");
+
+    print("=== FS ALL OK ===");
+    return 0;
+}

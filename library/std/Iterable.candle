@@ -1,0 +1,10 @@
+/// Iterable.candle — 迭代器基类（接口契约）
+/// 所有可迭代类型（list/map/string/用户类）共享的方法签名
+/// 编译器自动加载，无需 import
+
+class Iterable {
+    void forEach(Function fn);
+    bool isEmpty();
+    bool isNotEmpty();
+    list toList();
+}

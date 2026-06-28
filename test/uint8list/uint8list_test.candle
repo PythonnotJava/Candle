@@ -1,0 +1,33 @@
+/// test_uint8list.candle — Uint8List 测试
+load library.std.Uint8List alias ub;
+
+int main() {
+    alias bytes = ub.Uint8List();
+    bytes.init(5);
+    bytes.set(0, 65);
+    bytes.set(1, 66);
+    bytes.set(4, 255);
+
+    print(bytes.length());
+    print(bytes.get(0));
+    print(bytes.get(1));
+    print(bytes.get(4));
+    print(bytes.isEmpty());
+
+    alias b2 = ub.Uint8List();
+    b2.fromList([10, 20, 30]);
+    print(b2.length());
+    print(b2.get(1));
+
+    alias b3 = ub.Uint8List();
+    b3.fromString("AB");
+    print(b3.length());
+    print(b3.get(0));
+    print(b3.get(1));
+
+    bytes.fill(42);
+    print(bytes.get(0));
+
+    print("UINT8LIST TESTS PASSED");
+    return 0;
+}

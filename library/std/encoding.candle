@@ -1,0 +1,29 @@
+/// encoding.candle — std.encoding 模块接口文档
+/// 自动注入，无需 load。提供 Encoding 常量（UTF8 / ASCII / LATIN1）及编解码函数。
+/// 
+/// 全局常量（内置，零配置可用）：
+///   utf8   = "UTF-8"
+///   ascii  = "ASCII"
+///   latin1 = "Latin-1"
+///
+/// Encoding 模块内容：
+///   Encoding.UTF8   → "UTF-8"
+///   Encoding.ASCII  → "ASCII"
+///   Encoding.LATIN1 → "Latin-1"
+///   Encoding.encode(str, encoding) → list<int>       // 字符串 → 字节列表
+///   Encoding.decode(bytes, encoding) → string         // 字节列表 → 字符串
+///
+/// 使用示例：
+///   alias bytes = encode("Hello", utf8);
+///   alias text  = decode(bytes, utf8);
+///   print(text);  // "Hello"
+///   
+///   // 文件 + 编码组合使用
+///   load std.file alias f;
+///   alias h = f.open("data.txt", "rb");
+///   alias raw = f.readBytes(h);
+///   alias content = decode(raw, utf8);
+///   f.close(h);
+
+// 导出空命名空间（副作用模块：内容通过编译器自动注入全局）
+export { };

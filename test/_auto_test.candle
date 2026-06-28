@@ -1,0 +1,27 @@
+/// No load needed — stdlib types are auto-loaded
+int main() {
+    // Int
+    print(42.isEven());
+    print(42.isOdd());
+    print((-7).abs());
+
+    // Double
+    print(3.14.isPositive());
+    print((-2.5).abs());
+    print(2.0.squared());
+
+    // String
+    print("hello".toUpper());
+    print("  trim  ".trim());
+    print("candle".contains("and"));
+
+    // List
+    list xs = [1, 2, 3];
+    print(xs.map((x) => x * 2).join(","));
+
+    // Bool
+    print(true.toString());
+
+    print("AUTO-LOAD OK");
+    return 0;
+}

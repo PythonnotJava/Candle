@@ -1,4 +1,4 @@
-"""
+""""
 Candle Test Runner — 自动化回归测试
 用法: python test/run_tests.py
 """
@@ -29,6 +29,12 @@ tests = [
     ("test_all",        "test/test_all/test_all.candle",             "ALL KEYWORD TESTS PASSED"),
     ("time",            "test/time/time_test.candle",                 "STD.TIME TESTS PASSED"),
     ("parallel_bench",  "test/parallel_bench/parallel_bench.candle",   "PARALLEL BENCH PASSED"),
+    ("encoding",        "test/encoding/encoding_test.candle",         "ALL ENCODING TESTS PASSED"),
+    ("file_encoding",   "test/encoding/file_encoding_test.candle",    "FILE + ENCODING TEST PASSED"),
+    ("fs_simple",       "test/fs/fs_simple.candle",                  "ALL 20 FS TESTS PASSED"),
+    ("tuple",           "test/tuple/tuple_test.candle",               "ALL TUPLE TESTS PASSED"),
+    ("byte_encoding",   "test/byte/byte_test.candle",                 "ALL BYTE+ENCODING TESTS PASSED"),
+    ("win32_dll",       "test/dll/win32_test.candle",                 "ALL WIN32 DLL TESTS PASSED"),
 ]
 
 passed = 0

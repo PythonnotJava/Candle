@@ -1,0 +1,50 @@
+// file_encoding_test.candle — File + Encoding combined test
+// Tests: read/write with UTF-8 encoding via raw bytes
+
+int main() {
+    print("=== File + Encoding Test ===");
+    
+    // Write raw bytes to file
+    alias content = "Hello, Candle! UTF-8 test.";
+    alias bytes = encode(content, utf8);
+    
+    load std.file alias fl;
+    alias h = fl.open("test/encoding/temp_test.txt", "wb");
+    assert(h != 0);
+    
+    fl.writeBytes(h, bytes);
+    fl.close(h);
+    print("  Written: " + String(len(bytes)) + " bytes");
+    
+    // Read raw bytes back
+    alias h2 = fl.open("test/encoding/temp_test.txt", "rb");
+    assert(h2 != 0);
+    
+    alias read_bytes = fl.readBytes(h2);
+    fl.close(h2);
+    print("  Read: " + String(len(read_bytes)) + " bytes");
+    
+    // Decode and verify
+    alias decoded = decode(read_bytes, utf8);
+    assert(decoded == content);
+    print("  Decoded matches original: " + decoded);
+    
+    // Test ASCII roundtrip through file
+    alias ascii_text = "ASCII only test 123";
+    alias ascii_bytes = encode(ascii_text, ascii);
+    
+    alias h3 = fl.open("test/encoding/temp_ascii.txt", "wb");
+    fl.writeBytes(h3, ascii_bytes);
+    fl.close(h3);
+    
+    alias h4 = fl.open("test/encoding/temp_ascii.txt", "rb");
+    alias read_ascii_bytes = fl.readBytes(h4);
+    fl.close(h4);
+    
+    alias decoded_ascii = decode(read_ascii_bytes, ascii);
+    assert(decoded_ascii == ascii_text);
+    print("  ASCII file roundtrip OK");
+    
+    print("=== FILE + ENCODING TEST PASSED ===");
+    return 0;
+}

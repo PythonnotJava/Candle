@@ -1,0 +1,127 @@
+/// Byte + Encoding 综合测试
+/// 覆盖: byte bit ops, hex/bin display, hex/base64 encode/decode, encoding globals
+
+int main() {
+    alias ok = 1;
+
+    // ═══════════════════════════════════════════════
+    // Section 1: Byte bit operations
+    // ═══════════════════════════════════════════════
+    print("=== Byte bit ops ===");
+
+    // byteAnd
+    if (5.byteAnd(3) != 1) { print("FAIL: byteAnd"); ok = 0; }
+    print(5.byteAnd(3));  // 1
+
+    // byteOr
+    if (5.byteOr(3) != 7) { print("FAIL: byteOr"); ok = 0; }
+    print(5.byteOr(3));  // 7
+
+    // byteXor
+    if (5.byteXor(3) != 6) { print("FAIL: byteXor"); ok = 0; }
+    print(5.byteXor(3));  // 6
+
+    // byteNot
+    if (0.byteNot() != 255) { print("FAIL: byteNot(0)"); ok = 0; }
+    print(0.byteNot());  // 255
+    if (255.byteNot() != 0) { print("FAIL: byteNot(255)"); ok = 0; }
+
+    // byteShl
+    if (1.byteShl(3) != 8) { print("FAIL: byteShl"); ok = 0; }
+    print(1.byteShl(3));  // 8
+
+    // byteShr
+    if (8.byteShr(3) != 1) { print("FAIL: byteShr"); ok = 0; }
+    print(8.byteShr(3));  // 1
+
+    // isBitSet
+    if (!5.isBitSet(0)) { print("FAIL: isBitSet 0"); ok = 0; }
+    if (5.isBitSet(1))  { print("FAIL: isBitSet 1 should be 0"); ok = 0; }
+    if (!5.isBitSet(2)) { print("FAIL: isBitSet 2"); ok = 0; }
+
+    // toByte clamp
+    if (300.toByte() != 44) { print("FAIL: toByte(300)"); ok = 0; }
+    print(300.toByte());  // 44  (300 % 256)
+    if ((-5).toByte() != 0) { print("FAIL: toByte(-5)"); ok = 0; }
+
+    // ═══════════════════════════════════════════════
+    // Section 2: Hex display
+    // ═══════════════════════════════════════════════
+    print("=== Hex/Bin display ===");
+
+    alias h0 = 0.toHex();
+    if (h0 != "00") { print("FAIL: 0.toHex"); ok = 0; }
+    print(h0);  // 00
+
+    alias h255 = 255.toHex();
+    if (h255 != "ff") { print("FAIL: 255.toHex"); ok = 0; }
+    print(h255);  // ff
+
+    alias h42 = 42.toHex();
+    if (h42 != "2a") { print("FAIL: 42.toHex"); ok = 0; }
+    print(h42);  // 2a
+
+    alias b5 = 5.toBin();
+    if (b5 != "00000101") { print("FAIL: 5.toBin"); ok = 0; }
+    print(b5);  // 00000101
+
+    alias b170 = 170.toBin();
+    if (b170 != "10101010") { print("FAIL: 170.toBin"); ok = 0; }
+    print(b170);  // 10101010
+
+    // ═══════════════════════════════════════════════
+    // Section 3: Hex encode/decode
+    // ═══════════════════════════════════════════════
+    print("=== Hex encode/decode ===");
+
+    alias raw = [0x48, 0x65, 0x6c, 0x6c, 0x6f];  // "Hello"
+    alias hex = hexEncode(raw);
+    if (hex != "48656c6c6f") { print("FAIL: hexEncode"); ok = 0; }
+    print(hex);  // 48656c6c6f
+
+    alias back = hexDecode(hex);
+    if (len(back) != 5) { print("FAIL: hexDecode len"); ok = 0; }
+    print(len(back));  // 5
+    if (back[0] != 72 || back[1] != 101 || back[4] != 111) {
+        print("FAIL: hexDecode values"); ok = 0;
+    }
+
+    // Chinese text roundtrip
+    alias cn_raw = encode("你好", utf8);
+    alias cn_hex = hexEncode(cn_raw);
+    print(cn_hex);  // e4bda0e5a5bd
+    alias cn_dec = hexDecode(cn_hex);
+    if (decode(cn_dec, utf8) != "你好") { print("FAIL: hex roundtrip Chinese"); ok = 0; }
+
+    // ═══════════════════════════════════════════════
+    // Section 4: Base64 encode/decode
+    // ═══════════════════════════════════════════════
+    print("=== Base64 encode/decode ===");
+
+    alias b64_raw = [0x4d, 0x61, 0x6e];  // "Man"
+    alias b64 = base64Encode(b64_raw);
+    if (b64 != "TWFu") { print("FAIL: base64Encode"); ok = 0; }
+    print(b64);  // TWFu
+
+    alias b64_back = base64Decode(b64);
+    if (len(b64_back) != 3) { print("FAIL: base64Decode len"); ok = 0; }
+
+    // Hello World in base64
+    alias hw_raw = encode("Hello", utf8);
+    alias hw_b64 = base64Encode(hw_raw);
+    print(hw_b64);  // SGVsbG8=
+    alias hw_back = decode(base64Decode(hw_b64), utf8);
+    if (hw_back != "Hello") { print("FAIL: base64 roundtrip"); ok = 0; }
+    print(hw_back);  // Hello
+
+    // ═══════════════════════════════════════════════
+    // Section 5: Encoding globals — zero config
+    // ═══════════════════════════════════════════════
+    print("=== Encoding globals ===");
+    alias enc_raw = encode("Test", utf8);
+    alias enc_dec = decode(enc_raw, utf8);
+    if (enc_dec != "Test") { print("FAIL: encode/decode globals"); ok = 0; }
+
+    if (ok) { print("ALL BYTE+ENCODING TESTS PASSED"); }
+    return 0;
+}

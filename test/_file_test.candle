@@ -1,0 +1,15 @@
+/// std.file test
+int main() {
+    load std.file alias file;
+    alias h = file.open("test/_ftmp.txt", "w");
+    file.writeLine(h, "hello Candle file");
+    file.close(h);
+
+    alias h2 = file.open("test/_ftmp.txt", "r");
+    alias content = file.read(h2);
+    file.close(h2);
+    print(content);
+    file.delete("test/_ftmp.txt");
+    print("FILE OK");
+    return 0;
+}

@@ -1,0 +1,8 @@
+int doubler(int x) {
+    alias fn = (int a) => a * 2;
+    return fn(x);
+}
+int main() {
+    print(doubler(21));
+    return 0;
+}

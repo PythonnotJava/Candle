@@ -1,0 +1,8 @@
+class Foo { }
+int main() {
+    alias f = Foo();
+    print(f.toString());
+    print(f.type());
+    print("OK");
+    return 0;
+}

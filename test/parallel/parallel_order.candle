@@ -1,0 +1,25 @@
+// test/parallel/parallel_order.candle — 验证真正的并行：输出顺序应随机
+
+int main() {
+    print("=== True Parallel Test ===");
+    print("If threads are truly parallel, A/B/C/D should appear in random order.");
+
+    // 跑 5 轮，观察输出顺序是否变化
+    for iter(round, 1, 6) {
+        print("--- Round " + String(round) + " ---");
+        parallel {
+            section{ print("  A"); }
+            section{ print("  B"); }
+            section{ print("  C"); }
+            section{ print("  D"); }
+            section{ print("  E"); }
+            section{ print("  F"); }
+            section{ print("  G"); }
+            section{ print("  H"); }
+        }
+    }
+
+    print("=== Done ===");
+    print("Check above: if A/B/C/D order varies, parallel is REAL.");
+    return 0;
+}

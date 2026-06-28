@@ -1,0 +1,5 @@
+# ── Boehm GC (interpreter only; transpiled programs use plain malloc) ─────
+# Temporarily disabled — rebuild GC lib separately
+# set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
+# target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
+# target_link_libraries(candlec PRIVATE "${GC_ROOT}/build/gc.lib")

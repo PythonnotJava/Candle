@@ -1,24 +1,87 @@
-/// Map — Candle 映射类型标准库（reflect 扩展）
-/// 方法体用纯 Candle 实现。运行时优先 reflect → 回退 C 内置 map_method。
+/// Map.candle — Map 类型标准库（reflect 扩展）
+/// C 内置方法（回退）: set/get/remove/containsKey/keys/values/size/isEmpty/clear
 ///
-/// 使用: load library.std.Map 后即可在任意 map 值上调用
+/// 使用: load library.std.Map 后即可在任意 map 值上调用高阶方法
 
 export { };
 
 reflect map {
-    int size() {
-        return len(self);
+    /// 批量合并另一个 map 的键值对
+    void putAll(map other) {
+        list ks = other.keys();
+        for iter(i, 0, len(ks)) {
+            string k = ks[i];
+            self.set(k, other.get(k));
+        }
     }
 
-    bool isEmpty() {
-        return len(self) == 0;
+    /// 仅当键不存在时才放入
+    void putIfAbsent(string key, string val) {
+        if (!self.containsKey(key)) {
+            self.set(key, val);
+        }
     }
 
-    bool isNotEmpty() {
-        return len(self) > 0;
+    /// 若键存在则通过函数更新其值，否则插入默认值
+    void update(string key, string defaultVal, Function updater) {
+        if (self.containsKey(key)) {
+            self.set(key, updater(self.get(key)));
+        } else {
+            self.set(key, defaultVal);
+        }
     }
 
-    bool containsKey(string key) {
-        return self[key] != null;
+    /// 获取键列表
+    list keyList() { return self.keys(); }
+
+    /// 获取值列表
+    list valueList() { return self.values(); }
+
+    /// 对每个键值对执行回调 fn(key, value)
+    void forEach(Function fn) {
+        list ks = self.keys();
+        for iter(i, 0, len(ks)) {
+            string k = ks[i];
+            fn(k, self.get(k));
+        }
+    }
+
+    /// 映射值，返回新 map（键不变）
+    map mapValues(Function fn) {
+        map result = {};
+        list ks = self.keys();
+        for iter(i, 0, len(ks)) {
+            string k = ks[i];
+            result.set(k, fn(self.get(k)));
+        }
+        return result;
+    }
+
+    /// 过滤键值对，fn(key, value) → bool
+    map filterEntries(Function predicate) {
+        map result = {};
+        list ks = self.keys();
+        for iter(i, 0, len(ks)) {
+            string k = ks[i];
+            if (predicate(k, self.get(k))) {
+                result.set(k, self.get(k));
+            }
+        }
+        return result;
+    }
+
+    /// 移除满足条件的键
+    void removeWhere(Function predicate) {
+        list toRemove = [];
+        list ks = self.keys();
+        for iter(i, 0, len(ks)) {
+            string k = ks[i];
+            if (predicate(k, self.get(k))) {
+                toRemove.push(k);
+            }
+        }
+        for iter(i, 0, len(toRemove)) {
+            self.remove(toRemove[i]);
+        }
     }
 }

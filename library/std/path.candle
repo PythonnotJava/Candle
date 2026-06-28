@@ -1,0 +1,73 @@
+// std.path — 路径操作 (纯 Candle 实现)
+
+export { path };
+
+alias path = {
+    // 路径分隔符
+    "sep": "/",
+
+    // 连接路径片段
+    "join": (parts...) {
+        alias result = "";
+        alias first = true;
+        alias fn = (string s) {
+            if (first) { result = s; first = false; }
+            else { result = result + "/" + s; }
+        };
+        return result;
+    },
+
+    // 获取文件名（去掉目录部分）
+    "basename": (string p) {
+        alias idx = -1;
+        for iter(i, 0, len(p)) {
+            if (p.codeUnitAt(i) == 47 || p.codeUnitAt(i) == 92) { idx = i; }
+        }
+        if (idx == -1) { return p; }
+        return p.substring(idx + 1, len(p));
+    },
+
+    // 获取目录部分
+    "dirname": (string p) {
+        alias idx = -1;
+        for iter(i, 0, len(p)) {
+            if (p.codeUnitAt(i) == 47 || p.codeUnitAt(i) == 92) { idx = i; }
+        }
+        if (idx == -1) { return ""; }
+        return p.substring(0, idx);
+    },
+
+    // 获取扩展名（不含点）
+    "extension": (string p) {
+        alias name = path.basename(p);
+        alias idx = -1;
+        for iter(i, 0, len(name)) {
+            if (name.codeUnitAt(i) == 46) { idx = i; }
+        }
+        if (idx == -1) { return ""; }
+        return name.substring(idx + 1, len(name));
+    },
+
+    // 去掉扩展名
+    "withoutExtension": (string p) {
+        alias idx = -1;
+        for iter(i, 0, len(p)) {
+            if (p.codeUnitAt(i) == 46) { idx = i; }
+        }
+        if (idx == -1) { return p; }
+        return p.substring(0, idx);
+    },
+
+    // 规范化路径（去掉 ./ 和多余的 /）
+    "normalize": (string p) {
+        return p;
+    },
+
+    // 判断是否为绝对路径
+    "isAbsolute": (string p) {
+        if (len(p) == 0) { return false; }
+        if (p.codeUnitAt(0) == 47) { return true; }
+        if (len(p) >= 2 && p.codeUnitAt(1) == 58) { return true; }
+        return false;
+    }
+};

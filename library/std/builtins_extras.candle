@@ -1,0 +1,28 @@
+/// builtins_extras.candle — Python-style free functions（自动注入全局）
+/// zip / enumerate — 不需要 load，编译器自动注入
+
+list zip(list a, list b) {
+    int n = len(a);
+    if (len(b) < n) { n = len(b); }
+    list result = [];
+    for iter(i, 0, n) {
+        result.push([a[i], b[i]]);
+    }
+    return result;
+}
+
+list enumerate(list xs) {
+    list result = [];
+    for iter(i, 0, len(xs)) {
+        result.push([i, xs[i]]);
+    }
+    return result;
+}
+
+list enumerateFrom(list xs, int start) {
+    list result = [];
+    for iter(i, 0, len(xs)) {
+        result.push([i + start, xs[i]]);
+    }
+    return result;
+}

@@ -1,0 +1,38 @@
+int main() {
+    // chr / ord
+    print(chr(65));
+    print(chr(66));
+    print(ord("A"));
+    print(ord("B"));
+
+    // is()
+    print(is(42, "int"));
+    print(is(3.14, "double"));
+    print(is("hi", "string"));
+    print(is(true, "bool"));
+    print(is(null, "null"));
+    print(is(print, "function"));
+    print(is([1,2], "list"));
+    print(is(42, "string"));
+
+    // zip
+    alias z = zip([1,2,3], ["a","b","c"]);
+    print(z[0][0]);
+    print(z[0][1]);
+    print(z[2][0]);
+    print(z[2][1]);
+
+    // enumerate
+    alias e = enumerate(["x","y","z"]);
+    print(e[0][0]);
+    print(e[0][1]);
+    print(e[2][0]);
+    print(e[2][1]);
+
+    // sorted
+    alias s = [3, 1, 4, 1, 5, 9].sorted();
+    print(s.join(","));
+
+    print("BUILTINS OK");
+    return 0;
+}

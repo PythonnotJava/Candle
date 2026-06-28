@@ -34,6 +34,9 @@ CMakeFiles/candlec.dir/src/builtins/builtins.c.obj: \
  D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/stdarg.h \
  D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/setjmp.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc_version.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc_config_macros.h \
  C:/Users/25654/Desktop/Candle/src/ast.h \
  C:/Users/25654/Desktop/Candle/src/token.h \
  C:/Users/25654/Desktop/Candle/src/interp.h \

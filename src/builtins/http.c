@@ -48,7 +48,7 @@ static Value v_map_new(void) {
     v.as.map = m;
     return v;
 }
-// ──────────────────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
 
 static int g_ws_init = 0;
 static void ensure_winsock(void) {
@@ -57,53 +57,61 @@ static void ensure_winsock(void) {
 #endif
 }
 
-static Value http_get(int argc, Value *argv) {
-    if (argc < 1 || argv[0].type != V_STRING || !argv[0].as.s)
-        return v_string_ptr(_strdup(""));
-    ensure_winsock();
-
-    const char *url = argv[0].as.s;
-    const char *hs = (*url == 'h' && url[1] == 't') ? url + 7 : url;
+/* ── shared helper: parse host/port/path, connect, return socket ──────────── */
+static int http_connect(const char *url, char *host_out, size_t hostsz,
+                        char *path_out, size_t pathsz, int *port_out) {
+    int is_https = (url[0] == 'h' && url[1] == 't' && url[2] == 't' && url[3] == 'p' && url[4] == 's');
+    const char *hs = (url[0] == 'h' && url[4] == ':') ? url + 7 : url;
+    if (is_https) { hs = url + 8; }  /* strip "https://" */
 
     const char *ps = strchr(hs, '/');
     const char *cs = strchr(hs, ':');
-    char host[256] = {0}, path[512] = "/";
-    int port = 80;
+    int port = is_https ? 443 : 80;
 
-    if (cs && (!ps || cs < ps)) { size_t n = cs-hs; if(n>=256)n=255; memcpy(host,hs,n); port=atoi(cs+1); }
-    else if (ps) { size_t n = ps-hs; if(n>=256)n=255; memcpy(host,hs,n); }
-    else { size_t n = strlen(hs); if(n>=256)n=255; memcpy(host,hs,n); }
-    if (ps) { size_t n = strlen(ps); if(n>=512)n=511; memcpy(path,ps,n); }
+    if (cs && (!ps || cs < ps)) {
+        size_t n = cs - hs; if (n >= hostsz) n = hostsz-1;
+        memcpy(host_out, hs, n); host_out[n] = 0;
+        port = atoi(cs + 1);
+    } else if (ps) {
+        size_t n = ps - hs; if (n >= hostsz) n = hostsz-1;
+        memcpy(host_out, hs, n); host_out[n] = 0;
+    } else {
+        size_t n = strlen(hs); if (n >= hostsz) n = hostsz-1;
+        memcpy(host_out, hs, n); host_out[n] = 0;
+    }
+    if (ps) { size_t n = strlen(ps); if (n >= pathsz) n = pathsz-1; memcpy(path_out, ps, n); path_out[n] = 0; }
+    else { path_out[0] = '/'; path_out[1] = 0; }
 
-    struct hostent *he = gethostbyname(host);
-    if (!he) return v_string_ptr(_strdup(""));
+    *port_out = port;
+    struct hostent *he = gethostbyname(host_out);
+    if (!he) return -1;
 
     int s = (int)socket(AF_INET, SOCK_STREAM, 0);
-    if (s < 0) return v_string_ptr(_strdup(""));
+    if (s < 0) return -1;
 
-    struct sockaddr_in a; memset(&a,0,sizeof(a));
+    struct sockaddr_in a; memset(&a, 0, sizeof(a));
     a.sin_family = AF_INET; a.sin_port = htons((u_short)port);
     memcpy(&a.sin_addr, he->h_addr, he->h_length);
 
-    if (connect(s, (struct sockaddr*)&a, sizeof(a)) < 0) { closesocket(s); return v_string_ptr(_strdup("")); }
+    if (connect(s, (struct sockaddr*)&a, sizeof(a)) < 0) { closesocket(s); return -1; }
+    return s;
+}
 
-    char req[1024];
-    snprintf(req, sizeof(req), "GET %s HTTP/1.0\r\nHost: %s\r\nConnection: close\r\n\r\n", path, host);
-    send(s, req, (int)strlen(req), 0);
-
-    size_t cap=8192, total=0;
-    char *body = malloc(cap); body[0]=0;
+/* ── shared: read response, strip headers, return body ──────────────────── */
+static Value http_read_body(int s) {
+    size_t cap = 8192, total = 0;
+    char *body = malloc(cap); body[0] = 0;
     char chunk[4096];
-    int in_body=0;
+    int in_body = 0;
 
     while (1) {
-        int n = recv(s, chunk, sizeof(chunk)-1, 0);
-        if (n <= 0) break; chunk[n]=0;
-        if (total+n+1 > cap) { cap*=2; body=realloc(body,cap); }
-        memcpy(body+total, chunk, n); total+=n; body[total]=0;
+        int n = recv(s, chunk, sizeof(chunk) - 1, 0);
+        if (n <= 0) break; chunk[n] = 0;
+        if (total + n + 1 > cap) { cap *= 2; body = realloc(body, cap); }
+        memcpy(body + total, chunk, n); total += n; body[total] = 0;
         if (!in_body) {
             char *s2 = strstr(body, "\r\n\r\n");
-            if (s2) { in_body=1; size_t off = (s2+4)-body; memmove(body,body+off,total-off); total-=off; body[total]=0; }
+            if (s2) { in_body = 1; size_t off = (s2 + 4) - body; memmove(body, body + off, total - off); total -= off; body[total] = 0; }
         }
     }
     closesocket(s);
@@ -111,9 +119,63 @@ static Value http_get(int argc, Value *argv) {
     return r;
 }
 
+/* ── HTTP GET ─────────────────────────────────────────────────────────────── */
+static Value http_get(int argc, Value *argv) {
+    if (argc < 1 || argv[0].type != V_STRING || !argv[0].as.s)
+        return v_string_ptr(_strdup(""));
+    ensure_winsock();
+
+    char host[256] = {0}, path[512] = "/"; int port;
+    int s = http_connect(argv[0].as.s, host, sizeof(host), path, sizeof(path), &port);
+    if (s < 0) return v_string_ptr(_strdup(""));
+
+    char req[1024];
+    snprintf(req, sizeof(req), "GET %s HTTP/1.0\r\nHost: %s\r\nConnection: close\r\n\r\n", path, host);
+    send(s, req, (int)strlen(req), 0);
+
+    return http_read_body(s);
+}
+
+/* ── HTTP POST ────────────────────────────────────────────────────────────── */
+static Value http_post(int argc, Value *argv) {
+    if (argc < 2 || argv[0].type != V_STRING || !argv[0].as.s)
+        return v_string_ptr(_strdup(""));
+    ensure_winsock();
+
+    const char *body = (argv[1].type == V_STRING && argv[1].as.s) ? argv[1].as.s : "";
+    const char *auth = (argc >= 3 && argv[2].type == V_STRING && argv[2].as.s) ? argv[2].as.s : NULL;
+
+    char host[256] = {0}, path[512] = "/"; int port;
+    int s = http_connect(argv[0].as.s, host, sizeof(host), path, sizeof(path), &port);
+    if (s < 0) return v_string_ptr(_strdup(""));
+
+    size_t blen = strlen(body);
+    size_t reqcap = 4096 + blen;
+    char *req = malloc(reqcap);
+    char *wp = req;
+
+    wp += snprintf(wp, reqcap - (wp - req),
+        "POST %s HTTP/1.0\r\nHost: %s\r\nConnection: close\r\n"
+        "Content-Type: application/json\r\nContent-Length: %zu\r\n",
+        path, host, blen);
+    if (auth) wp += snprintf(wp, reqcap - (wp - req),
+        "Authorization: Bearer %s\r\n", auth);
+    wp += snprintf(wp, reqcap - (wp - req), "\r\n");
+    memcpy(wp, body, blen);
+
+    size_t total_req = (wp - req) + blen;
+    send(s, req, (int)total_req, 0);
+    free(req);
+
+    return http_read_body(s);
+}
+
+/* ── Module entry ─────────────────────────────────────────────────────────── */
 Value build_http(void) {
     Value m = v_map_new();
-    Value fn; fn.type = V_NATIVE; fn.as.native = http_get;
-    v_map_set(m.as.map, "get", fn);
+    Value g; g.type = V_NATIVE; g.as.native = http_get;
+    Value p; p.type = V_NATIVE; p.as.native = http_post;
+    v_map_set(m.as.map, "get",  g);
+    v_map_set(m.as.map, "post", p);
     return m;
 }

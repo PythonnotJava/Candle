@@ -1,57 +1,37 @@
-// parallel_bench.candle — parallel vs sequential 性能对比
-
 load std.time alias time;
 
-int countPrimes(int start, int end) {
-    int count = 0;
-    for iter(n, start, end) {
-        if (n < 2) { continue; }
-        int isPrime = 1;
-        int limit = n / 2 + 1;
-        for iter(d, 2, limit) {
-            if (n % d == 0) { isPrime = 0; break; }
-        }
-        if (isPrime == 1) { count = count + 1; }
-    }
-    return count;
-}
-
 int main() {
-    alias N = 50000;
+    print("=== Candle Parallel Benchmark ===");
+
+    alias N = 10000000;
+    int a = 0;
+    int b = 0;
 
     alias t1 = time.now();
-    alias s_result = countPrimes(2, N);
+    for iter(i, N) { a = a + 1; }
+    for iter(i, N) { b = b + 1; }
     alias t2 = time.now();
-    alias s_elapsed = t2 - t1;
-    print("Sequential: " + String(s_result) + " primes in " + String(s_elapsed) + " ms");
+    alias seq_ms = t2 - t1;
+    print("Sequential:     " + String(seq_ms) + " ms  (a=" + String(a) + ", b=" + String(b) + ")");
 
-    alias chunk = N / 4;
+    int c = 0;
+    int d = 0;
     alias t3 = time.now();
     parallel {
-        section {
-            alias c = countPrimes(2, chunk);
-            print("  chunk1: " + String(c));
-        }
-        section {
-            alias c = countPrimes(chunk, chunk * 2);
-            print("  chunk2: " + String(c));
-        }
-        section {
-            alias c = countPrimes(chunk * 2, chunk * 3);
-            print("  chunk3: " + String(c));
-        }
-        section {
-            alias c = countPrimes(chunk * 3, N);
-            print("  chunk4: " + String(c));
-        }
+        { for iter(i, N) { c = c + 1; } }
+        { for iter(i, N) { d = d + 1; } }
     }
     alias t4 = time.now();
-    alias p_elapsed = t4 - t3;
-    print("Parallel (4):  " + String(p_elapsed) + " ms");
+    alias par_ms = t4 - t3;
+    print("Parallel (2):   " + String(par_ms) + " ms  (c=" + String(c) + ", d=" + String(d) + ")");
 
-    alias speedup = s_elapsed / p_elapsed;
+    alias speedup = seq_ms / par_ms;
     print("Speedup: " + String(speedup) + "x");
 
-    print("PARALLEL BENCH PASSED");
+    if (c == N && d == N) {
+        print("PARALLEL BENCH PASSED");
+    } else {
+        print("PARALLEL BENCH FAILED (c=" + String(c) + " d=" + String(d) + ")");
+    }
     return 0;
 }

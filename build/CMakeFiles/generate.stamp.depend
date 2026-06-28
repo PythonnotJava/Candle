@@ -1,0 +1,25 @@
+# CMake generation dependency list for this directory.
+C:/Users/25654/Desktop/Candle/CMakeLists.txt
+C:/Users/25654/Desktop/Candle/build/CMakeFiles/3.29.3/CMakeCCompiler.cmake
+C:/Users/25654/Desktop/Candle/build/CMakeFiles/3.29.3/CMakeRCCompiler.cmake
+C:/Users/25654/Desktop/Candle/build/CMakeFiles/3.29.3/CMakeSystem.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeCInformation.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeGenericSystem.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeParseImplicitLinkInfo.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeRCInformation.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Compiler/MSVC-C.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Compiler/MSVC.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/FindOpenMP.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/FindPackageMessage.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Platform/Windows-MSVC-C.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Platform/Windows-MSVC.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Platform/Windows.cmake
+D:/SDK/Cmake/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake

@@ -1,0 +1,50 @@
+/// types_demo.candle — 类型系统测试模块
+/// 测试: int, double, string, bool, list, map, null, const, alias, union types
+
+export { testInt, testDouble, testString, testBool, testList, testMap, testConst };
+
+int testInt() {
+    int a = 42;
+    int b = a + 8;
+    return b;
+}
+
+double testDouble() {
+    double x = 3.14;
+    double y = x * 2.0;
+    return y;
+}
+
+string testString() {
+    string s = "hello";
+    string t = " world";
+    return s + t;
+}
+
+bool testBool() {
+    bool a = true;
+    bool b = false;
+    if (a) { return !b; }
+    return false;
+}
+
+int testList() {
+    list xs = [1, 2, 3, 4, 5];
+    return xs[0] + xs[4];
+}
+
+int testMap() {
+    map m = {"a": 1, "b": 2};
+    return m["a"] + m["b"];
+}
+
+int testConst() {
+    const PI = 3;
+    int r = 5;
+    return PI * r;
+}
+
+int | double testUnion(int flag) {
+    if (flag == 1) { return 42; }
+    return 3.14;
+}

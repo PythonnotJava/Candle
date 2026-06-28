@@ -1,0 +1,6 @@
+int main() {
+    // Test: does zip exist?
+    print(type(zip));
+    print("OK");
+    return 0;
+}

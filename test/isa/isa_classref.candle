@@ -1,0 +1,26 @@
+class Animal { }
+class Dog inherit Animal { }
+
+int main() {
+    alias d = Dog();
+
+    // 类引用形式
+    print(is(d, Dog));
+    print(is(d, Animal));
+    print(is(d, Object));
+
+    // 字符串形式仍然可用
+    print(is(d, "Dog"));
+    print(is(d, "Animal"));
+
+    // 类本身
+    print(is(Dog, Animal));
+    print(is(Dog, Object));
+
+    // 混合
+    print(is(Dog, "Dog"));
+    print(is(Dog, Dog));
+
+    print("DONE");
+    return 0;
+}

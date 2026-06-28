@@ -1,0 +1,24 @@
+/// parallel_demo.candle — 并行计算演示模块
+/// 测试: parallel, section, parallel for iter
+
+export { testParallel };
+
+int testParallel() {
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
+    parallel {
+        { for iter(i, 1000) { a = a + 1; } }
+        { for iter(i, 1000) { b = b + 1; } }
+        { for iter(i, 1000) { c = c + 1; } }
+        { for iter(i, 1000) { d = d + 1; } }
+    }
+    return a + b + c + d;
+}
+
+
+
+
+
+

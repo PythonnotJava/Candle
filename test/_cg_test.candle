@@ -1,0 +1,4 @@
+int main() {
+    print("Score: " + String(42));
+    return 0;
+}

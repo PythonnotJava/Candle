@@ -1,0 +1,38 @@
+/// test_object.candle — Object 基类测试
+
+class Animal {
+    string name;
+}
+
+class Dog inherit Animal {
+    string bark() { return "Woof!"; }
+}
+
+int main() {
+    alias cat = Animal();
+    cat.name = "Mimi";
+    alias dog = Dog();
+    dog.name = "Buddy";
+
+    // toString (from Object)
+    print(cat.toString());
+    print(dog.toString());
+
+    // type (from Object)
+    print(cat.type());
+    print(dog.type());
+
+    // equals (from Object — identity)
+    print(cat.equals(cat));
+    print(cat.equals(dog));
+
+    // hashCode (from Object)
+    print(cat.hashCode());
+    print(dog.hashCode());
+
+    // Own methods still work
+    print(dog.bark());
+
+    print("OBJECT TESTS PASSED");
+    return 0;
+}

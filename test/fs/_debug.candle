@@ -1,0 +1,22 @@
+load std.file alias fl;
+load std.fs alias fs;
+
+int main() {
+    fs.writeFile("test/fs/_st.txt", "0123456789");
+    alias h = fl.open("test/fs/_st.txt", "rb");
+
+    alias t0 = fl.tell(h);
+    print("tell at 0: " + String(t0));             // should be 0
+
+    fl.seek(h, 5);
+    alias t5 = fl.tell(h);
+    print("tell at 5: " + String(t5));             // should be 5
+
+    alias part = fl.read(h);
+    print("read: [" + part + "]");                 // should be "56789"
+    print("len: " + String(len(part)));             // should be 5
+
+    fl.close(h);
+    print("OK");
+    return 0;
+}

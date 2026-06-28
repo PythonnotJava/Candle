@@ -1,0 +1,26 @@
+/// math_utils.candle — 数学工具函数模块
+/// 测试: 函数声明、返回类型、算术运算、条件、参数
+
+export { add, multiply, factorial, isPrime };
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int factorial(int n) {
+    if (n <= 1) { return 1; }
+    return n * factorial(n - 1);
+}
+
+int isPrime(int n) {
+    if (n < 2) { return 0; }
+    int limit = n / 2 + 1;
+    for iter(d, 2, limit) {
+        if (n % d == 0) { return 0; }
+    }
+    return 1;
+}

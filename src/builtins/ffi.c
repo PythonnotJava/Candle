@@ -32,12 +32,14 @@
 #if defined(_WIN32)
   static const char *k_lib_prefixes[] = { "", "lib" };
   static const char *k_lib_suffixes[] = { ".dll" };
-#elif defined(__APPLE__)
+#else
+#if defined(__APPLE__)
   static const char *k_lib_prefixes[] = { "lib", "" };
   static const char *k_lib_suffixes[] = { ".dylib", ".so" };
 #else
   static const char *k_lib_prefixes[] = { "lib", "" };
   static const char *k_lib_suffixes[] = { ".so" };
+#endif
 #endif
 
 // ── 已加载库登记表 ────────────────────────────────────────────────────────────

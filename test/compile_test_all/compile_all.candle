@@ -1,0 +1,102 @@
+/// compile_all.candle — Candle AOT 编译全特性测试
+/// 覆盖: const/alias/int/double/string/bool/list/函数/if/for/return/try/lambda/parallel/递归/ellipsis/stdlib
+/// 编译: candlec -c compile_all.candle && compile_all.exe
+
+load library.std.Double alias _;
+load library.std.Int alias _;
+
+const PI = 3;
+
+// ── 函数 ──
+int add(int a, int b) { return a + b; }
+double mul(double x, double y) { return x * y; }
+bool isPos(int n) { return n > 0; }
+string greet(string n) { return "Hi, " + n; }
+
+// ── if / for / return / try ──
+int sign(int x) {
+    if (x > 0) { return 1; }
+    if (x < 0) { return -1; }
+    return 0;
+}
+int sumTo(int n) {
+    int t = 0;
+    for iter(i, 1, n) { t = t + i; }
+    return t;
+}
+int safeDiv(int a, int b) {
+    try { return a / b; } catch(DivByZero e) { return 0; }
+}
+
+// ── Lambda ──
+int lamSimple() {
+    alias dbl = (int x) => x * 2;
+    return dbl(21);
+}
+
+// ── 递归 ──
+int fact(int n) {
+    if (n <= 1) { return 1; }
+    return n * fact(n - 1);
+}
+
+// ── list ──
+int listSum() {
+    list xs = [10, 20, 30];
+    return xs[0] + xs[2];
+}
+
+// ── parallel ──
+int parCalc() {
+    int a = 0; int b = 0;
+    parallel {
+        { for iter(i, 500) { a = a + 1; } }
+        { for iter(i, 500) { b = b + 1; } }
+    }
+    return a + b;
+}
+
+// ── ellipsis ──
+ellipsis int futureAPI();
+
+// ── 逻辑运算 ──
+int logicOps() {
+    bool a = true;
+    bool b = false;
+    if (a) { return 1; }
+    if (b) { return 2; }
+    return 0;
+}
+
+// ── main ──
+int main() {
+    print("=== Candle AOT ===");
+
+    print(add(3, 4));
+    print(mul(2.5, 4.0));
+    print(isPos(42));
+    print(greet("Candle"));
+
+    alias area = PI * 5 * 5;
+    print(area);
+
+    print(sign(-5));
+    print(sign(3));
+    print(sign(0));
+    print(sumTo(6));
+    print(safeDiv(10, 2));
+
+    print(lamSimple());
+    print(fact(5));
+    print(listSum());
+    print(parCalc());
+    print(logicOps());
+
+    print(3.14.isPositive());
+    print((-5.5).abs());
+    print(2.0.squared());
+    print(42.isEven());
+
+    print("ALL OK");
+    return 0;
+}

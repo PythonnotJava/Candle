@@ -22,7 +22,7 @@ Value v_list(void) {
 }
 Value v_tuple(void) {
     Value v = v_list();
-    v.type = V_TUPLE;   // 复用 VList 存储，仅类型不同（不可变 + 打印为 (..)）
+    v.type = V_TUPLE;   // ?? VList ???????????? + ??? (..)?
     return v;
 }
 Value v_map(void) {
@@ -77,8 +77,8 @@ int v_equals(Value a, Value b) {
             double db = b.type == V_INT ? (double)b.as.i : b.as.d;
             return da == db;
         }
-        // type() 字符串 vs 类型句柄(map 含 __type__): 比较底层类型名。
-        // 其中函数类型句柄 __type__=="Function" 匹配 type() 的 "lambda"/"function"。
+        // type() ??? vs ????(map ? __type__): ????????
+        // ???????? __type__=="Function" ?? type() ? "lambda"/"function"?
         {
             Value str_v = (a.type == V_STRING) ? a : (b.type == V_STRING ? b : a);
             Value map_v = (a.type == V_MAP) ? a : (b.type == V_MAP ? b : a);
@@ -156,7 +156,7 @@ char *v_to_string(Value v) {
         case V_MAP: {
             VMap *m = v.as.map;
             if (!m || m->len == 0) return GC_STRDUP("{}");
-            // 异常对象（含 type/message 键）渲染为 "type: message"
+            // ?????? type/message ????? "type: message"
             int ti = -1, mi = -1;
             for (int i = 0; i < m->len; i++) {
                 if (strcmp(m->keys[i], "type") == 0) ti = i;
@@ -171,7 +171,7 @@ char *v_to_string(Value v) {
                 GC_FREE(tp); GC_FREE(ms);
                 return r;
             }
-            // 普通 map：{k: v, k2: v2}
+            // ?? map?{k: v, k2: v2}
             size_t cap = 64; char *r = GC_MALLOC(cap); r[0] = '{'; r[1] = 0; size_t len = 1;
             for (int i = 0; i < m->len; i++) {
                 char *val = v_to_string(m->vals[i]);

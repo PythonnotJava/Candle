@@ -1,0 +1,9 @@
+    { const char *auto_mods[] = {
+        "library.std.Int", "library.std.Double", "library.std.Bool",
+        "library.std.String", "library.std.List", "library.std.Map",
+        "library.std.builtins_extras",
+        "library.std.encoding",
+        "library.std.Byte"
+      };
+      for (int ai = 0; ai < 9; ai++)
+          load_candle_module(&I, auto_mods[ai]);

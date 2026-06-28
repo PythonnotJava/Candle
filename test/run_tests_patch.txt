@@ -1,0 +1,4 @@
+    ("parallel_bench",  "test/parallel_bench/parallel_bench.candle",   "PARALLEL BENCH PASSED"),
+    ("encoding",        "test/encoding/encoding_test.candle",         "ALL ENCODING TESTS PASSED"),
+    ("file_encoding",   "test/encoding/file_encoding_test.candle",    "FILE + ENCODING TEST PASSED"),
+]

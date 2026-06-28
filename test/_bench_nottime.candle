@@ -1,0 +1,26 @@
+int countPrimes(int start, int end) {
+    int count = 0;
+    for iter(n, start, end) {
+        if (n >= 2) {
+            int isPrime = 1;
+            int limit = n / 2 + 1;
+            for iter(d, 2, limit) {
+                if (n % d == 0) { isPrime = 0; break; }
+            }
+            if (isPrime == 1) { count = count + 1; }
+        }
+    }
+    return count;
+}
+int main() {
+    alias N = 100;
+    alias chunk = N / 4;
+    parallel {
+        section { alias c = countPrimes(2, chunk); }
+        section { alias c = countPrimes(chunk, chunk * 2); }
+        section { alias c = countPrimes(chunk * 2, chunk * 3); }
+        section { alias c = countPrimes(chunk * 3, N); }
+    }
+    print("PARALLEL BENCH PASSED");
+    return 0;
+}

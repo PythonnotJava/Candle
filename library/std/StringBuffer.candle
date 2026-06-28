@@ -1,0 +1,39 @@
+/// StringBuffer.candle — 高效字符串构建器
+class StringBuffer {
+    list _buf;
+    void append(string s);
+    string toString();
+    void clear();
+    int length();
+    bool isEmpty();
+}
+
+reflect StringBuffer {
+    void append(string s) {
+        self._buf.push(s);
+    }
+
+    string toString() {
+        string result = "";
+        for iter(i, 0, len(self._buf)) {
+            result = result + self._buf[i];
+        }
+        return result;
+    }
+
+    void clear() {
+        self._buf = [];
+    }
+
+    int length() {
+        int total = 0;
+        for iter(i, 0, len(self._buf)) {
+            total = total + len(self._buf[i]);
+        }
+        return total;
+    }
+
+    bool isEmpty() {
+        return len(self._buf) == 0;
+    }
+}

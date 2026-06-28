@@ -1,0 +1,52 @@
+/// test_iterable.candle — Iterable 基类统一接口测试
+
+class MyRange {
+    int _start;
+    int _end;
+    int _next;
+}
+
+reflect MyRange {
+    void forEach(Function fn) {
+        for iter(v, self._start, self._end) {
+            fn(v);
+        }
+    }
+
+    list toList() {
+        list result = [];
+        for iter(v, self._start, self._end) {
+            result.push(v);
+        }
+        return result;
+    }
+}
+
+int main() {
+    // list.forEach
+    list xs = [10, 20, 30];
+    xs.forEach((x) => print(x));
+
+    // string.forEach
+    "AB".forEach((ch) => print(ch));
+
+    // map.forEach
+    map m = {"a": 1, "b": 2};
+    m.forEach((k, v) => print(k + "=" + String(v)));
+
+    // string.toList
+    alias chars = "hello".toList();
+    print(len(chars));
+
+    // user class implementing Iterable methods
+    alias r = MyRange();
+    r._start = 5;
+    r._end = 8;
+    r.forEach((v) => print(v));
+
+    alias rlist = r.toList();
+    print(rlist.join(","));
+
+    print("ITERABLE OK");
+    return 0;
+}

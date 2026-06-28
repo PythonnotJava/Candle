@@ -1,0 +1,14 @@
+// Set.candle — set using reflect on map (simplest approach)
+
+export { };
+
+reflect map {
+    // set-like operations on map with bool values
+    void setAdd(string key) { self.set(key, true); }
+    void setRemove(string key) { self.remove(key); }
+    bool setContains(string key) { return self.has(key); }
+    int setSize() {
+        alias ks = self.keys();
+        return len(ks);
+    }
+}

@@ -1,0 +1,129 @@
+// encoding_test.candle — Encoding module test
+// Tests: UTF8/ASCII/Latin1 encode/decode, global constants (utf8/ascii/latin1)
+
+int test_utf8_encode() {
+    alias bytes = encode("Hello", utf8);
+    print("UTF-8 encode: " + String(len(bytes)) + " bytes");
+    assert(len(bytes) == 5);
+    assert(bytes[0] == 72);  // 'H'
+    assert(bytes[1] == 101); // 'e'
+    assert(bytes[4] == 111); // 'o'
+    return 0;
+}
+
+int test_utf8_decode() {
+    alias bytes = [72, 101, 108, 108, 111];
+    alias text = decode(bytes, utf8);
+    assert(text == "Hello");
+    return 0;
+}
+
+int test_utf8_multibyte() {
+    // "cafe" in UTF-8: c a f e
+    alias text = "cafe";
+    alias bytes = encode(text, utf8);
+    assert(len(bytes) == 4);
+    alias decoded = decode(bytes, utf8);
+    assert(decoded == "cafe");
+    return 0;
+}
+
+int test_ascii_encode() {
+    alias text = "Hello";
+    alias bytes = encode(text, ascii);
+    assert(len(bytes) == 5);
+    assert(bytes[0] == 72);
+    return 0;
+}
+
+int test_ascii_decode() {
+    alias bytes = [72, 101, 108, 108, 111];
+    alias text = decode(bytes, ascii);
+    assert(text == "Hello");
+    return 0;
+}
+
+int test_latin1_encode() {
+    alias text = "Hello";
+    alias bytes = encode(text, latin1);
+    assert(len(bytes) == 5);
+    return 0;
+}
+
+int test_latin1_decode() {
+    alias bytes = [72, 101, 108, 108, 111];
+    alias text = decode(bytes, latin1);
+    assert(text == "Hello");
+    return 0;
+}
+
+int test_global_constants() {
+    assert(utf8 == "UTF-8");
+    assert(ascii == "ASCII");
+    assert(latin1 == "Latin-1");
+    return 0;
+}
+
+int test_roundtrip_utf8() {
+    alias original = "Candle Language 2024!";
+    alias bytes = encode(original, utf8);
+    alias restored = decode(bytes, utf8);
+    assert(restored == original);
+    return 0;
+}
+
+int test_roundtrip_ascii() {
+    alias original = "ASCII only";
+    alias bytes = encode(original, ascii);
+    alias restored = decode(bytes, ascii);
+    assert(restored == original);
+    return 0;
+}
+
+int test_roundtrip_latin1() {
+    alias original = "Latin-1 test";
+    alias bytes = encode(original, latin1);
+    alias restored = decode(bytes, latin1);
+    assert(restored == original);
+    return 0;
+}
+
+int test_empty_string() {
+    alias bytes = encode("", utf8);
+    assert(len(bytes) == 0);
+    alias text = decode([], utf8);
+    assert(text == "");
+    return 0;
+}
+
+int main() {
+    print("=== Encoding Tests ===");
+    
+    print("[1] UTF-8 encode...");
+    test_utf8_encode();
+    print("[2] UTF-8 decode...");
+    test_utf8_decode();
+    print("[3] UTF-8 multibyte...");
+    test_utf8_multibyte();
+    print("[4] ASCII encode...");
+    test_ascii_encode();
+    print("[5] ASCII decode...");
+    test_ascii_decode();
+    print("[6] Latin-1 encode...");
+    test_latin1_encode();
+    print("[7] Latin-1 decode...");
+    test_latin1_decode();
+    print("[8] Global constants...");
+    test_global_constants();
+    print("[9] UTF-8 roundtrip...");
+    test_roundtrip_utf8();
+    print("[10] ASCII roundtrip...");
+    test_roundtrip_ascii();
+    print("[11] Latin-1 roundtrip...");
+    test_roundtrip_latin1();
+    print("[12] Empty string...");
+    test_empty_string();
+    
+    print("=== ALL ENCODING TESTS PASSED ===");
+    return 0;
+}

@@ -218,11 +218,26 @@ CMakeFiles/candlec.dir/src/interp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/interp.c.s"
 	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\interp.c -o CMakeFiles\candlec.dir\src\interp.c.s
 
+CMakeFiles/candlec.dir/src/threading.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/threading.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/threading.c.obj: C:/Users/25654/Desktop/Candle/src/threading.c
+CMakeFiles/candlec.dir/src/threading.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/candlec.dir/src/threading.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/threading.c.obj -MF CMakeFiles\candlec.dir\src\threading.c.obj.d -o CMakeFiles\candlec.dir\src\threading.c.obj -c C:\Users\25654\Desktop\Candle\src\threading.c
+
+CMakeFiles/candlec.dir/src/threading.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/threading.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\threading.c > CMakeFiles\candlec.dir\src\threading.c.i
+
+CMakeFiles/candlec.dir/src/threading.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/threading.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\threading.c -o CMakeFiles\candlec.dir\src\threading.c.s
+
 CMakeFiles/candlec.dir/src/builtins/builtins.c.obj: CMakeFiles/candlec.dir/flags.make
 CMakeFiles/candlec.dir/src/builtins/builtins.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
 CMakeFiles/candlec.dir/src/builtins/builtins.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/builtins.c
 CMakeFiles/candlec.dir/src/builtins/builtins.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/candlec.dir/src/builtins/builtins.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/candlec.dir/src/builtins/builtins.c.obj"
 	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/builtins.c.obj -MF CMakeFiles\candlec.dir\src\builtins\builtins.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\builtins.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\builtins.c
 
 CMakeFiles/candlec.dir/src/builtins/builtins.c.i: cmake_force
@@ -237,7 +252,7 @@ CMakeFiles/candlec.dir/src/builtins/modules.c.obj: CMakeFiles/candlec.dir/flags.
 CMakeFiles/candlec.dir/src/builtins/modules.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
 CMakeFiles/candlec.dir/src/builtins/modules.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/modules.c
 CMakeFiles/candlec.dir/src/builtins/modules.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/candlec.dir/src/builtins/modules.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/candlec.dir/src/builtins/modules.c.obj"
 	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/modules.c.obj -MF CMakeFiles\candlec.dir\src\builtins\modules.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\modules.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\modules.c
 
 CMakeFiles/candlec.dir/src/builtins/modules.c.i: cmake_force
@@ -252,7 +267,7 @@ CMakeFiles/candlec.dir/src/builtins/ffi.c.obj: CMakeFiles/candlec.dir/flags.make
 CMakeFiles/candlec.dir/src/builtins/ffi.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
 CMakeFiles/candlec.dir/src/builtins/ffi.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/ffi.c
 CMakeFiles/candlec.dir/src/builtins/ffi.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/candlec.dir/src/builtins/ffi.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/candlec.dir/src/builtins/ffi.c.obj"
 	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/ffi.c.obj -MF CMakeFiles\candlec.dir\src\builtins\ffi.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\ffi.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\ffi.c
 
 CMakeFiles/candlec.dir/src/builtins/ffi.c.i: cmake_force
@@ -262,6 +277,141 @@ CMakeFiles/candlec.dir/src/builtins/ffi.c.i: cmake_force
 CMakeFiles/candlec.dir/src/builtins/ffi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/ffi.c.s"
 	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\ffi.c -o CMakeFiles\candlec.dir\src\builtins\ffi.c.s
+
+CMakeFiles/candlec.dir/src/builtins/http.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/http.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/http.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/http.c
+CMakeFiles/candlec.dir/src/builtins/http.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/candlec.dir/src/builtins/http.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/http.c.obj -MF CMakeFiles\candlec.dir\src\builtins\http.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\http.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\http.c
+
+CMakeFiles/candlec.dir/src/builtins/http.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/http.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\http.c > CMakeFiles\candlec.dir\src\builtins\http.c.i
+
+CMakeFiles/candlec.dir/src/builtins/http.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/http.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\http.c -o CMakeFiles\candlec.dir\src\builtins\http.c.s
+
+CMakeFiles/candlec.dir/src/builtins/time.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/time.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/time.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/time.c
+CMakeFiles/candlec.dir/src/builtins/time.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/candlec.dir/src/builtins/time.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/time.c.obj -MF CMakeFiles\candlec.dir\src\builtins\time.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\time.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\time.c
+
+CMakeFiles/candlec.dir/src/builtins/time.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/time.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\time.c > CMakeFiles\candlec.dir\src\builtins\time.c.i
+
+CMakeFiles/candlec.dir/src/builtins/time.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/time.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\time.c -o CMakeFiles\candlec.dir\src\builtins\time.c.s
+
+CMakeFiles/candlec.dir/src/builtins/fs.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/fs.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/fs.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/fs.c
+CMakeFiles/candlec.dir/src/builtins/fs.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/candlec.dir/src/builtins/fs.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/fs.c.obj -MF CMakeFiles\candlec.dir\src\builtins\fs.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\fs.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\fs.c
+
+CMakeFiles/candlec.dir/src/builtins/fs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/fs.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\fs.c > CMakeFiles\candlec.dir\src\builtins\fs.c.i
+
+CMakeFiles/candlec.dir/src/builtins/fs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/fs.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\fs.c -o CMakeFiles\candlec.dir\src\builtins\fs.c.s
+
+CMakeFiles/candlec.dir/src/builtins/file.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/file.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/file.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/file.c
+CMakeFiles/candlec.dir/src/builtins/file.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/candlec.dir/src/builtins/file.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/file.c.obj -MF CMakeFiles\candlec.dir\src\builtins\file.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\file.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\file.c
+
+CMakeFiles/candlec.dir/src/builtins/file.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/file.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\file.c > CMakeFiles\candlec.dir\src\builtins\file.c.i
+
+CMakeFiles/candlec.dir/src/builtins/file.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/file.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\file.c -o CMakeFiles\candlec.dir\src\builtins\file.c.s
+
+CMakeFiles/candlec.dir/src/builtins/random.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/random.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/random.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/random.c
+CMakeFiles/candlec.dir/src/builtins/random.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/candlec.dir/src/builtins/random.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/random.c.obj -MF CMakeFiles\candlec.dir\src\builtins\random.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\random.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\random.c
+
+CMakeFiles/candlec.dir/src/builtins/random.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/random.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\random.c > CMakeFiles\candlec.dir\src\builtins\random.c.i
+
+CMakeFiles/candlec.dir/src/builtins/random.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/random.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\random.c -o CMakeFiles\candlec.dir\src\builtins\random.c.s
+
+CMakeFiles/candlec.dir/src/builtins/process.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/process.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/process.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/process.c
+CMakeFiles/candlec.dir/src/builtins/process.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/candlec.dir/src/builtins/process.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/process.c.obj -MF CMakeFiles\candlec.dir\src\builtins\process.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\process.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\process.c
+
+CMakeFiles/candlec.dir/src/builtins/process.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/process.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\process.c > CMakeFiles\candlec.dir\src\builtins\process.c.i
+
+CMakeFiles/candlec.dir/src/builtins/process.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/process.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\process.c -o CMakeFiles\candlec.dir\src\builtins\process.c.s
+
+CMakeFiles/candlec.dir/src/builtins/path.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/path.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/path.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/path.c
+CMakeFiles/candlec.dir/src/builtins/path.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/candlec.dir/src/builtins/path.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/path.c.obj -MF CMakeFiles\candlec.dir\src\builtins\path.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\path.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\path.c
+
+CMakeFiles/candlec.dir/src/builtins/path.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/path.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\path.c > CMakeFiles\candlec.dir\src\builtins\path.c.i
+
+CMakeFiles/candlec.dir/src/builtins/path.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/path.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\path.c -o CMakeFiles\candlec.dir\src\builtins\path.c.s
+
+CMakeFiles/candlec.dir/src/builtins/encoding.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/builtins/encoding.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/builtins/encoding.c.obj: C:/Users/25654/Desktop/Candle/src/builtins/encoding.c
+CMakeFiles/candlec.dir/src/builtins/encoding.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/candlec.dir/src/builtins/encoding.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/builtins/encoding.c.obj -MF CMakeFiles\candlec.dir\src\builtins\encoding.c.obj.d -o CMakeFiles\candlec.dir\src\builtins\encoding.c.obj -c C:\Users\25654\Desktop\Candle\src\builtins\encoding.c
+
+CMakeFiles/candlec.dir/src/builtins/encoding.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/builtins/encoding.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\builtins\encoding.c > CMakeFiles\candlec.dir\src\builtins\encoding.c.i
+
+CMakeFiles/candlec.dir/src/builtins/encoding.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/builtins/encoding.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\builtins\encoding.c -o CMakeFiles\candlec.dir\src\builtins\encoding.c.s
+
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj: CMakeFiles/candlec.dir/flags.make
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj: CMakeFiles/candlec.dir/includes_C.rsp
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj: C:/Users/25654/Desktop/Candle/src/vendor/cjson/cJSON.c
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj: CMakeFiles/candlec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj -MF CMakeFiles\candlec.dir\src\vendor\cjson\cJSON.c.obj.d -o CMakeFiles\candlec.dir\src\vendor\cjson\cJSON.c.obj -c C:\Users\25654\Desktop\Candle\src\vendor\cjson\cJSON.c
+
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.i"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\25654\Desktop\Candle\src\vendor\cjson\cJSON.c > CMakeFiles\candlec.dir\src\vendor\cjson\cJSON.c.i
+
+CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.s"
+	"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\25654\Desktop\Candle\src\vendor\cjson\cJSON.c -o CMakeFiles\candlec.dir\src\vendor\cjson\cJSON.c.s
 
 # Object files for target candlec
 candlec_OBJECTS = \
@@ -275,9 +425,19 @@ candlec_OBJECTS = \
 "CMakeFiles/candlec.dir/src/codegen.c.obj" \
 "CMakeFiles/candlec.dir/src/value.c.obj" \
 "CMakeFiles/candlec.dir/src/interp.c.obj" \
+"CMakeFiles/candlec.dir/src/threading.c.obj" \
 "CMakeFiles/candlec.dir/src/builtins/builtins.c.obj" \
 "CMakeFiles/candlec.dir/src/builtins/modules.c.obj" \
-"CMakeFiles/candlec.dir/src/builtins/ffi.c.obj"
+"CMakeFiles/candlec.dir/src/builtins/ffi.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/http.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/time.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/fs.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/file.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/random.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/process.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/path.c.obj" \
+"CMakeFiles/candlec.dir/src/builtins/encoding.c.obj" \
+"CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj"
 
 # External object files for target candlec
 candlec_EXTERNAL_OBJECTS =
@@ -292,14 +452,25 @@ C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/sema.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/codegen.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/value.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/interp.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/threading.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/builtins.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/modules.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/ffi.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/http.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/time.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/fs.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/file.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/random.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/process.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/path.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/builtins/encoding.c.obj
+C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/build.make
+C:/Users/25654/Desktop/Candle/candlec.exe: C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/build/gc.lib
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/linkLibs.rsp
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/objects1.rsp
 C:/Users/25654/Desktop/Candle/candlec.exe: CMakeFiles/candlec.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking C executable C:\Users\25654\Desktop\Candle\candlec.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\25654\Desktop\Candle\build_cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking C executable C:\Users\25654\Desktop\Candle\candlec.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\candlec.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

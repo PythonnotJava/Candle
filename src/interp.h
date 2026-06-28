@@ -20,4 +20,6 @@ int env_assign(Env *e, const char *name, Value v);
 int interp_run(AstNode *program, const char *filename);
 int interp_repl(void);
 
+AstNode *find_class(const char *name);
+
 #endif

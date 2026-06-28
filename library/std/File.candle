@@ -1,0 +1,26 @@
+/// File.candle — 文件读写类
+class File {
+    /// 以指定模式打开文件（"r"/"w"/"rb"/"wb"），失败返回 null
+    static File open(string path, string mode);
+
+    /// 读取整个文件剩余内容
+    string read();
+
+    /// 读取一行（不含换行符）
+    string readLine();
+
+    /// 写入字符串
+    void write(string s);
+
+    /// 写入字符串并换行
+    void writeLine(string s);
+
+    /// 移动读写位置
+    void seek(int pos);
+
+    /// 当前读写位置
+    int tell();
+
+    /// 关闭文件
+    void close();
+}

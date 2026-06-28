@@ -189,6 +189,30 @@ src/builtins/builtins.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/builtins.c.s
 .PHONY : src/builtins/builtins.c.s
 
+src/builtins/encoding.obj: src/builtins/encoding.c.obj
+.PHONY : src/builtins/encoding.obj
+
+# target to build an object file
+src/builtins/encoding.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/encoding.c.obj
+.PHONY : src/builtins/encoding.c.obj
+
+src/builtins/encoding.i: src/builtins/encoding.c.i
+.PHONY : src/builtins/encoding.i
+
+# target to preprocess a source file
+src/builtins/encoding.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/encoding.c.i
+.PHONY : src/builtins/encoding.c.i
+
+src/builtins/encoding.s: src/builtins/encoding.c.s
+.PHONY : src/builtins/encoding.s
+
+# target to generate assembly for a file
+src/builtins/encoding.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/encoding.c.s
+.PHONY : src/builtins/encoding.c.s
+
 src/builtins/ffi.obj: src/builtins/ffi.c.obj
 .PHONY : src/builtins/ffi.obj
 
@@ -213,6 +237,78 @@ src/builtins/ffi.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/ffi.c.s
 .PHONY : src/builtins/ffi.c.s
 
+src/builtins/file.obj: src/builtins/file.c.obj
+.PHONY : src/builtins/file.obj
+
+# target to build an object file
+src/builtins/file.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/file.c.obj
+.PHONY : src/builtins/file.c.obj
+
+src/builtins/file.i: src/builtins/file.c.i
+.PHONY : src/builtins/file.i
+
+# target to preprocess a source file
+src/builtins/file.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/file.c.i
+.PHONY : src/builtins/file.c.i
+
+src/builtins/file.s: src/builtins/file.c.s
+.PHONY : src/builtins/file.s
+
+# target to generate assembly for a file
+src/builtins/file.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/file.c.s
+.PHONY : src/builtins/file.c.s
+
+src/builtins/fs.obj: src/builtins/fs.c.obj
+.PHONY : src/builtins/fs.obj
+
+# target to build an object file
+src/builtins/fs.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/fs.c.obj
+.PHONY : src/builtins/fs.c.obj
+
+src/builtins/fs.i: src/builtins/fs.c.i
+.PHONY : src/builtins/fs.i
+
+# target to preprocess a source file
+src/builtins/fs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/fs.c.i
+.PHONY : src/builtins/fs.c.i
+
+src/builtins/fs.s: src/builtins/fs.c.s
+.PHONY : src/builtins/fs.s
+
+# target to generate assembly for a file
+src/builtins/fs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/fs.c.s
+.PHONY : src/builtins/fs.c.s
+
+src/builtins/http.obj: src/builtins/http.c.obj
+.PHONY : src/builtins/http.obj
+
+# target to build an object file
+src/builtins/http.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/http.c.obj
+.PHONY : src/builtins/http.c.obj
+
+src/builtins/http.i: src/builtins/http.c.i
+.PHONY : src/builtins/http.i
+
+# target to preprocess a source file
+src/builtins/http.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/http.c.i
+.PHONY : src/builtins/http.c.i
+
+src/builtins/http.s: src/builtins/http.c.s
+.PHONY : src/builtins/http.s
+
+# target to generate assembly for a file
+src/builtins/http.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/http.c.s
+.PHONY : src/builtins/http.c.s
+
 src/builtins/modules.obj: src/builtins/modules.c.obj
 .PHONY : src/builtins/modules.obj
 
@@ -236,6 +332,102 @@ src/builtins/modules.s: src/builtins/modules.c.s
 src/builtins/modules.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/modules.c.s
 .PHONY : src/builtins/modules.c.s
+
+src/builtins/path.obj: src/builtins/path.c.obj
+.PHONY : src/builtins/path.obj
+
+# target to build an object file
+src/builtins/path.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/path.c.obj
+.PHONY : src/builtins/path.c.obj
+
+src/builtins/path.i: src/builtins/path.c.i
+.PHONY : src/builtins/path.i
+
+# target to preprocess a source file
+src/builtins/path.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/path.c.i
+.PHONY : src/builtins/path.c.i
+
+src/builtins/path.s: src/builtins/path.c.s
+.PHONY : src/builtins/path.s
+
+# target to generate assembly for a file
+src/builtins/path.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/path.c.s
+.PHONY : src/builtins/path.c.s
+
+src/builtins/process.obj: src/builtins/process.c.obj
+.PHONY : src/builtins/process.obj
+
+# target to build an object file
+src/builtins/process.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/process.c.obj
+.PHONY : src/builtins/process.c.obj
+
+src/builtins/process.i: src/builtins/process.c.i
+.PHONY : src/builtins/process.i
+
+# target to preprocess a source file
+src/builtins/process.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/process.c.i
+.PHONY : src/builtins/process.c.i
+
+src/builtins/process.s: src/builtins/process.c.s
+.PHONY : src/builtins/process.s
+
+# target to generate assembly for a file
+src/builtins/process.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/process.c.s
+.PHONY : src/builtins/process.c.s
+
+src/builtins/random.obj: src/builtins/random.c.obj
+.PHONY : src/builtins/random.obj
+
+# target to build an object file
+src/builtins/random.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/random.c.obj
+.PHONY : src/builtins/random.c.obj
+
+src/builtins/random.i: src/builtins/random.c.i
+.PHONY : src/builtins/random.i
+
+# target to preprocess a source file
+src/builtins/random.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/random.c.i
+.PHONY : src/builtins/random.c.i
+
+src/builtins/random.s: src/builtins/random.c.s
+.PHONY : src/builtins/random.s
+
+# target to generate assembly for a file
+src/builtins/random.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/random.c.s
+.PHONY : src/builtins/random.c.s
+
+src/builtins/time.obj: src/builtins/time.c.obj
+.PHONY : src/builtins/time.obj
+
+# target to build an object file
+src/builtins/time.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/time.c.obj
+.PHONY : src/builtins/time.c.obj
+
+src/builtins/time.i: src/builtins/time.c.i
+.PHONY : src/builtins/time.i
+
+# target to preprocess a source file
+src/builtins/time.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/time.c.i
+.PHONY : src/builtins/time.c.i
+
+src/builtins/time.s: src/builtins/time.c.s
+.PHONY : src/builtins/time.s
+
+# target to generate assembly for a file
+src/builtins/time.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/builtins/time.c.s
+.PHONY : src/builtins/time.c.s
 
 src/codegen.obj: src/codegen.c.obj
 .PHONY : src/codegen.obj
@@ -381,6 +573,30 @@ src/sema.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/sema.c.s
 .PHONY : src/sema.c.s
 
+src/threading.obj: src/threading.c.obj
+.PHONY : src/threading.obj
+
+# target to build an object file
+src/threading.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/threading.c.obj
+.PHONY : src/threading.c.obj
+
+src/threading.i: src/threading.c.i
+.PHONY : src/threading.i
+
+# target to preprocess a source file
+src/threading.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/threading.c.i
+.PHONY : src/threading.c.i
+
+src/threading.s: src/threading.c.s
+.PHONY : src/threading.s
+
+# target to generate assembly for a file
+src/threading.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/threading.c.s
+.PHONY : src/threading.c.s
+
 src/token.obj: src/token.c.obj
 .PHONY : src/token.obj
 
@@ -458,6 +674,7 @@ src/vendor/cjson/cJSON.obj: src/vendor/cjson/cJSON.c.obj
 
 # target to build an object file
 src/vendor/cjson/cJSON.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candle_runtime.dir\build.make CMakeFiles/candle_runtime.dir/src/vendor/cjson/cJSON.c.obj
 .PHONY : src/vendor/cjson/cJSON.c.obj
 
@@ -466,6 +683,7 @@ src/vendor/cjson/cJSON.i: src/vendor/cjson/cJSON.c.i
 
 # target to preprocess a source file
 src/vendor/cjson/cJSON.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candle_runtime.dir\build.make CMakeFiles/candle_runtime.dir/src/vendor/cjson/cJSON.c.i
 .PHONY : src/vendor/cjson/cJSON.c.i
 
@@ -474,6 +692,7 @@ src/vendor/cjson/cJSON.s: src/vendor/cjson/cJSON.c.s
 
 # target to generate assembly for a file
 src/vendor/cjson/cJSON.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\candlec.dir\build.make CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\candle_runtime.dir\build.make CMakeFiles/candle_runtime.dir/src/vendor/cjson/cJSON.c.s
 .PHONY : src/vendor/cjson/cJSON.c.s
 
@@ -517,12 +736,36 @@ help:
 	@echo ... src/builtins/builtins.obj
 	@echo ... src/builtins/builtins.i
 	@echo ... src/builtins/builtins.s
+	@echo ... src/builtins/encoding.obj
+	@echo ... src/builtins/encoding.i
+	@echo ... src/builtins/encoding.s
 	@echo ... src/builtins/ffi.obj
 	@echo ... src/builtins/ffi.i
 	@echo ... src/builtins/ffi.s
+	@echo ... src/builtins/file.obj
+	@echo ... src/builtins/file.i
+	@echo ... src/builtins/file.s
+	@echo ... src/builtins/fs.obj
+	@echo ... src/builtins/fs.i
+	@echo ... src/builtins/fs.s
+	@echo ... src/builtins/http.obj
+	@echo ... src/builtins/http.i
+	@echo ... src/builtins/http.s
 	@echo ... src/builtins/modules.obj
 	@echo ... src/builtins/modules.i
 	@echo ... src/builtins/modules.s
+	@echo ... src/builtins/path.obj
+	@echo ... src/builtins/path.i
+	@echo ... src/builtins/path.s
+	@echo ... src/builtins/process.obj
+	@echo ... src/builtins/process.i
+	@echo ... src/builtins/process.s
+	@echo ... src/builtins/random.obj
+	@echo ... src/builtins/random.i
+	@echo ... src/builtins/random.s
+	@echo ... src/builtins/time.obj
+	@echo ... src/builtins/time.i
+	@echo ... src/builtins/time.s
 	@echo ... src/codegen.obj
 	@echo ... src/codegen.i
 	@echo ... src/codegen.s
@@ -541,6 +784,9 @@ help:
 	@echo ... src/sema.obj
 	@echo ... src/sema.i
 	@echo ... src/sema.s
+	@echo ... src/threading.obj
+	@echo ... src/threading.i
+	@echo ... src/threading.s
 	@echo ... src/token.obj
 	@echo ... src/token.i
 	@echo ... src/token.s

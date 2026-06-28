@@ -1,0 +1,10 @@
+int main() {
+    for iter(n, 2, 10) {
+        int limit = n / 2 + 1;
+        print("n=" + String(n) + " limit=" + String(limit));
+        for iter(d, 2, limit) {
+            if (n % d == 0) { print("  divisible by " + String(d)); break; }
+        }
+    }
+    return 0;
+}

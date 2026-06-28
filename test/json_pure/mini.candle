@@ -1,0 +1,16 @@
+list tok(int t, string v) { list tok = []; tok.push(t); tok.push(v); return tok; }
+int tkType(list tok) { return tok[0]; }
+tkVal(list tok) { return tok[1]; }
+
+parse(string s) {
+    list t = tok(1, "hello");
+    print(tkType(t));
+    print(tokVal(t));
+    return null;
+}
+
+int main() {
+    parse("x");
+    print("OK");
+    return 0;
+}

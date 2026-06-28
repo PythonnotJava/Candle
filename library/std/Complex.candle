@@ -1,0 +1,56 @@
+/// Complex.candle — 复数类型
+/// 用法: load library.std.Complex alias cx;
+///       alias z = cx.create(3.0, 4.0);
+///       print(z.abs()); // 5
+
+load std.math alias math;
+
+export { create };
+
+class Complex {
+    double real;
+    double imag;
+}
+
+Complex create(double r, double i) {
+    alias z = Complex();
+    z.real = r;
+    z.imag = i;
+    return z;
+}
+
+reflect Complex {
+    Complex add(Complex other) {
+        return create(self.real + other.real, self.imag + other.imag);
+    }
+    Complex subtract(Complex other) {
+        return create(self.real - other.real, self.imag - other.imag);
+    }
+    Complex multiply(Complex other) {
+        double r = self.real * other.real - self.imag * other.imag;
+        double i = self.real * other.imag + self.imag * other.real;
+        return create(r, i);
+    }
+    Complex scale(double s) {
+        return create(self.real * s, self.imag * s);
+    }
+    double abs() {
+        double r = self.real;
+        double i = self.imag;
+        return math.pow(r * r + i * i, 0.5);
+    }
+    double absSquared() {
+        return self.real * self.real + self.imag * self.imag;
+    }
+    Complex conjugate() {
+        return create(self.real, -self.imag);
+    }
+    bool isReal() {
+        return self.imag == 0.0;
+    }
+    string toString() {
+        if (self.imag == 0.0) { return String(self.real); }
+        if (self.imag > 0.0)  { return String(self.real) + "+" + String(self.imag) + "i"; }
+        return String(self.real) + String(self.imag) + "i";
+    }
+}

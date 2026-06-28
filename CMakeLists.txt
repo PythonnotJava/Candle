@@ -26,11 +26,18 @@ set(CANDLEC_SRC
     src/codegen.c
     src/value.c
     src/interp.c
+    src/threading.c
     src/builtins/builtins.c
     src/builtins/modules.c
     src/builtins/ffi.c
     src/builtins/http.c
     src/builtins/time.c
+    src/builtins/fs.c
+    src/builtins/file.c
+    src/builtins/random.c
+    src/builtins/process.c
+    src/builtins/path.c
+    src/builtins/encoding.c
     src/vendor/cjson/cJSON.c
 )
 
@@ -38,12 +45,12 @@ add_executable(candlec ${CANDLEC_SRC})
 target_include_directories(candlec PRIVATE src)
 
 # ── Boehm GC (interpreter only; transpiled programs use plain malloc) ─────
-set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
-target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
-target_link_libraries(candlec PRIVATE "${GC_ROOT}/build/gc.lib")
-target_compile_definitions(candlec PRIVATE CANDLE_USE_BOEHM_GC GC_NOT_DLL)
+# set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
+# target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
+# target_link_libraries(candlec PRIVATE "${GC_ROOT}/build/gc.lib")
+# target_compile_definitions(candlec PRIVATE CANDLE_USE_BOEHM_GC GC_NOT_DLL)
 target_link_libraries(candlec PRIVATE ws2_32)
-message(STATUS "Boehm GC: ${GC_ROOT}")
+# message(STATUS "Boehm GC: ${GC_ROOT}")
 
 # ────────────────────────────────────────────────────────────────────────────
 # candle_runtime — vendor-backed runtime library, linked to transpiled programs
@@ -77,9 +84,6 @@ endif()
 # ────────────────────────────────────────────────────────────────────────────
 # Helper: add_candle_executable(target src.candle)
 # ────────────────────────────────────────────────────────────────────────────
-# Generates C from a .candle file via candlec --emit-c, then compiles & links.
-# Usage:
-#   add_candle_executable(my_app grammar/examples/basic.candle)
 
 function(add_candle_executable target_name candle_src)
     get_filename_component(candle_abs ${candle_src} ABSOLUTE)

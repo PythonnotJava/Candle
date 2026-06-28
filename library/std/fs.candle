@@ -1,0 +1,29 @@
+/// std.fs — 文件系统操作库
+/// 用法: load std.fs alias fs;
+
+/// exists(path) → bool — 路径是否存在
+ellipsis bool exists(string path);
+
+/// isDir(path) → bool — 是否为目录
+ellipsis bool isDir(string path);
+
+/// isFile(path) → bool — 是否为文件
+ellipsis bool isFile(string path);
+
+/// fileSize(path) → int — 文件大小 (字节), 不存在返回 -1
+ellipsis int fileSize(string path);
+
+/// readFile(path) → string — 读取整个文件
+ellipsis string readFile(string path);
+
+/// writeFile(path, content) → bool — 写入文件
+ellipsis bool writeFile(string path, string content);
+
+/// mkdir(path) → bool — 创建目录
+ellipsis bool mkdir(string path);
+
+/// delete(path) → bool — 删除文件或空目录
+ellipsis bool delete(string path);
+
+/// listDir(path) → list — 列出目录下所有条目（不含 . 和 ..）
+ellipsis list listDir(string path);

@@ -1,0 +1,40 @@
+/// test_map_stdlib.candle — Map 标准库测试
+load library.std.Map alias _;
+
+int main() {
+    map m = {"a": "1", "b": "2", "c": "3"};
+
+    // putIfAbsent
+    m.putIfAbsent("a", "999");
+    print(m.get("a"));
+    m.putIfAbsent("d", "4");
+    print(m.get("d"));
+
+    // keyList / valueList
+    print(len(m.keyList()));
+
+    // mapValues
+    alias doubled = m.mapValues((v) => v + v);
+    print(doubled.get("a"));
+
+    // filterEntries
+    alias filtered = m.filterEntries((k, v) => v == "3");
+    print(filtered.containsKey("a"));
+    print(filtered.containsKey("c"));
+
+    // removeWhere
+    m.removeWhere((k, v) => v == "2");
+    print(m.containsKey("b"));
+
+    // putAll
+    map m2 = {"x": "10", "y": "20"};
+    m.putAll(m2);
+    print(m.get("x"));
+    print(m.get("y"));
+
+    // forEach
+    m.forEach((k, v) => print(k));
+
+    print("MAP STDLIB TESTS PASSED");
+    return 0;
+}

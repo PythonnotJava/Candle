@@ -1,0 +1,18 @@
+int countPrimes(int start, int end) {
+    int count = 0;
+    for iter(n, start, end) {
+        if (n < 2) { continue; }
+        int isPrime = 1;
+        int limit = n / 2 + 1;
+        for iter(d, 2, limit) {
+            if (n % d == 0) { isPrime = 0; break; }
+        }
+        if (isPrime == 1) { count = count + 1; }
+    }
+    return count;
+}
+int main() {
+    alias c = countPrimes(2, 10000);
+    print("primes=" + String(c));
+    return 0;
+}

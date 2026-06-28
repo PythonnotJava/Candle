@@ -1,0 +1,27 @@
+/// test_sb.candle — StringBuffer 测试
+load library.std.StringBuffer alias sb;
+
+int main() {
+    // Test 1: basic append + toString
+    alias buf = StringBuffer();
+    buf.append("Hello");
+    buf.append(" ");
+    buf.append("Candle");
+    alias result = buf.toString();
+    print(result);
+    print(buf.length());
+    print(buf.isEmpty());
+
+    // Test 2: clear
+    buf.clear();
+    print(buf.isEmpty());
+    print(buf.length());
+
+    // Test 3: append after clear
+    buf.append("Reset!");
+    print(buf.toString());
+    print(buf.length());
+
+    print("STRINGBUFFER TESTS PASSED");
+    return 0;
+}

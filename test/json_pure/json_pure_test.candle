@@ -1,0 +1,43 @@
+/// test_json_pure.candle — 纯 Candle JSON 测试
+load library.std.json_pure alias jp;
+
+int main() {
+    print("=== JSON Pure Test ===");
+
+    // Test 1: parse simple values
+    print(jp.parse("42"));
+    print(jp.parse("3.14"));
+    print(jp.parse("true"));
+    print(jp.parse("false"));
+    print(jp.parse("null"));
+    print(jp.parse("\"hello\""));
+
+    // Test 2: parse array
+    alias arr = jp.parse("[1, 2, 3]");
+    print(type(arr));
+    print(len(arr));
+    print(arr[0]);
+    print(arr[2]);
+
+    // Test 3: parse object
+    alias obj = jp.parse("{\"name\": \"Candle\", \"version\": 1}");
+    print(type(obj));
+    print(obj["name"]);
+    print(obj["version"]);
+
+    // Test 4: stringify basic values
+    print(jp.stringify("hi"));
+    print(jp.stringify(42));
+    print(jp.stringify(true));
+
+    // Test 5: stringify array
+    alias arr2 = jp.parse("[1,2,3]");
+    print(jp.stringify(arr2));
+
+    // Test 6: stringify object
+    alias obj2 = jp.parse("{\"a\":1}");
+    print(jp.stringify(obj2));
+
+    print("=== JSON PURE PASSED ===");
+    return 0;
+}

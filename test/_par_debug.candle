@@ -1,0 +1,9 @@
+int main() {
+    print("start");
+    parallel {
+        { print("A"); }
+        { print("B"); }
+    }
+    print("end");
+    return 0;
+}

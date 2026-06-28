@@ -1,0 +1,53 @@
+// lambda_aot.candle — AOT-compatible lambda tests
+
+int test_typed() {
+    alias f1 = (int x) => x * 2;
+    alias f2 = (int a, int b) => a + b;
+    print(f1(21));   // 42
+    print(f2(30, 12)); // 42
+    return 0;
+}
+
+int test_untyped() {
+    alias f1 = x => x + 1;
+    alias f2 = (x, y) => x + y;
+    print(f1(41));   // 42
+    print(f2(20, 22)); // 42
+    return 0;
+}
+
+int test_block() {
+    alias f = (int x) { if (x > 0) { return x * 2; } return 0; };
+    print(f(21));  // 42
+    return 0;
+}
+
+int test_arrow_block() {
+    alias f = (int x) => { alias r = x * 2; return r; };
+    print(f(21));  // 42
+    return 0;
+}
+
+int test_no_params() {
+    alias get42 = () => 42;
+    print(get42());  // 42
+    return 0;
+}
+
+int test_reassign() {
+    alias fn = (int x) => x + 1;
+    fn = (int x) => x + 40;
+    print(fn(2));  // 42
+    return 0;
+}
+
+int main() {
+    test_typed();
+    test_untyped();
+    test_block();
+    test_arrow_block();
+    test_no_params();
+    test_reassign();
+    print(9999);  // marker
+    return 0;
+}

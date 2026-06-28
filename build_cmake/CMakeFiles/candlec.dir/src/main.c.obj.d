@@ -40,4 +40,7 @@ CMakeFiles/candlec.dir/src/main.c.obj: \
  C:\Users\25654\Desktop\Candle\src\candle_runtime.h \
  D:/CLion\ 2026.1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
  D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
- D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/setjmp.h
+ D:/CLion\ 2026.1.2/bin/mingw/x86_64-w64-mingw32/include/setjmp.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc_version.h \
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/include/gc_config_macros.h

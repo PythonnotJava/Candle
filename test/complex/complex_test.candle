@@ -1,0 +1,25 @@
+/// test_complex.candle — Complex 测试
+load library.std.Complex alias cx;
+
+int main() {
+    alias z = cx.create(3.0, 4.0);
+    print(z.toString());
+    print(z.abs());
+    print(z.real);
+    print(z.imag);
+
+    alias w = cx.create(1.0, 2.0);
+    alias sum = z.add(w);
+    print(sum.toString());
+
+    alias prod = z.multiply(w);
+    print(prod.toString());
+
+    alias conj = z.conjugate();
+    print(conj.toString());
+
+    print(z.absSquared());
+
+    print("COMPLEX TESTS PASSED");
+    return 0;
+}

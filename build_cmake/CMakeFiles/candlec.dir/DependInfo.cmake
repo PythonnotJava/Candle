@@ -10,17 +10,27 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/25654/Desktop/Candle/src/ast.c" "CMakeFiles/candlec.dir/src/ast.c.obj" "gcc" "CMakeFiles/candlec.dir/src/ast.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/builtins/builtins.c" "CMakeFiles/candlec.dir/src/builtins/builtins.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/builtins.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/encoding.c" "CMakeFiles/candlec.dir/src/builtins/encoding.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/encoding.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/builtins/ffi.c" "CMakeFiles/candlec.dir/src/builtins/ffi.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/ffi.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/file.c" "CMakeFiles/candlec.dir/src/builtins/file.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/file.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/fs.c" "CMakeFiles/candlec.dir/src/builtins/fs.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/fs.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/http.c" "CMakeFiles/candlec.dir/src/builtins/http.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/http.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/builtins/modules.c" "CMakeFiles/candlec.dir/src/builtins/modules.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/modules.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/path.c" "CMakeFiles/candlec.dir/src/builtins/path.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/path.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/process.c" "CMakeFiles/candlec.dir/src/builtins/process.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/process.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/random.c" "CMakeFiles/candlec.dir/src/builtins/random.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/random.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/builtins/time.c" "CMakeFiles/candlec.dir/src/builtins/time.c.obj" "gcc" "CMakeFiles/candlec.dir/src/builtins/time.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/codegen.c" "CMakeFiles/candlec.dir/src/codegen.c.obj" "gcc" "CMakeFiles/candlec.dir/src/codegen.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/interp.c" "CMakeFiles/candlec.dir/src/interp.c.obj" "gcc" "CMakeFiles/candlec.dir/src/interp.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/lexer.c" "CMakeFiles/candlec.dir/src/lexer.c.obj" "gcc" "CMakeFiles/candlec.dir/src/lexer.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/main.c" "CMakeFiles/candlec.dir/src/main.c.obj" "gcc" "CMakeFiles/candlec.dir/src/main.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/parser.c" "CMakeFiles/candlec.dir/src/parser.c.obj" "gcc" "CMakeFiles/candlec.dir/src/parser.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/sema.c" "CMakeFiles/candlec.dir/src/sema.c.obj" "gcc" "CMakeFiles/candlec.dir/src/sema.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/threading.c" "CMakeFiles/candlec.dir/src/threading.c.obj" "gcc" "CMakeFiles/candlec.dir/src/threading.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/token.c" "CMakeFiles/candlec.dir/src/token.c.obj" "gcc" "CMakeFiles/candlec.dir/src/token.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/util.c" "CMakeFiles/candlec.dir/src/util.c.obj" "gcc" "CMakeFiles/candlec.dir/src/util.c.obj.d"
   "C:/Users/25654/Desktop/Candle/src/value.c" "CMakeFiles/candlec.dir/src/value.c.obj" "gcc" "CMakeFiles/candlec.dir/src/value.c.obj.d"
+  "C:/Users/25654/Desktop/Candle/src/vendor/cjson/cJSON.c" "CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj" "gcc" "CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

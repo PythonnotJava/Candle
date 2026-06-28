@@ -1,0 +1,53 @@
+/// control_flow.candle — 控制流测试模块
+/// 测试: if/else/for iter/when/break/return/throw/try catch/assert
+
+export { testIf, testFor, testWhen, testFib };
+
+int testIf(int x) {
+    if (x > 10) {
+        return 1;
+    }
+    if (x < 0) {
+        return -1;
+    }
+    return 0;
+}
+
+int testFor(int n) {
+    int sum = 0;
+    for iter(i, 1, n) {
+        sum = sum + i;
+    }
+    return sum;
+}
+
+int testWhen(int x) {
+    int count = 0;
+    when (x > 0) {
+        count = count + 1;
+        when (x > 10) {
+            count = count + 1;
+            break;
+        }
+    }
+    return count;
+}
+
+int testTry(int denom) {
+    try {
+        int result = 10 / denom;
+        return result;
+    } catch(DivByZero e) {
+        return 0;
+    }
+}
+
+int testAssert(int x) {
+    assert(x > 0);
+    return x;
+}
+
+int testFib(int n) {
+    if (n <= 1) { return n; }
+    return testFib(n - 1) + testFib(n - 2);
+}

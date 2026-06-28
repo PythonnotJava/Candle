@@ -1,0 +1,9 @@
+/// mod_add.candle — 加法模块（AOT 兼容）
+export { add, multiply };
+
+int add(int a, int b) {
+    return a + b;
+}
+int multiply(int a, int b) {
+    return a * b;
+}

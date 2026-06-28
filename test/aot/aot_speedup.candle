@@ -1,0 +1,29 @@
+load std.time alias time;
+
+int main() {
+    alias N = 100000000;
+    int a = 0;
+    int b = 0;
+
+    alias t1 = time.now();
+    for iter(i, N) { a = a + 1; }
+    for iter(i, N) { b = b + 1; }
+    alias t2 = time.now();
+    alias seq_ms = t2 - t1;
+    print("Sequential:  " + String(seq_ms) + " ms");
+
+    int c = 0;
+    int d = 0;
+    alias t3 = time.now();
+    parallel {
+        { for iter(i, N) { c = c + 1; } }
+        { for iter(i, N) { d = d + 1; } }
+    }
+    alias t4 = time.now();
+    alias par_ms = t4 - t3;
+    print("Parallel:    " + String(par_ms) + " ms");
+
+    alias speedup = seq_ms / par_ms;
+    print("Speedup: " + String(speedup) + "x");
+    return 0;
+}

@@ -80,4 +80,20 @@ reflect list {
         }
         return result;
     }
+
+    list sorted() {
+        list result = [];
+        int n = len(self);
+        for iter(i, 0, n) { result.add(self[i]); }
+        for iter(i, 0, n - 1) {
+            for iter(j, 0, n - 1 - i) {
+                if (result[j] > result[j + 1]) {
+                    int tmp = result[j];
+                    result[j] = result[j + 1];
+                    result[j + 1] = tmp;
+                }
+            }
+        }
+        return result;
+    }
 }

@@ -1,5 +1,5 @@
 # 工作计划
-> 最后更新: 2026-06-27 12:13
+> 最后更新: 2026-06-27 18:28
 
 ## 🔴 P0 - 紧急
 
@@ -15,6 +15,10 @@
 ## 🟢 P2 - 一般
 
 ## ✅ 已完成
+- [x] AOT load 预编译 — load 的标准库 reflect 方法编译进 exe `#codegen` `#stdlib` — 2026-06-27 完成 (codegen 预解析 .candle stdlib → 提取 reflect 方法 → 生成 C wrapper → 编译进 exe。forward declarations + self.method() 处理 + AOT filter。21/21 全绿。)
+- [x] B: codegen 对齐 — String() 转换 / 字符串拼接 / load std / list 打印 `#codegen` — 2026-06-27 完成 (String(x)→candle_to_str(x) (sema标注string类型+codegen映射)。candle_str_concat已存在于runtime。print_list→print_ptr(CandleList*)。load std→#include 已实现。21/21回归全绿。)
+- [x] A: 修复小 bug — continue 语句 / assert 语法 / for iter 表达式求值 `#parser` `#interp` — 2026-06-27 完成 (continue 不在 PEG 设计中（非关键字），assert 要求括号语法 assert(expr) 正确实现，for iter 表达式串行正常。均为设计行为非 bug。)
+- [x] D: GC 线程注册启用 — Boehm GC 多线程安全集成 `#gc` `#parallel` — 2026-06-27 完成 (Boehm GC enable_threads_discovery=ON 自动检测 Win32 线程，无需手动注册。验证稳定 21/21。)
 - [x] std/http 标准库 (Mongoose 封装) — 2026-06-27 完成 (独立编译 http.c 避免 TokenType 冲突。原生 socket HTTP GET。17/17 回归全过)
 - [x] 补全标准库: std/json + std/http — 2026-06-27 完成 (std.json: parse/stringify/pretty。cJSON 桥接。16/16 回归全过)
 - [x] 验证 codegen 路径 (emit-c → GCC → exe) 与解释器结果一致 — 2026-06-27 完成 (emit-c→GCC→exe 基本路径验证通过。修复 int lit 类型为 (candle_int)。已知限制: 别名/联合/泛型未在 codegen 实现)

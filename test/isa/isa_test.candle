@@ -1,0 +1,37 @@
+/// test_isa.candle — 继承关系检查
+
+class Animal { }
+class Dog inherit Animal { }
+class Cat inherit Animal { }
+class Poodle inherit Dog { }
+
+int main() {
+    alias dog = Dog();
+
+    // is() with primitive types
+    print(is(dog, "object"));
+    print(is(dog, "int"));
+
+    // 类名检查 — 直接类型
+    print(is(dog, "Dog"));
+    print(is(dog, "Cat"));
+
+    // 父类检查 — 继承链
+    print(is(dog, "Animal"));
+    print(is(dog, "Object"));
+
+    // 深度继承
+    alias poodle = Poodle();
+    print(is(poodle, "Poodle"));
+    print(is(poodle, "Dog"));
+    print(is(poodle, "Animal"));
+    print(is(poodle, "Object"));
+
+    // 原生类型不受影响
+    print(is(42, "int"));
+    print(is("hi", "string"));
+    print(is([1,2], "list"));
+
+    print("ISA OK");
+    return 0;
+}

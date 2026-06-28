@@ -1,0 +1,9 @@
+load std.fs alias fs;
+int main() {
+    fs.mkdir("test/fs/_dbgtmp");
+    print("created: " + String(fs.exists("test/fs/_dbgtmp")));
+    print("isDir: " + String(fs.isDir("test/fs/_dbgtmp")));
+    fs.delete("test/fs/_dbgtmp");
+    print("deleted, exists: " + String(fs.exists("test/fs/_dbgtmp")));
+    return 0;
+}

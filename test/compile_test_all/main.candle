@@ -1,0 +1,38 @@
+/// main.candle — 多文件模块联动测试（解释执行 + AOT 编译）
+/// 用法: candlec --run main.candle   |   candlec -c main.candle && main.exe
+
+load test.compile_test_all.math_utils;
+load test.compile_test_all.control_flow;
+load test.compile_test_all.types_demo;
+load test.compile_test_all.lambda_demo;
+load test.compile_test_all.parallel_demo;
+
+int main() {
+    print("=== Multi-File Module Test ===");
+
+    // math_utils
+    print(math_utils.add(3, 4));
+    print(math_utils.factorial(5));
+    print(math_utils.isPrime(7));
+
+    // control_flow
+    print(control_flow.testIf(15));
+    print(control_flow.testFor(5));
+    print(control_flow.testFib(6));
+
+    // types_demo
+    print(types_demo.testInt());
+    print(types_demo.testString());
+    print(types_demo.testBool());
+    print(types_demo.testList());
+
+    // lambda_demo
+    print(lambda_demo.testSimpleLambda());
+    print(lambda_demo.testClosure());
+
+    // parallel_demo
+    print(parallel_demo.testParallel());
+
+    print("=== ALL MULTI-FILE TESTS PASSED ===");
+    return 0;
+}

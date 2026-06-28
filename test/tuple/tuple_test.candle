@@ -1,0 +1,42 @@
+/// Tuple 测试 — tuple() 创建 + 索引 + len + 类型检测 + 比较
+
+int main() {
+    // ── 创建 ──
+    alias t1 = tuple(1, 2, 3);
+    alias t2 = tuple("hello", 42, true, 3.14);
+    alias t3 = tuple();  // empty tuple
+
+    // ── 索引 ──
+    print(t1[0]);  // 1
+    print(t1[1]);  // 2
+    print(t1[2]);  // 3
+
+    print(t2[0]);  // hello
+    print(t2[1]);  // 42
+    print(t2[2]);  // true
+    print(t2[3]);  // 3.14
+
+    // ── len ──
+    print(len(t1));  // 3
+    print(len(t2));  // 4
+    print(len(t3));  // 0
+
+    // ── type ──
+    alias ok = 1;
+    if (!is(t1, "tuple")) { print("FAIL: t1 not tuple"); ok = 0; }
+    if (is(t1, "list"))   { print("FAIL: t1 is list"); ok = 0; }
+    if (is(t1, "map"))    { print("FAIL: t1 is map"); ok = 0; }
+
+    // ── 比较 ──
+    alias t1b = tuple(1, 2, 3);
+    alias t1c = tuple(1, 2, 4);
+    if (t1 != t1b) { print("FAIL: same tuples not equal"); ok = 0; }
+    if (t1 == t1c) { print("FAIL: different tuples equal"); ok = 0; }
+
+    // ── 越界（应返回 null） ──
+    alias bad = t1[99];
+    if (!is(bad, "null")) { print("FAIL: OOB should be null"); ok = 0; }
+
+    if (ok) { print("ALL TUPLE TESTS PASSED"); }
+    return 0;
+}

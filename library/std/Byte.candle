@@ -1,0 +1,58 @@
+/// Byte.candle — 8-bit unsigned integer type
+/// Methods: bit ops, hex/bin display, clamp to 0-255
+/// Zero-config: 5.byteAnd(3) / byteToHex(42) / byteToBin(255)
+
+reflect int {
+    // ── Bit operations (all clamp to byte range) ──
+
+    int byteAnd(int other) {
+        return byteAnd(self, other);
+    }
+
+    int byteOr(int other) {
+        return byteOr(self, other);
+    }
+
+    int byteXor(int other) {
+        return byteXor(self, other);
+    }
+
+    int byteNot() {
+        return byteNot(self);
+    }
+
+    int byteShl(int n) {
+        return byteShl(self, n);
+    }
+
+    int byteShr(int n) {
+        return byteShr(self, n);
+    }
+
+    bool isBitSet(int bit) {
+        int mask = 1;
+        for iter(i, 0, bit) {
+            mask = mask * 2;
+        }
+        return (self & mask) != 0;
+    }
+
+    // ── Display ──
+
+    string toHex() {
+        return byteToHex(self);
+    }
+
+    string toBin() {
+        return byteToBin(self);
+    }
+
+    // ── Clamp ──
+
+    int toByte() {
+        int x = self;
+        if (x < 0) { x = 0; }
+        if (x > 255) { x = x % 256; }
+        return x;
+    }
+}

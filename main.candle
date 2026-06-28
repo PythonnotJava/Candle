@@ -1,2 +1,0 @@
-load lib;
-print(factorial(5));

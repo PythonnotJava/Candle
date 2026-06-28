@@ -1,0 +1,13 @@
+class Foo { }
+int main() {
+    alias a = Foo();
+    alias b = Foo();
+
+    print(a.toString());
+    print(a.type());
+    print(a.equals(a));
+    print(a.equals(b));
+    print(a.hashCode());
+    print("OK");
+    return 0;
+}

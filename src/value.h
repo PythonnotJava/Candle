@@ -44,6 +44,7 @@ typedef struct {
 typedef struct {
     AstNode *class_node;
     VMap *fields;
+    void *extra;   /* extension data (File*, etc.) */
 } VObject;
 
 struct Value {

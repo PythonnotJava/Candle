@@ -1,0 +1,24 @@
+/// lambda_demo.candle — Lambda 与闭包测试模块
+/// 测试: lambda 表达式、闭包、高阶函数
+
+export { testSimpleLambda, testMultiParamLambda, testClosure };
+
+int testSimpleLambda() {
+    alias doubleIt = (int x) => x * 2;
+    return doubleIt(21);
+}
+
+int testMultiParamLambda() {
+    alias add = (int a, int b) => a + b;
+    return add(10, 20);
+}
+
+
+
+int testClosure() {
+    int base = 100;
+    alias addBase = (int x) => x + base;
+    return addBase(50);
+}
+
+

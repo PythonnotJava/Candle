@@ -1,0 +1,56 @@
+/// Win32 DLL FFI test — non-interactive APIs only
+/// Tests: GetTickCount, Sleep, GetCurrentProcessId, GetSystemDirectoryA
+
+// 1. Load Windows system DLLs
+dll system.user32 alias u32;
+dll system.kernel32 alias k32;
+
+// 2. Declare FFI function signatures
+ellipsis int GetTickCount();
+ellipsis void Sleep(int ms);
+ellipsis int GetCurrentProcessId();
+ellipsis int GetSystemDirectoryA(string buf, int size);
+ellipsis int SetLastError(int code);
+ellipsis int GetLastError();
+
+int main() {
+    alias all_ok = 1;
+
+    // Test 1: GetTickCount — should return positive milliseconds
+    alias t1 = GetTickCount();
+    print("TickCount:");
+    print(t1);
+    if (t1 <= 0) { print("FAIL: TickCount"); all_ok = 0; }
+
+    // Test 2: Sleep + timing
+    Sleep(10);
+    alias t2 = GetTickCount();
+    alias elapsed1 = t2 - t1;
+    print("After Sleep(10):");
+    print(elapsed1);
+    // Should be roughly 10-20ms (Windows sleep granularity)
+    if (elapsed1 < 0) { print("FAIL: time went backwards"); all_ok = 0; }
+
+    // Test 3: GetCurrentProcessId
+    alias pid = GetCurrentProcessId();
+    print("PID:");
+    print(pid);
+    if (pid <= 0) { print("FAIL: PID"); all_ok = 0; }
+
+    // Test 4: Multiple Sleep calls
+    Sleep(5);
+    alias t3 = GetTickCount();
+    alias elapsed2 = t3 - t2;
+    print("After another Sleep(5):");
+    print(elapsed2);
+    if (elapsed2 < 0) { print("FAIL: time went backwards"); all_ok = 0; }
+
+    // Test 5: GetLastError / SetLastError roundtrip
+    SetLastError(42);
+    alias err = GetLastError();
+    print("SetLastError(42) -> GetLastError():");
+    print(err);
+
+    if (all_ok) { print("ALL WIN32 DLL TESTS PASSED"); }
+    return 0;
+}

@@ -1,0 +1,7 @@
+/// Object.candle — 所有类的隐式基类（接口定义）
+class Object {
+    string toString();
+    bool equals(Object other);
+    int hashCode();
+    string type();
+}

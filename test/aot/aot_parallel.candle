@@ -1,0 +1,11 @@
+int main() {
+    print("AOT Parallel Test");
+    parallel {
+        { print("  A"); }
+        { print("  B"); }
+        { print("  C"); }
+        { print("  D"); }
+    }
+    print("End");
+    return 0;
+}

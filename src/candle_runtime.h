@@ -107,7 +107,7 @@ typedef candle_int (*candle_fn_int2)(candle_int, candle_int);
 typedef candle_bool (*candle_fn_pred)(candle_int);
 typedef void (*candle_fn_void1)(candle_int);
 
-static inline CandleList *candle_list_mapList(CandleList *l, candle_fn_int1 fn) {
+static inline CandleList *candle_list_map(CandleList *l, candle_fn_int1 fn) {
     CandleList *r = GC_MALLOC(sizeof(CandleList));
     r->cap = l->len > 0 ? l->len : 1;
     r->len = l->len;
@@ -123,7 +123,13 @@ static inline CandleList *candle_list_filter(CandleList *l, candle_fn_pred fn) {
     for (int i = 0; i < l->len; i++) if (fn(l->data[i])) r->data[r->len++] = l->data[i];
     return r;
 }
-static inline candle_int candle_list_reduce(CandleList *l, candle_fn_int2 fn) {
+static inline candle_int candle_list_reduce(CandleList *l, candle_fn_int2 fn, candle_int init) {
+    candle_int acc = init;
+    for (int i = 0; i < l->len; i++) acc = fn(acc, l->data[i]);
+    return acc;
+}
+// 2-arg legacy overload
+static inline candle_int candle_list_reduce2(CandleList *l, candle_fn_int2 fn) {
     if (l->len == 0) return 0;
     candle_int acc = l->data[0];
     for (int i = 1; i < l->len; i++) acc = fn(acc, l->data[i]);
@@ -131,6 +137,14 @@ static inline candle_int candle_list_reduce(CandleList *l, candle_fn_int2 fn) {
 }
 static inline void candle_list_forEach(CandleList *l, candle_fn_void1 fn) {
     for (int i = 0; i < l->len; i++) fn(l->data[i]);
+}
+static inline candle_bool candle_list_any(CandleList *l, candle_fn_pred fn) {
+    for (int i = 0; i < l->len; i++) if (fn(l->data[i])) return 1;
+    return 0;
+}
+static inline candle_bool candle_list_every(CandleList *l, candle_fn_pred fn) {
+    for (int i = 0; i < l->len; i++) if (!fn(l->data[i])) return 0;
+    return 1;
 }
 
 #define candle_str_foreach(var, str) \
