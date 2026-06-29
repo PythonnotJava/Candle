@@ -1,3 +1,0 @@
-D:\SDK\Cmake\bin\cmake.exe -E rm -f CMakeFiles\candlec.dir/objects.a
-D:\SDK\LLVM\bin\llvm-ar.exe qc CMakeFiles\candlec.dir/objects.a @CMakeFiles\candlec.dir\objects1.rsp
-"D:\CLion 2026.1.2\bin\mingw\bin\gcc.exe" -Wl,--whole-archive CMakeFiles\candlec.dir/objects.a -Wl,--no-whole-archive -o C:\Users\25654\Desktop\Candle\candlec.exe -Wl,--out-implib,libcandlec.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\candlec.dir\linkLibs.rsp

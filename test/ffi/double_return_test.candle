@@ -1,0 +1,25 @@
+/// FFI double return test — using msvcrt.dll's sin/cos/sqrt
+dll system.msvcrt alias crt;
+ellipsis double sin(double x);
+ellipsis double cos(double x);
+ellipsis double sqrt(double x);
+ellipsis double pow(double x, double y);
+
+int main() {
+    alias s = sin(0.5);
+    print("sin(0.5) = " + String(s));
+    alias c = cos(0.5);
+    print("cos(0.5) = " + String(c));
+    alias r = sqrt(2.0);
+    print("sqrt(2.0) = " + String(r));
+    alias p = pow(2.0, 3.0);
+    print("pow(2,3) = " + String(p));
+    
+    // sin(0.5) ≈ 0.4794, cos(0.5) ≈ 0.8776
+    if (s > 0.47 && s < 0.48 && c > 0.87 && c < 0.88) {
+        print("DOUBLE RETURN OK");
+    } else {
+        print("DOUBLE RETURN MISMATCH");
+    }
+    return 0;
+}

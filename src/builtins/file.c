@@ -179,7 +179,7 @@ static void v_map_local_set(VMapLocal *m, const char *k, Value val) {
     m->len++;
 }
 
-Value build_file_map(void) {
+Value build_file_map(Value file_class) {
     Value mod = v_map_local();
     VMapLocal *m = (VMapLocal*)mod.as.map;
     v_map_local_set(m, "open",      v_native(file_open));
@@ -192,5 +192,6 @@ Value build_file_map(void) {
     v_map_local_set(m, "writeBytes",v_native(file_writeBytes));
     v_map_local_set(m, "seek",      v_native(file_seek));
     v_map_local_set(m, "tell",      v_native(file_tell));
+    if (file_class.type == V_CLASS) v_map_local_set(m, "File", file_class);
     return mod;
 }

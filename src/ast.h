@@ -77,6 +77,8 @@ struct AstNode {
     char *self_call_class; // bare method call inside a method ? Class__method(self,...)
     int is_ctor_call;     // call where callee is a class name ? ClassName__new(...)
     int lambda_id;        // codegen-assigned id for lifted lambda
+    char *annotation;     // @override / @operator / @implement
+    char *annotation_arg; // @deprecated("reason")
     union {
         // NODE_PROGRAM, NODE_BLOCK
         struct { NodeList stmts; } program;

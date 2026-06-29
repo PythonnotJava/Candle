@@ -1,0 +1,88 @@
+// test/annotations/annotation_test.candle — @operator/@override/@implement/@deprecated
+
+// ── ellipsis interface ─────────────────────────────────────────────────────
+ellipsis class Drawable { void draw(); }
+
+// ── Complex with @operator ─────────────────────────────────────────────────
+class Complex {
+    double real; double imag;
+    Complex(double real, double imag);
+}
+
+reflect Complex {
+    @operator
+    Complex __add__(Complex other) {
+        return Complex(self.real + other.real, self.imag + other.imag);
+    }
+
+    @operator
+    Complex __mul__(Complex other) {
+        return Complex(
+            self.real * other.real - self.imag * other.imag,
+            self.real * other.imag + self.imag * other.real
+        );
+    }
+
+    @operator
+    bool __eq__(Complex other) {
+        return self.real == other.real && self.imag == other.imag;
+    }
+
+    string toString() {
+        return String(self.real) + "+" + String(self.imag) + "i";
+    }
+
+    @deprecated("Use magnitude() instead")
+    double oldAbs() { return 0.0; }
+}
+
+// ── Animal / Dog with @override ────────────────────────────────────────────
+class Animal { }
+reflect Animal { void speak() { print("Animal sound"); } }
+
+class Dog inherit Animal { }
+reflect Dog { @override void speak() { print("Woof!"); } }
+
+// ── Circle with @implement ─────────────────────────────────────────────────
+class Circle inherit Drawable {
+    double radius;
+    Circle(double radius);
+}
+reflect Circle { @implement void draw() { print("Circle r=" + String(self.radius)); } }
+
+// ── @deprecated type check ─────────────────────────────────────────────────
+int test_deprecated() {
+    alias d = deprecated("Use newAPI() instead");
+    assert(is(d, "_Deprecated"));
+    assert(d.message == "Use newAPI() instead");
+    print("  OK  deprecated instance");
+    return 0;
+}
+
+// ── main ───────────────────────────────────────────────────────────────────
+int main() {
+    print("=== @operator test ===");
+    alias a = Complex(3, 4);
+    alias b = Complex(1, 2);
+    print(b.oldAbs());
+    alias sum = a + b;
+    alias prod = a * b;
+    print(sum.toString());
+    print(prod.toString());
+    print(a == b);   // false
+    print(a == a);   // true
+
+    print("\n=== @override test ===");
+    alias dog = Dog();
+    dog.speak();      // "Woof!"
+
+    print("\n=== @implement test ===");
+    alias c = Circle(5.0);
+    c.draw();          // "Circle r=5"
+
+    print("\n=== @deprecated test ===");
+    test_deprecated();
+
+    print("\n=== ALL ANNOTATION TESTS PASSED ===");
+    return 0;
+}

@@ -1,14 +1,14 @@
-/// test_complex.candle — Complex 测试
-load library.std.Complex alias cx;
+/// test_complex.candle — Complex 测试 (新版构造器语法)
+load library.std.Complex alias _;
 
 int main() {
-    alias z = cx.create(3.0, 4.0);
+    alias z = Complex(3.0, 4.0);
     print(z.toString());
     print(z.abs());
     print(z.real);
     print(z.imag);
 
-    alias w = cx.create(1.0, 2.0);
+    alias w = Complex(1.0, 2.0);
     alias sum = z.add(w);
     print(sum.toString());
 

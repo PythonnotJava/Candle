@@ -6,6 +6,20 @@
 
 extern AstNode *find_class(const char *name);
 
+// -- deprecated ---------------------------------------------------
+
+static Value bi_deprecated(int argc, Value *argv) {
+    const char *msg = (argc > 0 && argv[0].type == V_STRING) ? argv[0].as.s : "";
+    // Create _Deprecated instance
+    AstNode *cls = find_class("_Deprecated");
+    Value dep; dep.type = V_OBJECT;
+    dep.as.obj = GC_CALLOC(1, sizeof(VObject));
+    dep.as.obj->class_node = cls;
+    dep.as.obj->fields = GC_CALLOC(1, sizeof(VMap));
+    v_map_set(dep.as.obj->fields, "message", v_string(msg));
+    return dep;
+}
+
 // -- Output --------------------------------------------------------
 
 static Value bi_print(int argc, Value *argv) {
@@ -365,6 +379,7 @@ void builtins_register(Env *globals) {
     env_define(globals, "input",  v_native(bi_input));
     env_define(globals, "exit",   v_native(bi_exit));
     env_define(globals, "is",     v_native(bi_is));
+    env_define(globals, "deprecated", v_native(bi_deprecated));
     env_define(globals, "tuple",  v_native(bi_tuple));
 
     // Byte bit ops
@@ -398,5 +413,193 @@ void builtins_register(Env *globals) {
         node_list_init(&obj_cls->as.class_decl.members);
         Value v; v.type = V_CLASS; v.as.cls = obj_cls;
         env_define(globals, "Object", v);
+    }
+
+    // -- Exception class hierarchy
+    /* Exception base */
+    {   AstNode *exc = ast_new(NODE_CLASS_DECL, 0, 0);
+        exc->as.class_decl.name = strdup("Exception");
+        exc->as.class_decl.parent = strdup("Object");
+        exc->as.class_decl.is_final = 0;
+        exc->as.class_decl.is_static = 0;
+        exc->as.class_decl.is_ellipsis = 0;
+        node_list_init(&exc->as.class_decl.members);
+        AstNode *ef = ast_new(NODE_FIELD_DECL, 0, 0);
+        ef->as.var.type_name = strdup("string");
+        ef->as.var.name = strdup("message");
+        ef->as.var.is_private = 0; ef->as.var.is_static = 0; ef->as.var.is_final = 0;
+        ef->as.var.init = NULL;
+        node_list_push(&exc->as.class_decl.members, ef);
+        Value ev; ev.type = V_CLASS; ev.as.cls = exc;
+        env_define(globals, "Exception", ev);
+    }
+    {   AstNode *s_RuntimeException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_RuntimeException->as.class_decl.name = strdup("RuntimeException");
+        s_RuntimeException->as.class_decl.parent = strdup("Exception");
+        s_RuntimeException->as.class_decl.is_final = 0;
+        s_RuntimeException->as.class_decl.is_static = 0;
+        s_RuntimeException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_RuntimeException->as.class_decl.members);
+        Value v_RuntimeException; v_RuntimeException.type = V_CLASS; v_RuntimeException.as.cls = s_RuntimeException;
+        env_define(globals, "RuntimeException", v_RuntimeException);
+    }
+    {   AstNode *s_TypeException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_TypeException->as.class_decl.name = strdup("TypeException");
+        s_TypeException->as.class_decl.parent = strdup("Exception");
+        s_TypeException->as.class_decl.is_final = 0;
+        s_TypeException->as.class_decl.is_static = 0;
+        s_TypeException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_TypeException->as.class_decl.members);
+        Value v_TypeException; v_TypeException.type = V_CLASS; v_TypeException.as.cls = s_TypeException;
+        env_define(globals, "TypeException", v_TypeException);
+    }
+    {   AstNode *s_ArithmeticException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_ArithmeticException->as.class_decl.name = strdup("ArithmeticException");
+        s_ArithmeticException->as.class_decl.parent = strdup("Exception");
+        s_ArithmeticException->as.class_decl.is_final = 0;
+        s_ArithmeticException->as.class_decl.is_static = 0;
+        s_ArithmeticException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_ArithmeticException->as.class_decl.members);
+        Value v_ArithmeticException; v_ArithmeticException.type = V_CLASS; v_ArithmeticException.as.cls = s_ArithmeticException;
+        env_define(globals, "ArithmeticException", v_ArithmeticException);
+    }
+    {   AstNode *s_IndexException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_IndexException->as.class_decl.name = strdup("IndexException");
+        s_IndexException->as.class_decl.parent = strdup("Exception");
+        s_IndexException->as.class_decl.is_final = 0;
+        s_IndexException->as.class_decl.is_static = 0;
+        s_IndexException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_IndexException->as.class_decl.members);
+        Value v_IndexException; v_IndexException.type = V_CLASS; v_IndexException.as.cls = s_IndexException;
+        env_define(globals, "IndexException", v_IndexException);
+    }
+    {   AstNode *s_NullException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_NullException->as.class_decl.name = strdup("NullException");
+        s_NullException->as.class_decl.parent = strdup("Exception");
+        s_NullException->as.class_decl.is_final = 0;
+        s_NullException->as.class_decl.is_static = 0;
+        s_NullException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_NullException->as.class_decl.members);
+        Value v_NullException; v_NullException.type = V_CLASS; v_NullException.as.cls = s_NullException;
+        env_define(globals, "NullException", v_NullException);
+    }
+    {   AstNode *s_IOException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_IOException->as.class_decl.name = strdup("IOException");
+        s_IOException->as.class_decl.parent = strdup("Exception");
+        s_IOException->as.class_decl.is_final = 0;
+        s_IOException->as.class_decl.is_static = 0;
+        s_IOException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_IOException->as.class_decl.members);
+        Value v_IOException; v_IOException.type = V_CLASS; v_IOException.as.cls = s_IOException;
+        env_define(globals, "IOException", v_IOException);
+    }
+    {   AstNode *s_PrivateException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_PrivateException->as.class_decl.name = strdup("PrivateException");
+        s_PrivateException->as.class_decl.parent = strdup("Exception");
+        s_PrivateException->as.class_decl.is_final = 0;
+        s_PrivateException->as.class_decl.is_static = 0;
+        s_PrivateException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_PrivateException->as.class_decl.members);
+        Value v_PrivateException; v_PrivateException.type = V_CLASS; v_PrivateException.as.cls = s_PrivateException;
+        env_define(globals, "PrivateException", v_PrivateException);
+    }
+    {   AstNode *s_ValueException = ast_new(NODE_CLASS_DECL, 0, 0);
+        s_ValueException->as.class_decl.name = strdup("ValueException");
+        s_ValueException->as.class_decl.parent = strdup("Exception");
+        s_ValueException->as.class_decl.is_final = 0;
+        s_ValueException->as.class_decl.is_static = 0;
+        s_ValueException->as.class_decl.is_ellipsis = 0;
+        node_list_init(&s_ValueException->as.class_decl.members);
+        Value v_ValueException; v_ValueException.type = V_CLASS; v_ValueException.as.cls = s_ValueException;
+        env_define(globals, "ValueException", v_ValueException);
+    }
+
+    // -- File class
+    {   AstNode *file_cls = ast_new(NODE_CLASS_DECL, 0, 0);
+        file_cls->as.class_decl.name = strdup("File");
+        file_cls->as.class_decl.parent = strdup("Object");
+        file_cls->as.class_decl.is_final = 0;
+        file_cls->as.class_decl.is_static = 0;
+        file_cls->as.class_decl.is_ellipsis = 0;
+        node_list_init(&file_cls->as.class_decl.members);
+        AstNode *fh = ast_new(NODE_FIELD_DECL, 0, 0);
+        fh->as.var.type_name = strdup("int");
+        fh->as.var.name = strdup("_handle");
+        fh->as.var.is_private = 1; fh->as.var.is_static = 0; fh->as.var.is_final = 0;
+        fh->as.var.init = NULL;
+        node_list_push(&file_cls->as.class_decl.members, fh);
+        Value fv; fv.type = V_CLASS; fv.as.cls = file_cls;
+        env_define(globals, "File", fv);
+    }
+
+    // -- Annotation types (@operator / @override / @implement)
+    {
+        AstNode *cls_oper = ast_new(NODE_CLASS_DECL, 0, 0);
+        cls_oper->as.class_decl.name = strdup("_Operator");
+        cls_oper->as.class_decl.parent = strdup("Object");
+        cls_oper->as.class_decl.is_final = 0;
+        cls_oper->as.class_decl.is_static = 0;
+        cls_oper->as.class_decl.is_ellipsis = 1;
+        node_list_init(&cls_oper->as.class_decl.members);
+        Value v_oper; v_oper.type = V_CLASS; v_oper.as.cls = cls_oper;
+        env_define(globals, "_Operator", v_oper);
+
+        AstNode *cls_ovr = ast_new(NODE_CLASS_DECL, 0, 0);
+        cls_ovr->as.class_decl.name = strdup("_Override");
+        cls_ovr->as.class_decl.parent = strdup("Object");
+        cls_ovr->as.class_decl.is_final = 0;
+        cls_ovr->as.class_decl.is_static = 0;
+        cls_ovr->as.class_decl.is_ellipsis = 1;
+        node_list_init(&cls_ovr->as.class_decl.members);
+        Value v_ovr; v_ovr.type = V_CLASS; v_ovr.as.cls = cls_ovr;
+        env_define(globals, "_Override", v_ovr);
+
+        AstNode *cls_impl = ast_new(NODE_CLASS_DECL, 0, 0);
+        cls_impl->as.class_decl.name = strdup("_Implement");
+        cls_impl->as.class_decl.parent = strdup("Object");
+        cls_impl->as.class_decl.is_final = 0;
+        cls_impl->as.class_decl.is_static = 0;
+        cls_impl->as.class_decl.is_ellipsis = 1;
+        node_list_init(&cls_impl->as.class_decl.members);
+        Value v_impl; v_impl.type = V_CLASS; v_impl.as.cls = cls_impl;
+        env_define(globals, "_Implement", v_impl);
+
+        // Annotation instances
+        Value op_inst; op_inst.type = V_OBJECT;
+        op_inst.as.obj = GC_CALLOC(1, sizeof(VObject));
+        op_inst.as.obj->class_node = cls_oper;
+        op_inst.as.obj->fields = GC_CALLOC(1, sizeof(VMap));
+        env_define(globals, "operator", op_inst);
+
+        Value ovr_inst; ovr_inst.type = V_OBJECT;
+        ovr_inst.as.obj = GC_CALLOC(1, sizeof(VObject));
+        ovr_inst.as.obj->class_node = cls_ovr;
+        ovr_inst.as.obj->fields = GC_CALLOC(1, sizeof(VMap));
+        env_define(globals, "override", ovr_inst);
+
+        Value imp_inst; imp_inst.type = V_OBJECT;
+        imp_inst.as.obj = GC_CALLOC(1, sizeof(VObject));
+        imp_inst.as.obj->class_node = cls_impl;
+        imp_inst.as.obj->fields = GC_CALLOC(1, sizeof(VMap));
+        env_define(globals, "implement", imp_inst);
+    }
+
+    // -- @deprecated annotation
+    {
+        AstNode *cls_dep = ast_new(NODE_CLASS_DECL, 0, 0);
+        cls_dep->as.class_decl.name = strdup("_Deprecated");
+        cls_dep->as.class_decl.parent = strdup("Object");
+        cls_dep->as.class_decl.is_final = 0;
+        cls_dep->as.class_decl.is_static = 0;
+        cls_dep->as.class_decl.is_ellipsis = 0;
+        node_list_init(&cls_dep->as.class_decl.members);
+        // message field
+        AstNode *msg_f = ast_new(NODE_FIELD_DECL, 0, 0);
+        msg_f->as.var.type_name = strdup("string");
+        msg_f->as.var.name = strdup("message");
+        msg_f->as.var.is_private = 0;
+        node_list_push(&cls_dep->as.class_decl.members, msg_f);
+        Value v_dep; v_dep.type = V_CLASS; v_dep.as.cls = cls_dep;
+        env_define(globals, "_Deprecated", v_dep);
     }
 }

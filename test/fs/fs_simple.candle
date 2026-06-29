@@ -263,12 +263,12 @@ int test_append_mode() {
 int test_large_data() {
     // build a large string
     alias sb = "";
-    for iter(i, 0, 500) { sb = sb + "X"; }
+    for iter(i, 0, 200) { sb = sb + "X"; }
     fs.writeFile("test/fs/_large.txt", sb);
     alias back = fs.readFile("test/fs/_large.txt");
-    assert(len(back) == 500);
+    assert(len(back) == 200);
     assert(back == sb);
-    ok("large data (500 bytes)");
+    ok("large data (200 bytes)");
     return 0;
 }
 

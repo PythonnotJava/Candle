@@ -1,49 +1,48 @@
 /// Complex.candle — 复数类型
-/// 用法: load library.std.Complex alias cx;
-///       alias z = cx.create(3.0, 4.0);
-///       print(z.abs()); // 5
-
-load std.math alias math;
-
-export { create };
+/// load library.std.Complex alias _;
+/// alias z = Complex(3.0, 4.0); print(z.abs()); // 5
 
 class Complex {
     double real;
     double imag;
-}
 
-Complex create(double r, double i) {
-    alias z = Complex();
-    z.real = r;
-    z.imag = i;
-    return z;
+    Complex(double real, double imag);
 }
 
 reflect Complex {
     Complex add(Complex other) {
-        return create(self.real + other.real, self.imag + other.imag);
+        return Complex(self.real + other.real, self.imag + other.imag);
     }
     Complex subtract(Complex other) {
-        return create(self.real - other.real, self.imag - other.imag);
+        return Complex(self.real - other.real, self.imag - other.imag);
     }
     Complex multiply(Complex other) {
-        double r = self.real * other.real - self.imag * other.imag;
-        double i = self.real * other.imag + self.imag * other.real;
-        return create(r, i);
+        alias r = self.real * other.real - self.imag * other.imag;
+        alias i = self.real * other.imag + self.imag * other.real;
+        return Complex(r, i);
     }
     Complex scale(double s) {
-        return create(self.real * s, self.imag * s);
+        return Complex(self.real * s, self.imag * s);
     }
     double abs() {
-        double r = self.real;
-        double i = self.imag;
-        return math.pow(r * r + i * i, 0.5);
+        alias r = self.real;
+        alias i = self.imag;
+        alias sum = r * r + i * i;
+        // Newton's method for sqrt
+        alias x = sum;
+        alias prev = 0.0;
+        for iter(k, 0, 20) {
+            if (x == prev) { break; }
+            prev = x;
+            x = (x + sum / x) / 2.0;
+        }
+        return x;
     }
     double absSquared() {
         return self.real * self.real + self.imag * self.imag;
     }
     Complex conjugate() {
-        return create(self.real, -self.imag);
+        return Complex(self.real, -self.imag);
     }
     bool isReal() {
         return self.imag == 0.0;

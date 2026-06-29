@@ -1,9 +1,0 @@
-load std.time alias time;
-int main() {
-    parallel {
-        { print("thread A"); }
-        { print("thread B"); }
-    }
-    print("done");
-    return 0;
-}

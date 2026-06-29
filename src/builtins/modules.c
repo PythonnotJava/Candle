@@ -1,4 +1,6 @@
 #include "modules.h"
+
+extern AstNode *find_class(const char *name);
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -192,11 +194,16 @@ static Value build_json(void) {
 extern Value build_http(void);
 extern Value build_time(void);
 extern Value build_fs(void);
-extern Value build_file_map(void);
+extern Value build_file_map(Value file_class);
 extern Value build_random(void);
 extern Value build_process(void);
 extern Value build_path(void);
 extern Value build_encoding(void);
+extern Value build_ffi_mem(void);
+extern Value build_gui(void);
+extern Value build_datetime(void);
+extern Value build_collections(void);
+extern Value build_crypto(void);
 
 // ── 模块注册表 ───────────────────────────────────────────────────────────────
 
@@ -209,16 +216,22 @@ static const ModuleDef g_modules[] = {
     { "std.time",     build_time     },
     { "std.fs",       build_fs       },
     { "std.json",     build_json     },
-    { "std.file",     build_file_map },
+    // "std.file" handled specially in module_load (needs File class)
     { "std.random",   build_random   },
     { "std.process",  build_process  },
     { "std.path",     build_path     },
     { "std.encoding", build_encoding },
+    { "std.ffi",      build_ffi_mem  },
+    { "std.gui",         build_gui         },
+    { "std.datetime",    build_datetime    },
+    { "std.collections", build_collections },
+    { "std.crypto",      build_crypto      },
     { NULL, NULL }
 };
 
 int module_exists(const char *path) {
     if (!path) return 0;
+    if (strcmp(path, "std.file") == 0) return 1;
     for (int i = 0; g_modules[i].path; i++)
         if (strcmp(g_modules[i].path, path) == 0) return 1;
     return 0;
@@ -226,6 +239,12 @@ int module_exists(const char *path) {
 
 Value module_load(const char *path) {
     if (!path) return v_null();
+    if (strcmp(path, "std.file") == 0) {
+        Value fc; fc.type = V_NULL;
+        AstNode *cls = find_class("File");
+        if (cls) { fc.type = V_CLASS; fc.as.cls = cls; }
+        return build_file_map(fc);
+    }
     for (int i = 0; g_modules[i].path; i++)
         if (strcmp(g_modules[i].path, path) == 0) return g_modules[i].build();
     return v_null();

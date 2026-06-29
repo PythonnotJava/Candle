@@ -1,5 +1,0 @@
-load std.time alias time;
-int main() {
-    print("hello from bench");
-    return 0;
-}

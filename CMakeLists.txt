@@ -4,6 +4,7 @@ project(candle C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(MSVC)
     add_compile_options(/W3 /wd4244 /wd4267 /wd4996)
@@ -30,6 +31,7 @@ set(CANDLEC_SRC
     src/builtins/builtins.c
     src/builtins/modules.c
     src/builtins/ffi.c
+    src/builtins/ffi_mem.c
     src/builtins/http.c
     src/builtins/time.c
     src/builtins/fs.c
@@ -38,19 +40,28 @@ set(CANDLEC_SRC
     src/builtins/process.c
     src/builtins/path.c
     src/builtins/encoding.c
+    src/builtins/gui.c
+    src/builtins/datetime.c
+    src/builtins/collections.c
+    src/builtins/crypto.c
     src/vendor/cjson/cJSON.c
 )
 
 add_executable(candlec ${CANDLEC_SRC})
-target_include_directories(candlec PRIVATE src)
+target_include_directories(candlec PRIVATE src src/builtins)
 
 # ── Boehm GC (interpreter only; transpiled programs use plain malloc) ─────
-# set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
-# target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
-# target_link_libraries(candlec PRIVATE "${GC_ROOT}/build/gc.lib")
-# target_compile_definitions(candlec PRIVATE CANDLE_USE_BOEHM_GC GC_NOT_DLL)
-target_link_libraries(candlec PRIVATE ws2_32)
-# message(STATUS "Boehm GC: ${GC_ROOT}")
+set(GC_ROOT "${CMAKE_SOURCE_DIR}/src/vendor/bdwgc")
+target_include_directories(candlec PRIVATE "${GC_ROOT}/include")
+target_link_libraries(candlec PRIVATE "${GC_ROOT}/build_clang/Release/gc.lib")
+target_compile_definitions(candlec PRIVATE CANDLE_USE_BOEHM_GC GC_NOT_DLL)
+
+# ── Win32 system libraries ────────────────────────────────────────────────
+if(WIN32)
+    target_link_libraries(candlec PRIVATE ws2_32 gdi32 user32)
+endif()
+
+message(STATUS "Boehm GC: ${GC_ROOT}")
 
 # ────────────────────────────────────────────────────────────────────────────
 # candle_runtime — vendor-backed runtime library, linked to transpiled programs
@@ -59,6 +70,8 @@ target_link_libraries(candlec PRIVATE ws2_32)
 set(VENDOR_SRC
     src/vendor/cjson/cJSON.c
     src/vendor/mongoose/mongoose.c
+    src/std/gui_runtime.c
+    src/std/_builtins_aot_runtime.c
 )
 
 add_library(candle_runtime STATIC ${VENDOR_SRC})
@@ -69,7 +82,7 @@ target_compile_options(candle_runtime PRIVATE
 )
 
 if(WIN32)
-    target_link_libraries(candle_runtime PUBLIC ws2_32)
+    target_link_libraries(candle_runtime PUBLIC ws2_32 gdi32 user32)
 endif()
 
 # Optional OpenMP for transpiled programs that use `parallel`
@@ -123,4 +136,5 @@ message(STATUS "    C compiler:  ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSI
 message(STATUS "    Build type:  ${CMAKE_BUILD_TYPE}")
 message(STATUS "    Examples:    ${CANDLE_BUILD_EXAMPLES} (-DCANDLE_BUILD_EXAMPLES=ON to enable)")
 message(STATUS "    OpenMP:      ${OpenMP_C_FOUND}")
+message(STATUS "    GC:          Boehm ${GC_ROOT}")
 message(STATUS "")

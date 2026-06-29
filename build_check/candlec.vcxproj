@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{568CF6AB-0E40-3CC7-8614-E3508D116A0E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>candlec</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\25654\Desktop\Candle\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">candlec.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">candlec</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\25654\Desktop\Candle\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">candlec.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">candlec</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\25654\Desktop\Candle\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">candlec.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">candlec</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\25654\Desktop\Candle\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">candlec.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">candlec</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\build_clang\Release\gc.lib;ws2_32.lib;gdi32.lib;user32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/25654/Desktop/Candle/build_check/Debug/candlec.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/25654/Desktop/Candle/Debug/candlec.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\build_clang\Release\gc.lib;ws2_32.lib;gdi32.lib;user32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/25654/Desktop/Candle/build_check/Release/candlec.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/25654/Desktop/Candle/Release/candlec.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\build_clang\Release\gc.lib;ws2_32.lib;gdi32.lib;user32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/25654/Desktop/Candle/build_check/MinSizeRel/candlec.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/25654/Desktop/Candle/MinSizeRel/candlec.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CANDLE_USE_BOEHM_GC;GC_NOT_DLL;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\25654\Desktop\Candle\src;C:\Users\25654\Desktop\Candle\src\builtins;C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Users\25654\Desktop\Candle\src\vendor\bdwgc\build_clang\Release\gc.lib;ws2_32.lib;gdi32.lib;user32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/25654/Desktop/Candle/build_check/RelWithDebInfo/candlec.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/25654/Desktop/Candle/RelWithDebInfo/candlec.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\25654\Desktop\Candle\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/25654/Desktop/Candle/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+D:\SDK\Cmake\bin\cmake.exe -SC:/Users/25654/Desktop/Candle -BC:/Users/25654/Desktop/Candle/build_check --check-stamp-file C:/Users/25654/Desktop/Candle/build_check/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeRCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompilerABI.c;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystem.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CompilerId\VS-10.vcxproj.in;D:\SDK\Cmake\share\cmake-3.29\Modules\FindOpenMP.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageMessage.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/25654/Desktop/Candle/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+D:\SDK\Cmake\bin\cmake.exe -SC:/Users/25654/Desktop/Candle -BC:/Users/25654/Desktop/Candle/build_check --check-stamp-file C:/Users/25654/Desktop/Candle/build_check/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeRCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompilerABI.c;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystem.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CompilerId\VS-10.vcxproj.in;D:\SDK\Cmake\share\cmake-3.29\Modules\FindOpenMP.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageMessage.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/25654/Desktop/Candle/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+D:\SDK\Cmake\bin\cmake.exe -SC:/Users/25654/Desktop/Candle -BC:/Users/25654/Desktop/Candle/build_check --check-stamp-file C:/Users/25654/Desktop/Candle/build_check/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeRCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompilerABI.c;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystem.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CompilerId\VS-10.vcxproj.in;D:\SDK\Cmake\share\cmake-3.29\Modules\FindOpenMP.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageMessage.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/25654/Desktop/Candle/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+D:\SDK\Cmake\bin\cmake.exe -SC:/Users/25654/Desktop/Candle -BC:/Users/25654/Desktop/Candle/build_check --check-stamp-file C:/Users/25654/Desktop/Candle/build_check/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeRCCompiler.cmake;C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\3.29.3\CMakeSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCCompilerABI.c;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystem.cmake.in;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\CompilerId\VS-10.vcxproj.in;D:\SDK\Cmake\share\cmake-3.29\Modules\FindOpenMP.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\FindPackageMessage.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\Windows.cmake;D:\SDK\Cmake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\25654\Desktop\Candle\build_check\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\main.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\lexer.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\token.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\util.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\ast.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\parser.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\sema.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\codegen.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\value.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\interp.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\threading.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\builtins.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\modules.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\ffi.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\ffi_mem.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\http.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\time.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\fs.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\file.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\random.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\process.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\path.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\encoding.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\gui.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\datetime.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\collections.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\builtins\crypto.c" />
+    <ClCompile Include="C:\Users\25654\Desktop\Candle\src\vendor\cjson\cJSON.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\25654\Desktop\Candle\build_check\ZERO_CHECK.vcxproj">
+      <Project>{E1AAD67F-CC0A-3D5A-BE3E-80C61C9F3765}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

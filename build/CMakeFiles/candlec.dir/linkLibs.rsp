@@ -1,0 +1,1 @@
+ C:/Users/25654/Desktop/Candle/src/vendor/bdwgc/build_clang/Release/gc.lib -lws2_32.lib -lgdi32.lib -luser32.lib -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames 

@@ -1,0 +1,29 @@
+/// Exception hierarchy full test
+int main() {
+    alias ok = true;
+
+    // Test 1: exact catch
+    try { throw PrivateException("secret"); }
+    catch(PrivateException e) { print("1:" + e.message); }
+
+    // Test 2: inheritance catch
+    try { throw IndexException("bounds"); }
+    catch(Exception e) { print("2:" + e.message); }
+
+    // Test 3: is() checks
+    alias v1 = is(PrivateException, "Exception");
+    alias v2 = is(Exception, "Object");
+    if (!v1 || !v2) { print("FAIL: is()"); ok = false; }
+
+    // Test 4: string throw still works
+    try { throw "raw"; } catch(e) { print("3:" + e.type); }
+
+    // Test 5: nested re-throw
+    try {
+        try { throw IOException("io"); }
+        catch(Exception e) { throw PrivateException("wrapped"); }
+    } catch(PrivateException e) { print("4:" + e.message); }
+
+    if (ok) { print("EXCEPTION HIERARCHY OK"); }
+    return 0;
+}

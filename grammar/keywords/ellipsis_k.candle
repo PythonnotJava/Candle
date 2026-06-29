@@ -10,6 +10,7 @@ class Circle inherit Shape {
     Circle(double radius);
 
     // 实现父类的抽象方法
+    @implement
     double area() {
         return 3.14 * radius * radius;
     }

@@ -1,0 +1,15 @@
+load std.file alias file;
+load std.math alias math;
+
+int main() {
+    print(file.File);
+    print(math.PI);
+    alias h = file.open("test/fs/1.candle", "rb");
+    if (h) {
+        alias line = file.readLine(h);
+        print(line);
+        file.close(h);
+    }
+    print("file-AOT OK");
+    return 0;
+}

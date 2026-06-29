@@ -1,8 +1,0 @@
-class Foo { int val; }
-int main() {
-    alias f = Foo();
-    f.val = 42;
-    print(f.toString());
-    print("OK");
-    return 0;
-}

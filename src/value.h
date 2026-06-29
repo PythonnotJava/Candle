@@ -2,7 +2,10 @@
 #define CANDLE_VALUE_H
 
 #include "candle_runtime.h"
-#include "ast.h"
+
+/* Forward declarations — avoid pulling token.h into standalone builtins */
+typedef struct AstNode AstNode;
+typedef struct Env Env;
 
 typedef enum {
     V_NULL,
@@ -21,7 +24,6 @@ typedef enum {
 } ValueType;
 
 typedef struct Value Value;
-typedef struct Env Env;
 
 typedef Value (*NativeFn)(int argc, Value *argv);
 

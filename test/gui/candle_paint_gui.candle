@@ -1,0 +1,81 @@
+/// Candle Paint — AOT
+load std.gui alias gui;
+
+int main() {
+    alias w = 1024;
+    alias h = 700;
+    gui.createWindow("Candle Paint", w, h);
+
+    alias cr = 0;
+    alias col_r = [255,0,255,0,0,255,0,255];
+    alias col_g = [0,255,0,255,0,255,255,0];
+    alias col_b = [0,0,255,255,0,0,255,255];
+    gui.setColor(255, 0, 0);
+    gui.setPenWidth(3);
+
+    alias drawing = false;
+    alias prevX = -1;
+    alias prevY = -1;
+    alias frame = 0;
+
+    print("Candle Paint!");
+
+    for iter(frame, 0, 1000000) {
+        if (!gui.isOpen()) { break; }
+        if (gui.isKeyDown(27)) { break; }
+        if (gui.isKeyDown(82)) { cr = 0; }
+        if (gui.isKeyDown(71)) { cr = 1; }
+        if (gui.isKeyDown(66)) { cr = 2; }
+        if (gui.isKeyDown(87)) { cr = 3; }
+        if (gui.isKeyDown(75)) { cr = 4; }
+        if (gui.isKeyDown(89)) { cr = 5; }
+        if (gui.isKeyDown(67)) { gui.clear(255,255,255); }
+        if (gui.isKeyDown(77)) { cr = 7; }
+        if (gui.isKeyDown(49)) { gui.setPenWidth(1); }
+        if (gui.isKeyDown(50)) { gui.setPenWidth(3); }
+        if (gui.isKeyDown(51)) { gui.setPenWidth(6); }
+
+        alias r = col_r[cr];
+        alias g = col_g[cr];
+        alias b = col_b[cr];
+        gui.setColor(r, g, b);
+
+        alias mx = gui.getMouseX();
+        alias my = gui.getMouseY();
+        alias mdown = gui.isMouseDown();
+
+        alias canvasY = 660;
+        alias isCanvas = false;
+        if (my < canvasY) { isCanvas = true; }
+
+        alias shouldDraw = false;
+        if (mdown && isCanvas) { shouldDraw = true; }
+
+        alias hasPrev = false;
+        if (prevX >= 0) { hasPrev = true; }
+
+        if (shouldDraw) {
+            if (drawing && hasPrev) {
+                gui.drawLine(prevX, prevY, mx, my);
+            }
+            drawing = true;
+            prevX = mx;
+            prevY = my;
+        } else {
+            drawing = false;
+            prevX = -1;
+        }
+
+        gui.setColor(220, 220, 220);
+        gui.fillRect(0, 660, w, 40);
+        gui.setColor(r, g, b);
+        gui.fillRect(8, 664, 30, 32);
+        gui.setColor(0, 0, 0);
+        gui.drawText(50, 672, "Draw with left mouse");
+
+        gui.refresh();
+    }
+
+    gui.close();
+    return 0;
+}

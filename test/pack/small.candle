@@ -1,0 +1,8 @@
+int main() {
+    print("HELLO PACK");
+    alias n = 7;
+    alias sq = n * n;
+    print(sq);
+    for iter(i, 0, 5) { print(i); }
+    return 0;
+}

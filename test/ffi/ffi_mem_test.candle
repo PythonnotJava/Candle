@@ -1,0 +1,67 @@
+/// std.ffi memory management test
+/// Tests: alloc, free, readInt, writeInt, memcpy, memset,
+///        ptrToInt, intToPtr, readString, sizeOf
+
+load std.ffi alias ffi;
+
+int main() {
+    alias all_ok = true;
+
+    // ── 1. sizeOf ──
+    alias szi = ffi.sizeOf("int");
+    alias szp = ffi.sizeOf("ptr");
+    alias szd = ffi.sizeOf("double");
+    print("sizeOf(int)=" + String(szi) + " ptr=" + String(szp) + " double=" + String(szd));
+    if (szi < 1 || szp < 1 || szd < 1) { print("FAIL: sizeOf"); all_ok = false; }
+
+    // ── 2. alloc + free ──
+    alias p = ffi.alloc(64);
+    print("alloc(64)=" + String(p));
+    if (p <= 0) { print("FAIL: alloc"); all_ok = false; }
+    ffi.free(p);
+    print("free OK");
+
+    // ── 3. writeInt + readInt roundtrip ──
+    alias p2 = ffi.alloc(16);
+    ffi.writeInt(p2, 42);
+    alias v = ffi.readInt(p2);
+    print("writeInt/readInt: " + String(v));
+    if (v != 42) { print("FAIL: readInt"); all_ok = false; }
+    ffi.free(p2);
+
+    // ── 4. memset + readInt ──
+    alias p3 = ffi.alloc(16);
+    ffi.memset(p3, 0, 16);
+    alias z = ffi.readInt(p3);
+    print("memset zero: " + String(z));
+    if (z != 0) { print("FAIL: memset"); all_ok = false; }
+    ffi.free(p3);
+
+    // ── 5. memcpy ──
+    alias src = ffi.alloc(16);
+    alias dst = ffi.alloc(16);
+    ffi.writeInt(src, 99);
+    ffi.memcpy(dst, src, 4);
+    alias cp = ffi.readInt(dst);
+    print("memcpy: " + String(cp));
+    if (cp != 99) { print("FAIL: memcpy"); all_ok = false; }
+    ffi.free(src);
+    ffi.free(dst);
+
+    // ── 6. ptrToInt / intToPtr ──
+    alias x = 12345;
+    alias px = ffi.ptrToInt("hello");
+    print("ptrToInt(string): " + String(px));
+    if (px <= 0) { print("FAIL: ptrToInt"); all_ok = false; }
+
+    // ── 7. readString ──
+    alias p4 = ffi.alloc(32);
+    ffi.memset(p4, 0, 32);
+    alias ps = ffi.readString(p4);
+    print("readString(zero): '" + ps + "'");
+    ffi.free(p4);
+
+    if (all_ok) { print("STD.FFI ALL TESTS PASSED"); }
+    else        { print("SOME FFI TESTS FAILED"); }
+    return 0;
+}

@@ -1,0 +1,91 @@
+/// Pack test — core language features
+load std.file alias file;
+load std.math alias math;
+
+class Animal {
+    string name;
+    Animal(string name);
+    string speak() { return self.name + " says hi"; }
+}
+
+class Dog inherit Animal {
+    Dog(string name);
+    string speak() { return self.name + " barks!"; }
+}
+
+int factorial(int n) {
+    if (n <= 1) { return 1; }
+    return n * factorial(n - 1);
+}
+
+int main() {
+    alias ok = true;
+    print("=== Candle Pack Test ===");
+
+    alias a = 42;
+    alias b = 3.14;
+    alias d = "Hello, " + "Candle!";
+    print(d);
+    if (a + 8 != 50) { print("FAIL: arithmetic"); ok = false; }
+
+    const PI = 3.14159;
+    print("PI: " + String(PI));
+
+    alias xs = [1, 2, 3, 4, 5];
+    if (len(xs) != 5) { print("FAIL: list"); ok = false; }
+
+    alias total = 0;
+    for iter(i, 0, 10) { total = total + i; }
+    if (total != 45) { print("FAIL: for"); ok = false; }
+
+    alias wh = 0;
+    alias cnt = 5;
+    when(cnt > 0) { wh = wh + 1; cnt = cnt - 1; }
+    if (wh != 5) { print("FAIL: when"); ok = false; }
+
+    alias f5 = factorial(5);
+    if (f5 != 120) { print("FAIL: recursion"); ok = false; }
+
+    alias cat = Animal("Kitty");
+    print(cat.speak());
+    if (cat.name != "Kitty") { print("FAIL: class"); ok = false; }
+
+    alias dog = Dog("Rex");
+    print(dog.speak());
+    if (is(dog, "Dog") && is(dog, "Animal") && is(dog, "Object")) {
+        print("Inheritance OK");
+    } else { print("FAIL: is()"); ok = false; }
+
+    alias square = (int x) => x * x;
+    if (square(7) != 49) { print("FAIL: lambda"); ok = false; }
+
+    try {
+        throw RuntimeException("test");
+    } catch(RuntimeException e) {
+        print("Caught: " + e.message);
+    }
+
+    alias s = "hello";
+    if (s.length() != 5) { print("FAIL: string"); ok = false; }
+
+    alias ev = 10;
+    if (!ev.isEven()) { print("FAIL: int.isEven"); ok = false; }
+
+    alias d2 = -5.5;
+    if (d2.abs() != 5.5) { print("FAIL: double.abs"); ok = false; }
+
+    alias h = file.open("test/pack/_pack_test.txt", "w");
+    if (h) { file.writeLine(h, "PACK OK"); file.close(h); }
+    alias h2 = file.open("test/pack/_pack_test.txt", "r");
+    if (h2) {
+        alias line = file.readLine(h2);
+        print(line);
+        file.close(h2);
+    }
+
+    alias zipped = zip([1,2], ["a","b"]);
+    if (len(zipped) != 2) { print("FAIL: zip"); ok = false; }
+
+    if (ok) { print("*** ALL PACK TESTS PASSED ***"); }
+    return 0;
+}

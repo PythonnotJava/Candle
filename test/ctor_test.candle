@@ -1,0 +1,43 @@
+/// Test constructors — load, then class auto-registered (NODE_LOAD fix)
+load library.std.Complex alias _c;
+load library.std.Uint8List alias _u;
+load library.std.StringBuffer alias _s;
+
+int main() {
+    print("=== Complex ===");
+    alias z = Complex(3.0, 4.0);
+    print(z.real);
+    print(z.imag);
+    print(z.abs());
+    print(z.toString());
+    alias z2 = z.multiply(Complex(0.0, 1.0));
+    print(z2.toString());
+    print(z.conjugate().toString());
+    print(z.isReal());
+
+    print("=== Uint8List ===");
+    alias b = Uint8List(5);
+    b.set(0, 65);
+    b.set(1, 66);
+    print(b.get(0));
+    print(b.get(1));
+    print(b.length());
+    b.fill(42);
+    print(b.get(3));
+    alias b2 = b.sublist(0, 2);
+    print(b2.length());
+
+    print("=== StringBuffer ===");
+    alias buf = StringBuffer();
+    buf.append("Hello");
+    buf.append(" ");
+    buf.append("World!");
+    print(buf.toString());
+    print(buf.length());
+    print(buf.isEmpty());
+    buf.clear();
+    print(buf.isEmpty());
+
+    print("ALL CONSTRUCTOR TESTS PASSED");
+    return 0;
+}

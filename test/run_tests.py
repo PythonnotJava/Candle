@@ -34,7 +34,10 @@ tests = [
     ("fs_simple",       "test/fs/fs_simple.candle",                  "ALL 20 FS TESTS PASSED"),
     ("tuple",           "test/tuple/tuple_test.candle",               "ALL TUPLE TESTS PASSED"),
     ("byte_encoding",   "test/byte/byte_test.candle",                 "ALL BYTE+ENCODING TESTS PASSED"),
+    ("private",        "test/private_test.candle",          "EXCEPTION HIERARCHY OK"),
+    ("ctor",           "test/ctor_test.candle",               "ALL CONSTRUCTOR TESTS PASSED"),
     ("win32_dll",       "test/dll/win32_test.candle",                 "ALL WIN32 DLL TESTS PASSED"),
+    ("annotation",      "test/annotations/annotation_test.candle", "ALL ANNOTATION TESTS PASSED"),
 ]
 
 passed = 0

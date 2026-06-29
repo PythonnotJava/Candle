@@ -1,29 +1,38 @@
 /// Uint8List.candle — 无符号 8 位整数列表（字节数组）
-/// 用法: load library.std.Uint8List alias ub;
-///       alias bytes = Uint8List(10);  // 10 个字节，初始为 0
-///       bytes.set(0, 65); print(bytes.get(0)); // 65
+/// load library.std.Uint8List alias ub;
+/// alias bytes = Uint8List(10);
+/// bytes.set(0, 65); print(bytes.get(0)); // 65
 
 class Uint8List {
+    int _len;
     list _data;
-    int _length;
-}
 
-reflect Uint8List {
-    // ── 构造（通过 factory 或默认构造后初始化） ──
-
-    void init(int length) {
+    Uint8List(int length) {
+        self._len = length;
         self._data = [];
-        self._length = length;
-        for iter(i, 0, length) {
-            self._data.push(0);
-        }
+        for iter(i, 0, length) { self._data.push(0); }
     }
 
+    int get(int index) {
+        if (index < 0 || index >= self._len) { return 0; }
+        return self._data[index];
+    }
+
+    void set(int index, int value) {
+        if (index < 0 || index >= self._len) { return; }
+        if (value < 0) { value = 0; }
+        if (value > 255) { value = 255; }
+        self._data[index] = value;
+    }
+
+    int length() { return self._len; }
+    bool isEmpty() { return self._len == 0; }
+
     void fromList(list values) {
-        self._length = len(values);
+        self._len = len(values);
         self._data = [];
-        for iter(i, 0, self._length) {
-            int v = int(values[i]);
+        for iter(i, 0, self._len) {
+            alias v = values[i];
             if (v < 0) { v = 0; }
             if (v > 255) { v = 255; }
             self._data.push(v);
@@ -31,75 +40,34 @@ reflect Uint8List {
     }
 
     void fromString(string s) {
-        int n = s.length();
-        self._length = n;
+        alias n = len(s);
+        self._len = n;
         self._data = [];
-        for iter(i, 0, n) {
-            self._data.push(s.codeUnitAt(i));
-        }
+        for iter(i, 0, n) { self._data.push(s.codeUnitAt(i)); }
     }
-
-    // ── 访问 ──
-
-    int get(int index) {
-        if (index < 0 || index >= self._length) { return 0; }
-        return self._data[index];
-    }
-
-    void set(int index, int value) {
-        if (index < 0 || index >= self._length) { return; }
-        if (value < 0) { value = 0; }
-        if (value > 255) { value = 255; }
-        self._data[index] = value;
-    }
-
-    int length() {
-        return self._length;
-    }
-
-    bool isEmpty() {
-        return self._length == 0;
-    }
-
-    // ── 转换 ──
-
-    list toList() {
-        list out = [];
-        for iter(i, 0, self._length) {
-            out.push(self._data[i]);
-        }
-        return out;
-    }
-
-    string toString() {
-        string s = "";
-        for iter(i, 0, self._length) {
-            int b = self._data[i];
-            s = s + s.substring(i, 0) + "x";  // stub — replace with hex
-        }
-        return "Uint8List(" + String(self._length) + ")";
-    }
-
-    // ── 切片 ──
 
     Uint8List sublist(int start, int end) {
         if (start < 0) { start = 0; }
-        if (end > self._length) { end = self._length; }
+        if (end > self._len) { end = self._len; }
         if (start >= end) { return Uint8List(0); }
         alias out = Uint8List(end - start);
-        for iter(i, start, end) {
-            out.set(i - start, self._data[i]);
-        }
+        for iter(i, start, end) { out.set(i - start, self._data[i]); }
         return out;
     }
-
-    // ── 填充 ──
 
     void fill(int value) {
         if (value < 0) { value = 0; }
         if (value > 255) { value = 255; }
-        for iter(i, 0, self._length) {
-            self._data[i] = value;
-        }
+        for iter(i, 0, self._len) { self._data[i] = value; }
+    }
+
+    list toList() {
+        list out = [];
+        for iter(i, 0, self._len) { out.push(self._data[i]); }
+        return out;
+    }
+
+    string toString() {
+        return "Uint8List(" + String(self._len) + ")";
     }
 }

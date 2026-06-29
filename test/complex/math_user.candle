@@ -1,6 +1,0 @@
-load test.complex.math_mod alias mm;
-int main() {
-    print(mm.getPI());
-    print("OK");
-    return 0;
-}

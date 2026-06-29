@@ -1,0 +1,194 @@
+[
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\main.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\main.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/main.c",
+  "output": "CMakeFiles/candlec.dir/src/main.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\lexer.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\lexer.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/lexer.c",
+  "output": "CMakeFiles/candlec.dir/src/lexer.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\token.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\token.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/token.c",
+  "output": "CMakeFiles/candlec.dir/src/token.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\util.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\util.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/util.c",
+  "output": "CMakeFiles/candlec.dir/src/util.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\ast.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\ast.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/ast.c",
+  "output": "CMakeFiles/candlec.dir/src/ast.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\parser.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\parser.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/parser.c",
+  "output": "CMakeFiles/candlec.dir/src/parser.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\sema.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\sema.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/sema.c",
+  "output": "CMakeFiles/candlec.dir/src/sema.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\codegen.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\codegen.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/codegen.c",
+  "output": "CMakeFiles/candlec.dir/src/codegen.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\value.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\value.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/value.c",
+  "output": "CMakeFiles/candlec.dir/src/value.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\interp.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\interp.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/interp.c",
+  "output": "CMakeFiles/candlec.dir/src/interp.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\threading.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\threading.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/threading.c",
+  "output": "CMakeFiles/candlec.dir/src/threading.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\builtins.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\builtins.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/builtins.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/builtins.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\modules.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\modules.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/modules.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/modules.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\ffi.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\ffi.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/ffi.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/ffi.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\ffi_mem.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\ffi_mem.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/ffi_mem.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/ffi_mem.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\http.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\http.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/http.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/http.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\time.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\time.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/time.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/time.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\fs.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\fs.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/fs.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/fs.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\file.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\file.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/file.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/file.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\random.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\random.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/random.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/random.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\process.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\process.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/process.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/process.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\path.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\path.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/path.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/path.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\encoding.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\encoding.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/encoding.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/encoding.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\gui.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\gui.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/gui.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/gui.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\datetime.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\datetime.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/datetime.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/datetime.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\collections.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\collections.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/collections.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/collections.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\builtins\\crypto.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\builtins\\crypto.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/builtins/crypto.c",
+  "output": "CMakeFiles/candlec.dir/src/builtins/crypto.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe -DCANDLE_USE_BOEHM_GC -DGC_NOT_DLL @CMakeFiles/candlec.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -o CMakeFiles\\candlec.dir\\src\\vendor\\cjson\\cJSON.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\vendor\\cjson\\cJSON.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/vendor/cjson/cJSON.c",
+  "output": "CMakeFiles/candlec.dir/src/vendor/cjson/cJSON.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe  @CMakeFiles/candle_runtime.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -w -o CMakeFiles\\candle_runtime.dir\\src\\vendor\\cjson\\cJSON.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\vendor\\cjson\\cJSON.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/vendor/cjson/cJSON.c",
+  "output": "CMakeFiles/candle_runtime.dir/src/vendor/cjson/cJSON.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe  @CMakeFiles/candle_runtime.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -w -o CMakeFiles\\candle_runtime.dir\\src\\vendor\\mongoose\\mongoose.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\vendor\\mongoose\\mongoose.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/vendor/mongoose/mongoose.c",
+  "output": "CMakeFiles/candle_runtime.dir/src/vendor/mongoose/mongoose.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe  @CMakeFiles/candle_runtime.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -w -o CMakeFiles\\candle_runtime.dir\\src\\std\\gui_runtime.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\std\\gui_runtime.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/std/gui_runtime.c",
+  "output": "CMakeFiles/candle_runtime.dir/src/std/gui_runtime.c.obj"
+},
+{
+  "directory": "C:/Users/25654/Desktop/Candle/build",
+  "command": "D:\\SDK\\LLVM\\bin\\clang.exe  @CMakeFiles/candle_runtime.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu11 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -w -o CMakeFiles\\candle_runtime.dir\\src\\std\\_builtins_aot_runtime.c.obj -c C:\\Users\\25654\\Desktop\\Candle\\src\\std\\_builtins_aot_runtime.c",
+  "file": "C:/Users/25654/Desktop/Candle/src/std/_builtins_aot_runtime.c",
+  "output": "CMakeFiles/candle_runtime.dir/src/std/_builtins_aot_runtime.c.obj"
+}
+]

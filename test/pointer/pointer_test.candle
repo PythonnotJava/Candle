@@ -1,0 +1,10 @@
+load std.pointer alias p;
+int main() {
+    alias buf = p.alloc(16);
+    p.writeInt32(buf, 0, 42);
+    alias v = p.readInt32(buf, 0);
+    print(v);
+    p.free(buf);
+    print("Pointer OK");
+    return 0;
+}

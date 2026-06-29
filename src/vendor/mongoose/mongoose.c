@@ -16150,7 +16150,7 @@ static int mg_tls_recv_cert(struct mg_connection *c, bool is_client) {
       if (ci == certs) {
         // First certificate in the chain is peer cert, check SAN if requested,
         // and store public key for further CertVerify step
-        if (tls->hostname[0] != '\0' &&
+        if (!tls->skip_verification && tls->hostname[0] != '\0' &&
             mg_tls_verify_cert_san(cert, certsz, tls->hostname, &c->rem) <= 0 &&
             mg_tls_verify_cert_cn(&ci->subj, tls->hostname) <= 0) {
           mg_error(c, "failed to verify hostname");
@@ -16167,7 +16167,7 @@ static int mg_tls_recv_cert(struct mg_connection *c, bool is_client) {
         memmove(tls->pubkey, ci->pubkey.buf, ci->pubkey.len);
         tls->pubkeysz = ci->pubkey.len;
       } else {
-        if (!mg_tls_verify_cert_signature(ci - 1, ci)) {
+        if (!tls->skip_verification && !mg_tls_verify_cert_signature(ci - 1, ci)) {
           mg_error(c, "failed to verify certificate chain");
           return -1;
         }
@@ -16185,7 +16185,7 @@ static int mg_tls_recv_cert(struct mg_connection *c, bool is_client) {
       }
     }
 
-    if (!found_ca && tls->ca_der.len > 0) {
+    if (!found_ca && tls->ca_der.len > 0 && !tls->skip_verification) {
       if (certnum < 1 ||
           !mg_tls_verify_cert_signature(&certs[certnum - 1], &ca)) {
         mg_error(c, "failed to verify CA");

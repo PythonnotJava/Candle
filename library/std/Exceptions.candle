@@ -1,0 +1,45 @@
+/// Exceptions.candle — 异常类体系（零配置，自动可用）
+///
+/// 继承链: Object → Exception → 各子类
+///
+/// 用法:
+///   throw Exception("something went wrong");
+///   throw RuntimeException("oops");
+///   try { ... } catch(Exception e) { print(e.message); }
+
+class Exception inherit Object {
+    string message;
+    Exception(string message);
+}
+
+class RuntimeException inherit Exception {
+    RuntimeException(string message);
+}
+
+class TypeException inherit Exception {
+    TypeException(string message);
+}
+
+class ArithmeticException inherit Exception {
+    ArithmeticException(string message);
+}
+
+class IndexException inherit Exception {
+    IndexException(string message);
+}
+
+class NullException inherit Exception {
+    NullException(string message);
+}
+
+class IOException inherit Exception {
+    IOException(string message);
+}
+
+class PrivateException inherit Exception {
+    PrivateException(string message);
+}
+
+class ValueException inherit Exception {
+    ValueException(string message);
+}

@@ -1,9 +1,0 @@
-print(type(String));
-load library.std.Int alias _Int;
-load library.std.Bool alias _Bool;
-load library.std.String alias _Str;
-load library.std.List alias _List;
-load library.std.Map alias _Map;
-load library.std.Double alias _Double;
-print(type(String));
-print(String(42.isEven()));

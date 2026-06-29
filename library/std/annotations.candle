@@ -1,0 +1,24 @@
+// annotations.candle — 内置注解类型
+//
+// 四个注解都是全局 const 实例，零配置可用：
+//   @operator   → 运算符重载
+//   @override   → 覆写检查
+//   @implement  → 接口实现
+//   @deprecated → 弃用标记
+
+// ── 注解类型定义 ────────────────────────────────────────────────
+ellipsis class _Operator   { }
+ellipsis class _Override   { }
+ellipsis class _Implement  { }
+class _Deprecated {
+    string message;
+    _Deprecated(string message);
+}
+
+// ── 全局注解实例 ────────────────────────────────────────────────
+const operator  = _Operator();
+const override  = _Override();
+const implement = _Implement();
+
+// deprecated("reason") → _Deprecated 实例，用法 @deprecated("Use X instead")
+ellipsis _Deprecated deprecated(string reason);
